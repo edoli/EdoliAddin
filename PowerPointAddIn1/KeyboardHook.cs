@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PowerPointAddIn1
 {
@@ -24,8 +17,6 @@ namespace PowerPointAddIn1
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
         private const int HC_ACTION = 0;
-
-        private static System.IO.StreamWriter logFile = new System.IO.StreamWriter("C:/Users/daniel/Downloads/test/log.txt");
 
 
         #region VirtualKey
