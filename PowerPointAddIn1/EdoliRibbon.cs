@@ -13,9 +13,9 @@ namespace PowerPointAddIn1
 
         }
 
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void grid_Click(object sender, RibbonControlEventArgs e)
         {
-
+            AlignTool.AlignGrid();
         }
 
         private void labelBottom_Click(object sender, RibbonControlEventArgs e)
@@ -36,6 +36,21 @@ namespace PowerPointAddIn1
         private void labelRight_Click(object sender, RibbonControlEventArgs e)
         {
             AlignTool.AlignLabels(ShapeExt.Anchor.Right);
+        }
+
+        private void transpose_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.Transpose();
+        }
+
+        private void groupLabel_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.GroupLabels();
+        }
+
+        private void alignPrevSlide_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignWithPreviousSlide();
         }
 
         private void editBoxName_TextChanged(object sender, RibbonControlEventArgs e)

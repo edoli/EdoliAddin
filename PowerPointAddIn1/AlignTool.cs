@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Core = Microsoft.Office.Core;
 using static PowerPointAddIn1.ShapeExt;
+using System.Numerics;
 
 namespace PowerPointAddIn1
 {
@@ -72,6 +73,68 @@ namespace PowerPointAddIn1
                 }
             }
         }
+
+        public static void AlignLeftOf()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float tLeft = lastShape.Left;
+
+                for (int i = 0; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.Left = tLeft - shape.Width;
+                }
+            }
+        }
+        public static void AlignRightOf()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float tRight = lastShape.Left + lastShape.Width;
+
+                for (int i = 0; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.Left = tRight;
+                }
+            }
+        }
+        public static void AlignTopOf()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float tTop = lastShape.Top;
+
+                for (int i = 0; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.Top = tTop - shape.Height;
+                }
+            }
+        }
+        public static void AlignBottomOf()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float tBottom = lastShape.Top + lastShape.Height;
+
+                for (int i = 0; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.Top = tBottom;
+                }
+            }
+        }
+
         public static void AlignCenter()
         {
             var shapes = Util.ListSelectedShapes();
@@ -121,7 +184,7 @@ namespace PowerPointAddIn1
         {
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
-            { 
+            {
                 shapes.Sort((shapeA, shapeB) => Math.Sign(shapeA.Left - shapeB.Left));
 
                 var leftMostShape = ShapeExt.GetLeftMostShape(shapes);
@@ -163,12 +226,12 @@ namespace PowerPointAddIn1
 
             foreach (var shape in shapes)
             {
-                if (shape.HasTextFrame == Core.MsoTriState.msoFalse 
+                if (shape.HasTextFrame == Core.MsoTriState.msoFalse
                     || shape.AutoShapeType == Core.MsoAutoShapeType.msoShapeMixed
                     || shape.TextFrame.TextRange.Text.Equals(""))
                 {
                     images.Add(shape);
-                } 
+                }
                 else
                 {
                     textboxes.Add(shape);
@@ -200,6 +263,87 @@ namespace PowerPointAddIn1
                         break;
                 }
             }
+        }
+
+        public static void GroupLabels()
+        {
+            var shapes = Util.ListSelectedShapes();
+            var images = new List<PowerPoint.Shape>();
+            var textboxes = new List<PowerPoint.Shape>();
+
+            foreach (var shape in shapes)
+            {
+                if (shape.HasTextFrame == Core.MsoTriState.msoFalse
+                    || shape.AutoShapeType == Core.MsoAutoShapeType.msoShapeMixed
+                    || shape.TextFrame.TextRange.Text.Equals(""))
+                {
+                    images.Add(shape);
+                }
+                else
+                {
+                    textboxes.Add(shape);
+                    shape.TextFrame.TextRange.ParagraphFormat.Alignment = PowerPoint.PpParagraphAlignment.ppAlignCenter;
+                }
+            }
+
+            PowerPoint.Slide slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+            foreach (var textbox in textboxes)
+            {
+                try
+                {
+                    var nearestImage = textbox.FindNearestShape(images, Anchor.None);
+                    slide.Shapes.Range(new string[] { textbox.Name, nearestImage.Name }).Group();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public static void Transpose()
+        {
+            var shapes = Util.ListSelectedShapes();
+
+            var minLeft = shapes.Min(shape => shape.Left);
+            var maxLeft = shapes.Max(shape => shape.Left);
+
+            var minTop = shapes.Min(shape => shape.Top);
+            var maxTop = shapes.Max(shape => shape.Top);
+
+            var diag = new Vector2(maxLeft - minLeft, maxTop - minTop);
+
+            foreach (var shape in shapes)
+            {
+                float x = shape.Left - minLeft;
+                float y = shape.Top - minTop;
+                float newX = y * diag.X / diag.Y;
+                float newY = x * diag.Y / diag.X;
+                shape.Left = newX + minLeft;
+                shape.Top = newY + minTop;
+            }
+        }
+
+        public static void AlignGrid()
+        {
+            var shapes = Util.ListSelectedShapes();
+
+            var left = shapes[0].Left + shapes[0].Width;
+            var top = shapes[0].Top;
+
+            for (int i = 1; i < shapes.Count(); i++)
+            {
+                var shape = shapes[i];
+                shape.Left = left;
+                shape.Top = top;
+                left += shape.Width;
+            }
+        }
+
+        public static void AlignWithPreviousSlide()
+        {
+
         }
     }
 }

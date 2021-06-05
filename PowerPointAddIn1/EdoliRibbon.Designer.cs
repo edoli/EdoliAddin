@@ -37,13 +37,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.alignGroup = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
+            this.grid = this.Factory.CreateRibbonButton();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
             this.labelLeft = this.Factory.CreateRibbonButton();
             this.labelRight = this.Factory.CreateRibbonButton();
+            this.transpose = this.Factory.CreateRibbonButton();
+            this.groupLabel = this.Factory.CreateRibbonButton();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
+            this.alignPrevSlide = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.animationGroup.SuspendLayout();
@@ -60,22 +63,26 @@
             // 
             // alignGroup
             // 
-            this.alignGroup.Items.Add(this.button1);
+            this.alignGroup.Items.Add(this.grid);
             this.alignGroup.Items.Add(this.labelBottom);
             this.alignGroup.Items.Add(this.labelTop);
+            this.alignGroup.Items.Add(this.transpose);
             this.alignGroup.Items.Add(this.labelLeft);
             this.alignGroup.Items.Add(this.labelRight);
+            this.alignGroup.Items.Add(this.groupLabel);
+            this.alignGroup.Items.Add(this.alignPrevSlide);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
             // 
-            // button1
+            // grid
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Label = "button1";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
-            this.button1.ShowLabel = false;
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            this.grid.Image = ((System.Drawing.Image)(resources.GetObject("grid.Image")));
+            this.grid.Label = "Grid";
+            this.grid.Name = "grid";
+            this.grid.ScreenTip = "Grid";
+            this.grid.ShowImage = true;
+            this.grid.ShowLabel = false;
+            this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
             // 
             // labelBottom
             // 
@@ -117,6 +124,26 @@
             this.labelRight.ShowLabel = false;
             this.labelRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelRight_Click);
             // 
+            // transpose
+            // 
+            this.transpose.Image = ((System.Drawing.Image)(resources.GetObject("transpose.Image")));
+            this.transpose.Label = "Transpose";
+            this.transpose.Name = "transpose";
+            this.transpose.ScreenTip = "Transpose";
+            this.transpose.ShowImage = true;
+            this.transpose.ShowLabel = false;
+            this.transpose.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.transpose_Click);
+            // 
+            // groupLabel
+            // 
+            this.groupLabel.Image = ((System.Drawing.Image)(resources.GetObject("groupLabel.Image")));
+            this.groupLabel.Label = "Group Label";
+            this.groupLabel.Name = "groupLabel";
+            this.groupLabel.ScreenTip = "Group Label";
+            this.groupLabel.ShowImage = true;
+            this.groupLabel.ShowLabel = false;
+            this.groupLabel.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.groupLabel_Click);
+            // 
             // animationGroup
             // 
             this.animationGroup.Items.Add(this.editBoxName);
@@ -129,7 +156,18 @@
             this.editBoxName.Name = "editBoxName";
             this.editBoxName.ScreenTip = "Animation Name";
             this.editBoxName.ShowLabel = false;
+            this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
+            // 
+            // alignPrevSlide
+            // 
+            this.alignPrevSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignPrevSlide.Image")));
+            this.alignPrevSlide.Label = "Align";
+            this.alignPrevSlide.Name = "alignPrevSlide";
+            this.alignPrevSlide.ScreenTip = "Align with previous slide";
+            this.alignPrevSlide.ShowImage = true;
+            this.alignPrevSlide.ShowLabel = false;
+            this.alignPrevSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignPrevSlide_Click);
             // 
             // EdoliRibbon
             // 
@@ -151,13 +189,16 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup alignGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton grid;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelBottom;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelTop;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelLeft;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelRight;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup animationGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox editBoxName;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton transpose;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton groupLabel;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton alignPrevSlide;
     }
 
     partial class ThisRibbonCollection

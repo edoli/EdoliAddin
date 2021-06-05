@@ -167,7 +167,7 @@ namespace PowerPointAddIn1
                     bool shift = GetKeyState((int)VKeys.VK_SHIFT) < 0;
 
                     // align
-                    if (ctrl && alt)
+                    if (ctrl && alt && !shift)
                     {
                         switch (key)
                         {
@@ -200,9 +200,27 @@ namespace PowerPointAddIn1
                                 break;
                         }
                     }
+                    if (ctrl && !alt && !shift)
+                    {
+                        switch (key)
+                        {
+                            case VKeys.VK_NUMPAD4:
+                                AlignTool.AlignLeftOf();
+                                break;
+                            case VKeys.VK_NUMPAD6:
+                                AlignTool.AlignRightOf();
+                                break;
+                            case VKeys.VK_NUMPAD8:
+                                AlignTool.AlignTopOf();
+                                break;
+                            case VKeys.VK_NUMPAD2:
+                                AlignTool.AlignBottomOf();
+                                break;
+                        }
+                    }
 
                     // animation
-                    if (ctrl && shift)
+                    if (ctrl && !alt && shift)
                     {
                         switch (key)
                         {
