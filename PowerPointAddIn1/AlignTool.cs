@@ -168,10 +168,11 @@ namespace PowerPointAddIn1
                     || shape.TextFrame.TextRange.Text.Equals(""))
                 {
                     images.Add(shape);
-                } else
+                } 
+                else
                 {
                     textboxes.Add(shape);
-                    shape.TextFrame.HorizontalAnchor = Core.MsoHorizontalAnchor.msoAnchorCenter;
+                    shape.TextFrame.TextRange.ParagraphFormat.Alignment = PowerPoint.PpParagraphAlignment.ppAlignCenter;
                 }
             }
 
