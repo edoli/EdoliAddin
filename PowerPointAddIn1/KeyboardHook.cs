@@ -182,14 +182,18 @@ namespace PowerPointAddIn1
                         case VKeys.VK_NUMPAD5:
                             AlignTool.AlignCenter();
                             break;
-                        case VKeys.VK_NUMPAD7:
-                            AlignTool.AlignInRow();
-                            break;
                         case VKeys.VK_H:
                             AlignTool.AlignCenterHorizontal();
                             break;
                         case VKeys.VK_T:
                             AlignTool.AlignCenterVertical();
+                            break;
+
+                        case VKeys.VK_NUMPAD7:
+                            AlignTool.AlignInRow();
+                            break;
+                        case VKeys.VK_NUMPAD1:
+                            AlignTool.AlignLabels(AlignTool.Align.Bottom);
                             break;
                     }
                 }

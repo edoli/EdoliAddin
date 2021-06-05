@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
+using Core = Microsoft.Office.Core;
 
 namespace PowerPointAddIn1
 {
     public class AlignTool
     {
+        public enum Align
+        {
+            Top, Bottom, Left, Right
+        }
+
         public static void AlignLeft()
         {
             var shapes = Util.ListSelectedShapes();
@@ -146,6 +152,37 @@ namespace PowerPointAddIn1
 
                     culLeft += shape.Width + interval;
                 }
+            }
+        }
+        public static void AlignLabels(Align align)
+        {
+            var shapes = Util.ListSelectedShapes();
+            var images = new List<PowerPoint.Shape>();
+            var textboxes = new List<PowerPoint.Shape>();
+
+            foreach (var shape in shapes)
+            {
+                var text = shape.TextFrame.TextRange.Text;
+                if (text.Equals(""))
+                {
+                    images.Add(shape);
+                } else
+                {
+                    textboxes.Add(shape);
+                    shape.TextFrame.HorizontalAnchor = Core.MsoHorizontalAnchor.msoAnchorCenter;
+                }
+            }
+
+            if (align == Align.Bottom)
+            {
+                foreach (var textbox in textboxes)
+                {
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        
+                    }
+                }
+                        
             }
         }
     }

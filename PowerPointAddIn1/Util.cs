@@ -33,6 +33,11 @@ namespace PowerPointAddIn1
             return shapes;
         }
 
+        public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB)
+        {
+
+        }
+
         public static PowerPoint.Shape GetLeftMostShape(List<PowerPoint.Shape> shapes)
         {
             if (shapes.Count == 0)
