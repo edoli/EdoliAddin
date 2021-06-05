@@ -16,7 +16,10 @@ namespace PowerPointAddIn1
             var shapes = new List<PowerPoint.Shape>();
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
 
-            if (selection == null || selection.Type != PowerPoint.PpSelectionType.ppSelectionShapes)
+            var isShapeSelection = (selection.Type == PowerPoint.PpSelectionType.ppSelectionShapes
+                || selection.Type == PowerPoint.PpSelectionType.ppSelectionText);
+
+            if (selection == null || !isShapeSelection)
             {
                 return shapes;
             }

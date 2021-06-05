@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Office = Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace PowerPointAddIn1
 {
@@ -17,12 +18,23 @@ namespace PowerPointAddIn1
             //textBox.TextFrame.TextRange.InsertAfter("This text was added by using code.");
         }
 
+        public void WindowSelectionChange(Selection sel)
+        {
+            var t = DateTime.Now;
+            var shapes = Util.ListSelectedShapes();
+            String name = "";
+            if (shapes.Count > 0)
+            {
+                var shape = shapes[0];
+                name = shape.Name;
+            }
+            Globals.Ribbons.EdoliRibbon.editBoxName.Text = name;
+        }
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             KeyboardHook.SetHook();
-    //        this.Application.PresentationNewSlide +=
-    //new PowerPoint.EApplication_PresentationNewSlideEventHandler(
-    //Application_PresentationNewSlide);
+            this.Application.WindowSelectionChange += new PowerPoint.EApplication_WindowSelectionChangeEventHandler(WindowSelectionChange);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

@@ -37,5 +37,10 @@ namespace PowerPointAddIn1
         {
             AlignTool.AlignLabels(ShapeExt.Anchor.Right);
         }
+
+        private void editBoxName_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+            AnimationTool.SetNameOfActive(this.editBoxName.Text);
+        }
     }
 }

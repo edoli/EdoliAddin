@@ -36,33 +36,37 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
-            this.group1 = this.Factory.CreateRibbonGroup();
+            this.alignGroup = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
             this.labelLeft = this.Factory.CreateRibbonButton();
             this.labelRight = this.Factory.CreateRibbonButton();
+            this.animationGroup = this.Factory.CreateRibbonGroup();
+            this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.tab1.SuspendLayout();
-            this.group1.SuspendLayout();
+            this.alignGroup.SuspendLayout();
+            this.animationGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.ControlId.OfficeId = "TabHome";
-            this.tab1.Groups.Add(this.group1);
+            this.tab1.Groups.Add(this.alignGroup);
+            this.tab1.Groups.Add(this.animationGroup);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
             // 
-            // group1
+            // alignGroup
             // 
-            this.group1.Items.Add(this.button1);
-            this.group1.Items.Add(this.labelBottom);
-            this.group1.Items.Add(this.labelTop);
-            this.group1.Items.Add(this.labelLeft);
-            this.group1.Items.Add(this.labelRight);
-            this.group1.Label = "Align";
-            this.group1.Name = "group1";
+            this.alignGroup.Items.Add(this.button1);
+            this.alignGroup.Items.Add(this.labelBottom);
+            this.alignGroup.Items.Add(this.labelTop);
+            this.alignGroup.Items.Add(this.labelLeft);
+            this.alignGroup.Items.Add(this.labelRight);
+            this.alignGroup.Label = "Align";
+            this.alignGroup.Name = "alignGroup";
             // 
             // button1
             // 
@@ -113,6 +117,20 @@
             this.labelRight.ShowLabel = false;
             this.labelRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelRight_Click);
             // 
+            // animationGroup
+            // 
+            this.animationGroup.Items.Add(this.editBoxName);
+            this.animationGroup.Label = "Animation";
+            this.animationGroup.Name = "animationGroup";
+            // 
+            // editBoxName
+            // 
+            this.editBoxName.Label = "Animation Name";
+            this.editBoxName.Name = "editBoxName";
+            this.editBoxName.ScreenTip = "Animation Name";
+            this.editBoxName.ShowLabel = false;
+            this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
+            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -121,8 +139,10 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.EdoliRibbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
-            this.group1.ResumeLayout(false);
-            this.group1.PerformLayout();
+            this.alignGroup.ResumeLayout(false);
+            this.alignGroup.PerformLayout();
+            this.animationGroup.ResumeLayout(false);
+            this.animationGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -130,12 +150,14 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup alignGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelBottom;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelTop;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelLeft;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelRight;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup animationGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox editBoxName;
     }
 
     partial class ThisRibbonCollection

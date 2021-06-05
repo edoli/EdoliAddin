@@ -153,50 +153,90 @@ namespace PowerPointAddIn1
             }
             else
             {
-                VKeys key = (VKeys)wParam;
+                if (nCode == 0)
+                {
 
-                short t1 = GetKeyState((int)VKeys.VK_CONTROL);
-                short t2 = GetKeyState((int)VKeys.VK_MENU);
-                short t3 = GetKeyState((int)VKeys.VK_SHIFT);
+                    VKeys key = (VKeys)wParam;
 
-                bool ctrl = GetKeyState((int) VKeys.VK_CONTROL) < 0;
-                bool alt = GetKeyState((int)VKeys.VK_MENU) < 0;
-                bool shift = GetKeyState((int)VKeys.VK_SHIFT) < 0;
+                    short t1 = GetKeyState((int)VKeys.VK_CONTROL);
+                    short t2 = GetKeyState((int)VKeys.VK_MENU);
+                    short t3 = GetKeyState((int)VKeys.VK_SHIFT);
 
-                // align
-                if (ctrl && alt) {
-                    switch (key)
+                    bool ctrl = GetKeyState((int)VKeys.VK_CONTROL) < 0;
+                    bool alt = GetKeyState((int)VKeys.VK_MENU) < 0;
+                    bool shift = GetKeyState((int)VKeys.VK_SHIFT) < 0;
+
+                    // align
+                    if (ctrl && alt)
                     {
-                        case VKeys.VK_NUMPAD4:
-                            AlignTool.AlignLeft();
-                            break;
-                        case VKeys.VK_NUMPAD6:
-                            AlignTool.AlignRight();
-                            break;
-                        case VKeys.VK_NUMPAD8:
-                            AlignTool.AlignTop();
-                            break;
-                        case VKeys.VK_NUMPAD2:
-                            AlignTool.AlignBottom();
-                            break;
-                        case VKeys.VK_NUMPAD5:
-                            AlignTool.AlignCenter();
-                            break;
-                        case VKeys.VK_H:
-                            AlignTool.AlignCenterHorizontal();
-                            break;
-                        case VKeys.VK_T:
-                            AlignTool.AlignCenterVertical();
-                            break;
+                        switch (key)
+                        {
+                            case VKeys.VK_NUMPAD4:
+                                AlignTool.AlignLeft();
+                                break;
+                            case VKeys.VK_NUMPAD6:
+                                AlignTool.AlignRight();
+                                break;
+                            case VKeys.VK_NUMPAD8:
+                                AlignTool.AlignTop();
+                                break;
+                            case VKeys.VK_NUMPAD2:
+                                AlignTool.AlignBottom();
+                                break;
+                            case VKeys.VK_NUMPAD5:
+                                AlignTool.AlignCenter();
+                                break;
+                            case VKeys.VK_H:
+                                AlignTool.AlignCenterHorizontal();
+                                break;
+                            case VKeys.VK_T:
+                                AlignTool.AlignCenterVertical();
+                                break;
+                            case VKeys.VK_NUMPAD7:
+                                AlignTool.AlignInRow();
+                                break;
+                            case VKeys.VK_NUMPAD1:
+                                AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
+                                break;
+                        }
+                    }
 
-                        case VKeys.VK_NUMPAD7:
-                            AlignTool.AlignInRow();
-                            break;
-                        case VKeys.VK_NUMPAD1:
-                            AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
-                            break;
+                    // animation
+                    if (ctrl && shift)
+                    {
+                        switch (key)
+                        {
+                            case VKeys.VK_1:
+                                AnimationTool.SetNameOfActive("!!ID1");
+                                break;
+                            case VKeys.VK_2:
+                                AnimationTool.SetNameOfActive("!!ID2");
+                                break;
+                            case VKeys.VK_3:
+                                AnimationTool.SetNameOfActive("!!ID3");
+                                break;
+                            case VKeys.VK_4:
+                                AnimationTool.SetNameOfActive("!!ID4");
+                                break;
+                            case VKeys.VK_5:
+                                AnimationTool.SetNameOfActive("!!ID5");
+                                break;
+                            case VKeys.VK_6:
+                                AnimationTool.SetNameOfActive("!!ID6");
+                                break;
+                            case VKeys.VK_7:
+                                AnimationTool.SetNameOfActive("!!ID7");
+                                break;
+                            case VKeys.VK_8:
+                                AnimationTool.SetNameOfActive("!!ID8");
+                                break;
+                            case VKeys.VK_9:
+                                AnimationTool.SetNameOfActive("!!ID9");
+                                break;
+                        }
                     }
                 }
+
 
                 //switch (key)
                 //{

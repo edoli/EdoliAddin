@@ -158,6 +158,7 @@
   -->
   <ItemGroup>
     <Compile Include="AlignTool.cs" />
+    <Compile Include="AnimationTool.cs" />
     <Compile Include="EdoliRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
