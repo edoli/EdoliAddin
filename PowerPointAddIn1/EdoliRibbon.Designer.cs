@@ -47,9 +47,17 @@
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.alignPrevSlide = this.Factory.CreateRibbonButton();
+            this.gridNumColumn = this.Factory.CreateRibbonEditBox();
+            this.gridPadding = this.Factory.CreateRibbonEditBox();
+            this.groupGrid = this.Factory.CreateRibbonGroup();
+            this.swapCycle = this.Factory.CreateRibbonButton();
+            this.swapCycleReverse = this.Factory.CreateRibbonButton();
+            this.snapUpLeft = this.Factory.CreateRibbonButton();
+            this.snapUpRight = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.animationGroup.SuspendLayout();
+            this.groupGrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -57,13 +65,13 @@
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.ControlId.OfficeId = "TabHome";
             this.tab1.Groups.Add(this.alignGroup);
+            this.tab1.Groups.Add(this.groupGrid);
             this.tab1.Groups.Add(this.animationGroup);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
             // 
             // alignGroup
             // 
-            this.alignGroup.Items.Add(this.grid);
             this.alignGroup.Items.Add(this.labelBottom);
             this.alignGroup.Items.Add(this.labelTop);
             this.alignGroup.Items.Add(this.transpose);
@@ -71,6 +79,10 @@
             this.alignGroup.Items.Add(this.labelRight);
             this.alignGroup.Items.Add(this.groupLabel);
             this.alignGroup.Items.Add(this.alignPrevSlide);
+            this.alignGroup.Items.Add(this.swapCycle);
+            this.alignGroup.Items.Add(this.swapCycleReverse);
+            this.alignGroup.Items.Add(this.snapUpLeft);
+            this.alignGroup.Items.Add(this.snapUpRight);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
             // 
@@ -81,7 +93,6 @@
             this.grid.Name = "grid";
             this.grid.ScreenTip = "Grid";
             this.grid.ShowImage = true;
-            this.grid.ShowLabel = false;
             this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
             // 
             // labelBottom
@@ -169,6 +180,68 @@
             this.alignPrevSlide.ShowLabel = false;
             this.alignPrevSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignPrevSlide_Click);
             // 
+            // gridNumColumn
+            // 
+            this.gridNumColumn.Label = "Column";
+            this.gridNumColumn.Name = "gridNumColumn";
+            this.gridNumColumn.ScreenTip = "Column";
+            this.gridNumColumn.Text = "0";
+            // 
+            // gridPadding
+            // 
+            this.gridPadding.Label = "Padding";
+            this.gridPadding.Name = "gridPadding";
+            this.gridPadding.ScreenTip = "Padding";
+            this.gridPadding.Text = "0";
+            // 
+            // groupGrid
+            // 
+            this.groupGrid.Items.Add(this.grid);
+            this.groupGrid.Items.Add(this.gridPadding);
+            this.groupGrid.Items.Add(this.gridNumColumn);
+            this.groupGrid.Label = "Grid";
+            this.groupGrid.Name = "groupGrid";
+            // 
+            // swapCycle
+            // 
+            this.swapCycle.Image = ((System.Drawing.Image)(resources.GetObject("swapCycle.Image")));
+            this.swapCycle.Label = "Swap cycle";
+            this.swapCycle.Name = "swapCycle";
+            this.swapCycle.ScreenTip = "Swap cycle";
+            this.swapCycle.ShowImage = true;
+            this.swapCycle.ShowLabel = false;
+            this.swapCycle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycle_Click);
+            // 
+            // swapCycleReverse
+            // 
+            this.swapCycleReverse.Image = ((System.Drawing.Image)(resources.GetObject("swapCycleReverse.Image")));
+            this.swapCycleReverse.Label = "Swap cycle reverse";
+            this.swapCycleReverse.Name = "swapCycleReverse";
+            this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
+            this.swapCycleReverse.ShowImage = true;
+            this.swapCycleReverse.ShowLabel = false;
+            this.swapCycleReverse.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycleReverse_Click);
+            // 
+            // snapUpLeft
+            // 
+            this.snapUpLeft.Image = ((System.Drawing.Image)(resources.GetObject("snapUpLeft.Image")));
+            this.snapUpLeft.Label = "Snap up left";
+            this.snapUpLeft.Name = "snapUpLeft";
+            this.snapUpLeft.ScreenTip = "Snap up left";
+            this.snapUpLeft.ShowImage = true;
+            this.snapUpLeft.ShowLabel = false;
+            this.snapUpLeft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpLeft_Click);
+            // 
+            // snapUpRight
+            // 
+            this.snapUpRight.Image = ((System.Drawing.Image)(resources.GetObject("snapUpRight.Image")));
+            this.snapUpRight.Label = "Snap up right";
+            this.snapUpRight.Name = "snapUpRight";
+            this.snapUpRight.ScreenTip = "Snap up right";
+            this.snapUpRight.ShowImage = true;
+            this.snapUpRight.ShowLabel = false;
+            this.snapUpRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpRight_Click);
+            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -181,6 +254,8 @@
             this.alignGroup.PerformLayout();
             this.animationGroup.ResumeLayout(false);
             this.animationGroup.PerformLayout();
+            this.groupGrid.ResumeLayout(false);
+            this.groupGrid.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -199,6 +274,13 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton transpose;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton groupLabel;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignPrevSlide;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox gridNumColumn;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox gridPadding;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupGrid;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton swapCycle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton swapCycleReverse;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton snapUpLeft;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton snapUpRight;
     }
 
     partial class ThisRibbonCollection

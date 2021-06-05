@@ -57,5 +57,25 @@ namespace PowerPointAddIn1
         {
             AnimationTool.SetNameOfActive(this.editBoxName.Text);
         }
+
+        private void swapCycle_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.SwapCycle();
+        }
+
+        private void swapCycleReverse_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.SwapCycleReverse();
+        }
+
+        private void snapUpLeft_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void snapUpRight_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
     }
 }

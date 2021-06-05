@@ -329,15 +329,49 @@ namespace PowerPointAddIn1
         {
             var shapes = Util.ListSelectedShapes();
 
-            var left = shapes[0].Left + shapes[0].Width;
-            var top = shapes[0].Top;
-
-            for (int i = 1; i < shapes.Count(); i++)
+            float padding = 0;
+            int numColumn = 0;
+            try
             {
+                padding = float.Parse(Globals.Ribbons.EdoliRibbon.gridPadding.Text);
+                numColumn = int.Parse(Globals.Ribbons.EdoliRibbon.gridNumColumn.Text);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (numColumn < 1)
+            {
+                numColumn = int.MaxValue;
+            }
+
+            float left = 0;
+            float top = shapes[0].Top;
+            float maxHeight = 0;
+
+            for (int i = 0; i < shapes.Count(); i++)
+            {
+                int col = i % numColumn;
+                int row = i / numColumn;
                 var shape = shapes[i];
+
+                if (col == 0)
+                {
+                    left = shapes[0].Left;
+                    if (row >= 1)
+                    {
+                        top += maxHeight + padding;
+                    }
+                    maxHeight = 0;
+                }
                 shape.Left = left;
                 shape.Top = top;
-                left += shape.Width;
+                left += shapes[col].Width + padding;
+                if (shape.Height > maxHeight)
+                {
+                    maxHeight = shape.Height;
+                }
             }
         }
 
@@ -376,6 +410,61 @@ namespace PowerPointAddIn1
                 shape.Height = shape.Height * matchedShape.Width / shape.Width;
                 shape.Width = matchedShape.Width;
             }
+        }
+
+        public static void SwapCycle()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count < 2)
+            {
+                return;
+            }
+
+            float firstLeft = shapes[0].Left;
+            float firstTop = shapes[0].Top;
+
+            for (int i = 0; i < shapes.Count - 1; i++)
+            {
+                shapes[i].Left = shapes[i + 1].Left;
+                shapes[i].Top = shapes[i + 1].Top;
+            }
+
+            shapes.Last().Left = firstLeft;
+            shapes.Last().Top = firstTop;
+        }
+
+        public static void SwapCycleReverse()
+        {
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count < 2)
+            {
+                return;
+            }
+
+            float lastLeft = shapes.Last().Left;
+            float lastTop = shapes.Last().Top;
+
+            for (int i = shapes.Count - 1; i > 0; i--)
+            {
+                shapes[i].Left = shapes[i - 1].Left;
+                shapes[i].Top = shapes[i - 1].Top;
+            }
+            shapes[0].Left = lastLeft;
+            shapes[0].Top = lastTop;
+        }
+
+        public static void SnapUpLeft()
+        {
+            var shapes = Util.ListSelectedShapes();
+
+
+
+            for (int i = 1; i < shapes.Count; i++)
+            {
+                shapes[i].Left = shapes[i + 1].Left;
+                shapes[i].Top = shapes[i + 1].Top;
+            }
+
         }
     }
 }
