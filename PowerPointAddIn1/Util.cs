@@ -11,7 +11,23 @@ namespace PowerPointAddIn1
     public static class Util
     {
 
-        public static List<PowerPoint.Shape> ListSelectedShapes()
+        public static List<PowerPoint.Shape> ListSlideShapes(PowerPoint.Slide slide = null)
+        {
+            var shapes = new List<PowerPoint.Shape>();
+
+            if (slide == null)
+            {
+                slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            }
+
+            foreach (var shape in slide.Shapes)
+            {
+                shapes.Add((PowerPoint.Shape) shape);
+            }
+            return shapes;
+        }
+
+            public static List<PowerPoint.Shape> ListSelectedShapes()
         {
             var shapes = new List<PowerPoint.Shape>();
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;

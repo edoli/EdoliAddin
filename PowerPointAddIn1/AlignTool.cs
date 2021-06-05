@@ -343,7 +343,39 @@ namespace PowerPointAddIn1
 
         public static void AlignWithPreviousSlide()
         {
+            PowerPoint.Slide slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            var index = slide.SlideIndex;
 
+            if (index <= 1)
+            {
+                return;
+            }
+
+            var prevSlide = Globals.ThisAddIn.Application.ActiveWindow.Presentation.Slides[index - 1];
+
+            var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
+            IEnumerable<PowerPoint.Shape> shapes;
+            if (selection.Type == PowerPoint.PpSelectionType.ppSelectionNone
+                || selection.Type == PowerPoint.PpSelectionType.ppSelectionSlides)
+            {
+                shapes = Util.ListSlideShapes();
+            }
+            else
+            {
+                shapes = Util.ListSelectedShapes();
+            }
+
+            var prevShapes = Util.ListSlideShapes(prevSlide);
+
+            foreach (var shape in shapes)
+            {
+                var matchedShape = shape.FindNearestShape(prevShapes, Anchor.TopLeft);
+                shape.Left = matchedShape.Left;
+                shape.Top = matchedShape.Top;
+
+                shape.Height = shape.Height * matchedShape.Width / shape.Width;
+                shape.Width = matchedShape.Width;
+            }
         }
     }
 }
