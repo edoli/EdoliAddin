@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Core = Microsoft.Office.Core;
+using static PowerPointAddIn1.ShapeExt;
 
 namespace PowerPointAddIn1
 {
@@ -123,8 +124,8 @@ namespace PowerPointAddIn1
             { 
                 shapes.Sort((shapeA, shapeB) => Math.Sign(shapeA.Left - shapeB.Left));
 
-                var leftMostShape = Util.GetLeftMostShape(shapes);
-                var rightMostShape = Util.GetRightMostShape(shapes);
+                var leftMostShape = ShapeExt.GetLeftMostShape(shapes);
+                var rightMostShape = ShapeExt.GetRightMostShape(shapes);
 
                 var left = leftMostShape.Left;
                 var right = rightMostShape.Left + rightMostShape.Width;
@@ -154,7 +155,7 @@ namespace PowerPointAddIn1
                 }
             }
         }
-        public static void AlignLabels(Align align)
+        public static void AlignLabels(Anchor anchor)
         {
             var shapes = Util.ListSelectedShapes();
             var images = new List<PowerPoint.Shape>();
@@ -162,8 +163,9 @@ namespace PowerPointAddIn1
 
             foreach (var shape in shapes)
             {
-                var text = shape.TextFrame.TextRange.Text;
-                if (text.Equals(""))
+                if (shape.HasTextFrame == Core.MsoTriState.msoFalse 
+                    || shape.AutoShapeType == Core.MsoAutoShapeType.msoShapeMixed
+                    || shape.TextFrame.TextRange.Text.Equals(""))
                 {
                     images.Add(shape);
                 } else
@@ -173,16 +175,29 @@ namespace PowerPointAddIn1
                 }
             }
 
-            if (align == Align.Bottom)
+            foreach (var textbox in textboxes)
             {
-                foreach (var textbox in textboxes)
+                var nearestImage = textbox.FindNearestShape(images, Anchor.None);
+
+                switch (anchor)
                 {
-                    for (int i = 0; i < images.Count; i++)
-                    {
-                        
-                    }
+                    case Anchor.Top:
+                        textbox.Left = nearestImage.Left + nearestImage.Width / 2 - textbox.Width / 2;
+                        textbox.SetBottom(nearestImage.Top);
+                        break;
+                    case Anchor.Bottom:
+                        textbox.Left = nearestImage.Left + nearestImage.Width / 2 - textbox.Width / 2;
+                        textbox.Top = nearestImage.Bottom();
+                        break;
+                    case Anchor.Left:
+                        textbox.SetRight(nearestImage.Left);
+                        textbox.Top = nearestImage.Top + nearestImage.Height / 2 - textbox.Height / 2;
+                        break;
+                    case Anchor.Right:
+                        textbox.Left = nearestImage.Right();
+                        textbox.Top = nearestImage.Top + nearestImage.Height / 2 - textbox.Height / 2;
+                        break;
                 }
-                        
             }
         }
     }

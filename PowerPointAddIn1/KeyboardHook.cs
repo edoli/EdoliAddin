@@ -193,7 +193,7 @@ namespace PowerPointAddIn1
                             AlignTool.AlignInRow();
                             break;
                         case VKeys.VK_NUMPAD1:
-                            AlignTool.AlignLabels(AlignTool.Align.Bottom);
+                            AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
                             break;
                     }
                 }

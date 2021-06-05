@@ -38,6 +38,10 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
+            this.labelBottom = this.Factory.CreateRibbonButton();
+            this.labelTop = this.Factory.CreateRibbonButton();
+            this.labelLeft = this.Factory.CreateRibbonButton();
+            this.labelRight = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +57,10 @@
             // group1
             // 
             this.group1.Items.Add(this.button1);
+            this.group1.Items.Add(this.labelBottom);
+            this.group1.Items.Add(this.labelTop);
+            this.group1.Items.Add(this.labelLeft);
+            this.group1.Items.Add(this.labelRight);
             this.group1.Label = "Align";
             this.group1.Name = "group1";
             // 
@@ -64,6 +72,46 @@
             this.button1.ShowImage = true;
             this.button1.ShowLabel = false;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            // 
+            // labelBottom
+            // 
+            this.labelBottom.Image = ((System.Drawing.Image)(resources.GetObject("labelBottom.Image")));
+            this.labelBottom.Label = "LabelBottom";
+            this.labelBottom.Name = "labelBottom";
+            this.labelBottom.ScreenTip = "Label bottom";
+            this.labelBottom.ShowImage = true;
+            this.labelBottom.ShowLabel = false;
+            this.labelBottom.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelBottom_Click);
+            // 
+            // labelTop
+            // 
+            this.labelTop.Image = ((System.Drawing.Image)(resources.GetObject("labelTop.Image")));
+            this.labelTop.Label = "LabelTop";
+            this.labelTop.Name = "labelTop";
+            this.labelTop.ScreenTip = "Label top";
+            this.labelTop.ShowImage = true;
+            this.labelTop.ShowLabel = false;
+            this.labelTop.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelTop_Click);
+            // 
+            // labelLeft
+            // 
+            this.labelLeft.Image = ((System.Drawing.Image)(resources.GetObject("labelLeft.Image")));
+            this.labelLeft.Label = "LabelLeft";
+            this.labelLeft.Name = "labelLeft";
+            this.labelLeft.ScreenTip = "Label left";
+            this.labelLeft.ShowImage = true;
+            this.labelLeft.ShowLabel = false;
+            this.labelLeft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelLeft_Click);
+            // 
+            // labelRight
+            // 
+            this.labelRight.Image = ((System.Drawing.Image)(resources.GetObject("labelRight.Image")));
+            this.labelRight.Label = "LabelRight";
+            this.labelRight.Name = "labelRight";
+            this.labelRight.ScreenTip = "Label right";
+            this.labelRight.ShowImage = true;
+            this.labelRight.ShowLabel = false;
+            this.labelRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelRight_Click);
             // 
             // EdoliRibbon
             // 
@@ -84,6 +132,10 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton labelBottom;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton labelTop;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton labelLeft;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton labelRight;
     }
 
     partial class ThisRibbonCollection

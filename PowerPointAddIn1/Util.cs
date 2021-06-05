@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace PowerPointAddIn1
 {
-    class Util
+    public static class Util
     {
+
         public static List<PowerPoint.Shape> ListSelectedShapes()
         {
             var shapes = new List<PowerPoint.Shape>();
@@ -33,97 +35,106 @@ namespace PowerPointAddIn1
             return shapes;
         }
 
-        public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB)
+        public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector)
         {
-
+            return source.MinBy(selector, null);
         }
 
-        public static PowerPoint.Shape GetLeftMostShape(List<PowerPoint.Shape> shapes)
+        public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
-            if (shapes.Count == 0)
-            {
-                return null;
-            }
+            if (source == null) throw new ArgumentNullException("source");
+            if (selector == null) throw new ArgumentNullException("selector");
+            comparer = Comparer<TKey>.Default;
 
-            PowerPoint.Shape leftMostShape = shapes[0];
-            float minLeft = leftMostShape.Left;
-            for (int i = 1; i < shapes.Count; i++)
+            using (var sourceIterator = source.GetEnumerator())
             {
-                var shape = shapes[i];
-                var left = shape.Left;
-                if (left < minLeft)
+                if (!sourceIterator.MoveNext())
                 {
-                    minLeft = left;
-                    leftMostShape = shape;
+                    throw new InvalidOperationException("Sequence contains no elements");
                 }
+                var min = sourceIterator.Current;
+                var minKey = selector(min);
+                while (sourceIterator.MoveNext())
+                {
+                    var candidate = sourceIterator.Current;
+                    var candidateProjected = selector(candidate);
+                    if (comparer.Compare(candidateProjected, minKey) < 0)
+                    {
+                        min = candidate;
+                        minKey = candidateProjected;
+                    }
+                }
+                return min;
             }
-            return leftMostShape;
         }
 
-        public static PowerPoint.Shape GetRightMostShape(List<PowerPoint.Shape> shapes)
-        {
-            if (shapes.Count == 0)
-            {
-                return null;
-            }
 
-            PowerPoint.Shape rightMostShape = shapes[0];
-            float maxRight = rightMostShape.Left + rightMostShape.Width;
-            for (int i = 1; i < shapes.Count; i++)
-            {
-                var shape = shapes[i];
-                var right = shape.Left + shape.Width;
-                if (right > maxRight)
-                {
-                    maxRight = right;
-                    rightMostShape = shape;
-                }
-            }
-            return rightMostShape;
+        public static TSource MaxBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector)
+        {
+            return source.MaxBy(selector, null);
         }
 
-        public static PowerPoint.Shape GetTopMostShape(List<PowerPoint.Shape> shapes)
+        public static TSource MaxBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
-            if (shapes.Count == 0)
-            {
-                return null;
-            }
+            if (source == null) throw new ArgumentNullException("source");
+            if (selector == null) throw new ArgumentNullException("selector");
+            comparer = Comparer<TKey>.Default;
 
-            PowerPoint.Shape topMostShape = shapes[0];
-            float minTop = topMostShape.Top;
-            for (int i = 1; i < shapes.Count; i++)
+            using (var sourceIterator = source.GetEnumerator())
             {
-                var shape = shapes[i];
-                var top = shape.Top;
-                if (top < minTop)
+                if (!sourceIterator.MoveNext())
                 {
-                    minTop = top;
-                    topMostShape = shape;
+                    throw new InvalidOperationException("Sequence contains no elements");
                 }
+                var max = sourceIterator.Current;
+                var maxKey = selector(max);
+                while (sourceIterator.MoveNext())
+                {
+                    var candidate = sourceIterator.Current;
+                    var candidateProjected = selector(candidate);
+                    if (comparer.Compare(candidateProjected, maxKey) > 0)
+                    {
+                        max = candidate;
+                        maxKey = candidateProjected;
+                    }
+                }
+                return max;
             }
-            return topMostShape;
         }
 
-        public static PowerPoint.Shape GetBottomMostShape(List<PowerPoint.Shape> shapes)
+        public static float Dist(float x1, float y1, float x2, float y2)
         {
-            if (shapes.Count == 0)
-            {
-                return null;
-            }
+            float dx = x2 - x1;
+            float dy = y2 - y1;
+            return (float)Math.Sqrt(dx * dx + dy * dy);
+        }
 
-            PowerPoint.Shape bottomMostShape = shapes[0];
-            float maxBottom = bottomMostShape.Top + bottomMostShape.Height;
-            for (int i = 1; i < shapes.Count; i++)
-            {
-                var shape = shapes[i];
-                var bottom = shape.Top + shape.Height;
-                if (bottom > maxBottom)
-                {
-                    maxBottom = bottom;
-                    bottomMostShape = shape;
-                }
-            }
-            return bottomMostShape;
+        public static float RectangleDistance(float x1, float y1, float x1b, float y1b,
+            float x2, float y2, float x2b, float y2b)
+        {
+            bool left = x2b < x1;
+            bool right = x1b < x2;
+            bool bottom = y2b < y1;
+            bool top = y1b < y2;
+
+            if (top && left)
+                return Dist(x1, y1b, x2b, y2);
+            else if (left && bottom)
+                return Dist(x1, y1, x2b, y2b);
+            else if (bottom && right)
+                return Dist(x1b, y1, x2, y2b);
+            else if (right && top)
+                return Dist(x1b, y1b, x2, y2);
+            else if (left)
+                return x1 - x2b;
+            else if (right)
+                return x2 - x1b;
+            else if (bottom)
+                return y1 - y2b;
+            else if (top)
+                return y2 - y1b;
+            else  // rectangles intersect
+                return 0;
         }
     }
 }

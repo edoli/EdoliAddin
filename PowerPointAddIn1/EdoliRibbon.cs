@@ -17,5 +17,25 @@ namespace PowerPointAddIn1
         {
 
         }
+
+        private void labelBottom_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
+        }
+
+        private void labelTop_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignLabels(ShapeExt.Anchor.Top);
+        }
+
+        private void labelLeft_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignLabels(ShapeExt.Anchor.Left);
+        }
+
+        private void labelRight_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignLabels(ShapeExt.Anchor.Right);
+        }
     }
 }
