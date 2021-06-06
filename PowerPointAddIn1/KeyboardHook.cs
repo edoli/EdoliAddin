@@ -297,10 +297,16 @@ namespace PowerPointAddIn1
                         switch (key)
                         {
                             case VKeys.VK_OEM_PLUS:
-                                ShapeTool.ChangeStroke(offset);
+                                ShapeTool.ChangeLineWeight(offset);
                                 break;
                             case VKeys.VK_OEM_MINUS:
-                                ShapeTool.ChangeStroke(-offset);
+                                ShapeTool.ChangeLineWeight(-offset);
+                                break;
+                            case VKeys.VK_OEM_7:
+                                ShapeTool.ChangeLineDash(1);
+                                break;
+                            case VKeys.VK_OEM_1:
+                                ShapeTool.ChangeLineDash(-1);
                                 break;
 
                         }

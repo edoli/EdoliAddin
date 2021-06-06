@@ -55,10 +55,15 @@
             this.gridNumColumn = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
+            this.shape = this.Factory.CreateRibbonGroup();
+            this.beginArrowToggle = this.Factory.CreateRibbonButton();
+            this.beginArrowChangeSize = this.Factory.CreateRibbonButton();
+            this.button3 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.groupGrid.SuspendLayout();
             this.animationGroup.SuspendLayout();
+            this.shape.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -68,6 +73,7 @@
             this.tab1.Groups.Add(this.alignGroup);
             this.tab1.Groups.Add(this.groupGrid);
             this.tab1.Groups.Add(this.animationGroup);
+            this.tab1.Groups.Add(this.shape);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
             // 
@@ -254,6 +260,38 @@
             this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
+            // shape
+            // 
+            this.shape.Items.Add(this.beginArrowToggle);
+            this.shape.Items.Add(this.beginArrowChangeSize);
+            this.shape.Items.Add(this.button3);
+            this.shape.Label = "Shape";
+            this.shape.Name = "shape";
+            // 
+            // beginArrowToggle
+            // 
+            this.beginArrowToggle.Label = "button1";
+            this.beginArrowToggle.Name = "beginArrowToggle";
+            this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
+            this.beginArrowToggle.ShowImage = true;
+            this.beginArrowToggle.ShowLabel = false;
+            this.beginArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowToggle_Click);
+            // 
+            // beginArrowChangeSize
+            // 
+            this.beginArrowChangeSize.Label = "button1";
+            this.beginArrowChangeSize.Name = "beginArrowChangeSize";
+            this.beginArrowChangeSize.ShowImage = true;
+            this.beginArrowChangeSize.ShowLabel = false;
+            this.beginArrowChangeSize.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
+            // 
+            // button3
+            // 
+            this.button3.Label = "button1";
+            this.button3.Name = "button3";
+            this.button3.ShowImage = true;
+            this.button3.ShowLabel = false;
+            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -268,6 +306,8 @@
             this.groupGrid.PerformLayout();
             this.animationGroup.ResumeLayout(false);
             this.animationGroup.PerformLayout();
+            this.shape.ResumeLayout(false);
+            this.shape.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -294,6 +334,10 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton snapDownRight;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton snapUpRight;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignNextSlide;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup shape;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowToggle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowChangeSize;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
     }
 
     partial class ThisRibbonCollection

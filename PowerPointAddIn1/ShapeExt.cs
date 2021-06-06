@@ -19,7 +19,7 @@ namespace PowerPointAddIn1
 
         public static void DoRecur(this PowerPoint.Shape shape, Action<PowerPoint.Shape> action)
         {
-            if (shape.AutoShapeType == Microsoft.Office.Core.MsoAutoShapeType.msoShapeMixed)
+            if (shape.Type == Microsoft.Office.Core.MsoShapeType.msoGroup)
             {
                 foreach (PowerPoint.Shape item in shape.GroupItems)
                 {

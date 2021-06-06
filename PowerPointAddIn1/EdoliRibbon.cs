@@ -82,5 +82,15 @@ namespace PowerPointAddIn1
         {
             AlignTool.SnapUpRight();
         }
+
+        private void beginArrowToggle_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.BeginArrowToggle();
+        }
+
+        private void beginArrowChangeSize_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.BeginArrowChangeSize(1);
+        }
     }
 }
