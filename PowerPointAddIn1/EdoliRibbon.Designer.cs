@@ -36,6 +36,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
+            this.shape = this.Factory.CreateRibbonGroup();
+            this.beginArrowToggle = this.Factory.CreateRibbonButton();
+            this.beginArrowSizeUp = this.Factory.CreateRibbonButton();
+            this.beginArrowSizeDown = this.Factory.CreateRibbonButton();
+            this.endArrowToggle = this.Factory.CreateRibbonButton();
+            this.endArrowSizeUp = this.Factory.CreateRibbonButton();
+            this.endArrowSizeDown = this.Factory.CreateRibbonButton();
             this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
@@ -55,18 +62,11 @@
             this.gridNumColumn = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
-            this.shape = this.Factory.CreateRibbonGroup();
-            this.beginArrowToggle = this.Factory.CreateRibbonButton();
-            this.beginArrowSizeUp = this.Factory.CreateRibbonButton();
-            this.beginArrowSizeDown = this.Factory.CreateRibbonButton();
-            this.endArrowToggle = this.Factory.CreateRibbonButton();
-            this.endArrowSizeUp = this.Factory.CreateRibbonButton();
-            this.endArrowSizeDown = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
+            this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.groupGrid.SuspendLayout();
             this.animationGroup.SuspendLayout();
-            this.shape.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -79,6 +79,72 @@
             this.tab1.Groups.Add(this.animationGroup);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
+            // 
+            // shape
+            // 
+            this.shape.Items.Add(this.beginArrowToggle);
+            this.shape.Items.Add(this.beginArrowSizeUp);
+            this.shape.Items.Add(this.beginArrowSizeDown);
+            this.shape.Items.Add(this.endArrowToggle);
+            this.shape.Items.Add(this.endArrowSizeUp);
+            this.shape.Items.Add(this.endArrowSizeDown);
+            this.shape.Label = "Shape";
+            this.shape.Name = "shape";
+            // 
+            // beginArrowToggle
+            // 
+            this.beginArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowToggle.Image")));
+            this.beginArrowToggle.Label = "button1";
+            this.beginArrowToggle.Name = "beginArrowToggle";
+            this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
+            this.beginArrowToggle.ShowImage = true;
+            this.beginArrowToggle.ShowLabel = false;
+            this.beginArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowToggle_Click);
+            // 
+            // beginArrowSizeUp
+            // 
+            this.beginArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeUp.Image")));
+            this.beginArrowSizeUp.Label = "button1";
+            this.beginArrowSizeUp.Name = "beginArrowSizeUp";
+            this.beginArrowSizeUp.ShowImage = true;
+            this.beginArrowSizeUp.ShowLabel = false;
+            this.beginArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
+            // 
+            // beginArrowSizeDown
+            // 
+            this.beginArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeDown.Image")));
+            this.beginArrowSizeDown.Label = "button1";
+            this.beginArrowSizeDown.Name = "beginArrowSizeDown";
+            this.beginArrowSizeDown.ShowImage = true;
+            this.beginArrowSizeDown.ShowLabel = false;
+            this.beginArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowSizeDown_Click);
+            // 
+            // endArrowToggle
+            // 
+            this.endArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("endArrowToggle.Image")));
+            this.endArrowToggle.Label = "button1";
+            this.endArrowToggle.Name = "endArrowToggle";
+            this.endArrowToggle.ShowImage = true;
+            this.endArrowToggle.ShowLabel = false;
+            this.endArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowToggle_Click);
+            // 
+            // endArrowSizeUp
+            // 
+            this.endArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeUp.Image")));
+            this.endArrowSizeUp.Label = "button1";
+            this.endArrowSizeUp.Name = "endArrowSizeUp";
+            this.endArrowSizeUp.ShowImage = true;
+            this.endArrowSizeUp.ShowLabel = false;
+            this.endArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeUp_Click);
+            // 
+            // endArrowSizeDown
+            // 
+            this.endArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeDown.Image")));
+            this.endArrowSizeDown.Label = "button1";
+            this.endArrowSizeDown.Name = "endArrowSizeDown";
+            this.endArrowSizeDown.ShowImage = true;
+            this.endArrowSizeDown.ShowLabel = false;
+            this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
             // 
             // alignGroup
             // 
@@ -263,72 +329,6 @@
             this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
-            // shape
-            // 
-            this.shape.Items.Add(this.beginArrowToggle);
-            this.shape.Items.Add(this.beginArrowSizeUp);
-            this.shape.Items.Add(this.beginArrowSizeDown);
-            this.shape.Items.Add(this.endArrowToggle);
-            this.shape.Items.Add(this.endArrowSizeUp);
-            this.shape.Items.Add(this.endArrowSizeDown);
-            this.shape.Label = "Shape";
-            this.shape.Name = "shape";
-            // 
-            // beginArrowToggle
-            // 
-            this.beginArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowToggle.Image")));
-            this.beginArrowToggle.Label = "button1";
-            this.beginArrowToggle.Name = "beginArrowToggle";
-            this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
-            this.beginArrowToggle.ShowImage = true;
-            this.beginArrowToggle.ShowLabel = false;
-            this.beginArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowToggle_Click);
-            // 
-            // beginArrowSizeUp
-            // 
-            this.beginArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeUp.Image")));
-            this.beginArrowSizeUp.Label = "button1";
-            this.beginArrowSizeUp.Name = "beginArrowSizeUp";
-            this.beginArrowSizeUp.ShowImage = true;
-            this.beginArrowSizeUp.ShowLabel = false;
-            this.beginArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
-            // 
-            // beginArrowSizeDown
-            // 
-            this.beginArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeDown.Image")));
-            this.beginArrowSizeDown.Label = "button1";
-            this.beginArrowSizeDown.Name = "beginArrowSizeDown";
-            this.beginArrowSizeDown.ShowImage = true;
-            this.beginArrowSizeDown.ShowLabel = false;
-            this.beginArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowSizeDown_Click);
-            // 
-            // endArrowToggle
-            // 
-            this.endArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("endArrowToggle.Image")));
-            this.endArrowToggle.Label = "button1";
-            this.endArrowToggle.Name = "endArrowToggle";
-            this.endArrowToggle.ShowImage = true;
-            this.endArrowToggle.ShowLabel = false;
-            this.endArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowToggle_Click);
-            // 
-            // endArrowSizeUp
-            // 
-            this.endArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeUp.Image")));
-            this.endArrowSizeUp.Label = "button1";
-            this.endArrowSizeUp.Name = "endArrowSizeUp";
-            this.endArrowSizeUp.ShowImage = true;
-            this.endArrowSizeUp.ShowLabel = false;
-            this.endArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeUp_Click);
-            // 
-            // endArrowSizeDown
-            // 
-            this.endArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeDown.Image")));
-            this.endArrowSizeDown.Label = "button1";
-            this.endArrowSizeDown.Name = "endArrowSizeDown";
-            this.endArrowSizeDown.ShowImage = true;
-            this.endArrowSizeDown.ShowLabel = false;
-            this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
-            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -337,14 +337,14 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.EdoliRibbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
+            this.shape.ResumeLayout(false);
+            this.shape.PerformLayout();
             this.alignGroup.ResumeLayout(false);
             this.alignGroup.PerformLayout();
             this.groupGrid.ResumeLayout(false);
             this.groupGrid.PerformLayout();
             this.animationGroup.ResumeLayout(false);
             this.animationGroup.PerformLayout();
-            this.shape.ResumeLayout(false);
-            this.shape.PerformLayout();
             this.ResumeLayout(false);
 
         }
