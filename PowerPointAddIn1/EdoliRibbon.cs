@@ -92,5 +92,25 @@ namespace PowerPointAddIn1
         {
             ShapeTool.BeginArrowChangeSize(1);
         }
+
+        private void beginArrowSizeDown_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.BeginArrowChangeSize(-1);
+        }
+
+        private void endArrowToggle_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.EndArrowToggle();
+        }
+
+        private void endArrowSizeUp_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.EndArrowChangeSize(1);
+        }
+
+        private void endArrowSizeDown_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.EndArrowChangeSize(-1);
+        }
     }
 }

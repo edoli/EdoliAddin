@@ -57,8 +57,11 @@
             this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.shape = this.Factory.CreateRibbonGroup();
             this.beginArrowToggle = this.Factory.CreateRibbonButton();
-            this.beginArrowChangeSize = this.Factory.CreateRibbonButton();
-            this.button3 = this.Factory.CreateRibbonButton();
+            this.beginArrowSizeUp = this.Factory.CreateRibbonButton();
+            this.beginArrowSizeDown = this.Factory.CreateRibbonButton();
+            this.endArrowToggle = this.Factory.CreateRibbonButton();
+            this.endArrowSizeUp = this.Factory.CreateRibbonButton();
+            this.endArrowSizeDown = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.groupGrid.SuspendLayout();
@@ -70,10 +73,10 @@
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.ControlId.OfficeId = "TabHome";
+            this.tab1.Groups.Add(this.shape);
             this.tab1.Groups.Add(this.alignGroup);
             this.tab1.Groups.Add(this.groupGrid);
             this.tab1.Groups.Add(this.animationGroup);
-            this.tab1.Groups.Add(this.shape);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
             // 
@@ -263,13 +266,17 @@
             // shape
             // 
             this.shape.Items.Add(this.beginArrowToggle);
-            this.shape.Items.Add(this.beginArrowChangeSize);
-            this.shape.Items.Add(this.button3);
+            this.shape.Items.Add(this.beginArrowSizeUp);
+            this.shape.Items.Add(this.beginArrowSizeDown);
+            this.shape.Items.Add(this.endArrowToggle);
+            this.shape.Items.Add(this.endArrowSizeUp);
+            this.shape.Items.Add(this.endArrowSizeDown);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
             // 
             // beginArrowToggle
             // 
+            this.beginArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowToggle.Image")));
             this.beginArrowToggle.Label = "button1";
             this.beginArrowToggle.Name = "beginArrowToggle";
             this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
@@ -277,20 +284,50 @@
             this.beginArrowToggle.ShowLabel = false;
             this.beginArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowToggle_Click);
             // 
-            // beginArrowChangeSize
+            // beginArrowSizeUp
             // 
-            this.beginArrowChangeSize.Label = "button1";
-            this.beginArrowChangeSize.Name = "beginArrowChangeSize";
-            this.beginArrowChangeSize.ShowImage = true;
-            this.beginArrowChangeSize.ShowLabel = false;
-            this.beginArrowChangeSize.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
+            this.beginArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeUp.Image")));
+            this.beginArrowSizeUp.Label = "button1";
+            this.beginArrowSizeUp.Name = "beginArrowSizeUp";
+            this.beginArrowSizeUp.ShowImage = true;
+            this.beginArrowSizeUp.ShowLabel = false;
+            this.beginArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
             // 
-            // button3
+            // beginArrowSizeDown
             // 
-            this.button3.Label = "button1";
-            this.button3.Name = "button3";
-            this.button3.ShowImage = true;
-            this.button3.ShowLabel = false;
+            this.beginArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeDown.Image")));
+            this.beginArrowSizeDown.Label = "button1";
+            this.beginArrowSizeDown.Name = "beginArrowSizeDown";
+            this.beginArrowSizeDown.ShowImage = true;
+            this.beginArrowSizeDown.ShowLabel = false;
+            this.beginArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowSizeDown_Click);
+            // 
+            // endArrowToggle
+            // 
+            this.endArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("endArrowToggle.Image")));
+            this.endArrowToggle.Label = "button1";
+            this.endArrowToggle.Name = "endArrowToggle";
+            this.endArrowToggle.ShowImage = true;
+            this.endArrowToggle.ShowLabel = false;
+            this.endArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowToggle_Click);
+            // 
+            // endArrowSizeUp
+            // 
+            this.endArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeUp.Image")));
+            this.endArrowSizeUp.Label = "button1";
+            this.endArrowSizeUp.Name = "endArrowSizeUp";
+            this.endArrowSizeUp.ShowImage = true;
+            this.endArrowSizeUp.ShowLabel = false;
+            this.endArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeUp_Click);
+            // 
+            // endArrowSizeDown
+            // 
+            this.endArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeDown.Image")));
+            this.endArrowSizeDown.Label = "button1";
+            this.endArrowSizeDown.Name = "endArrowSizeDown";
+            this.endArrowSizeDown.ShowImage = true;
+            this.endArrowSizeDown.ShowLabel = false;
+            this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
             // 
             // EdoliRibbon
             // 
@@ -336,8 +373,11 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignNextSlide;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup shape;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowToggle;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowChangeSize;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowSizeUp;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton beginArrowSizeDown;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowToggle;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeUp;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeDown;
     }
 
     partial class ThisRibbonCollection
