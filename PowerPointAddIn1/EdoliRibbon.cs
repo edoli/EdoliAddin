@@ -50,7 +50,12 @@ namespace PowerPointAddIn1
 
         private void alignPrevSlide_Click(object sender, RibbonControlEventArgs e)
         {
-            AlignTool.AlignWithPreviousSlide();
+            AlignTool.AlignWithSiblingSlide(-1);
+        }
+
+        private void alignNextSlide_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignWithSiblingSlide(1);
         }
 
         private void editBoxName_TextChanged(object sender, RibbonControlEventArgs e)
@@ -68,14 +73,14 @@ namespace PowerPointAddIn1
             AlignTool.SwapCycleReverse();
         }
 
-        private void snapUpLeft_Click(object sender, RibbonControlEventArgs e)
+        private void snapDownRight_Click(object sender, RibbonControlEventArgs e)
         {
-
+            AlignTool.SnapDownRight();
         }
 
         private void snapUpRight_Click(object sender, RibbonControlEventArgs e)
         {
-
+            AlignTool.SnapUpRight();
         }
     }
 }

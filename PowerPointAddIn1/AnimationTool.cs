@@ -11,6 +11,8 @@ namespace PowerPointAddIn1
     {
         public static void SetNameOfActive(String name)
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
 
             if (shapes.Count > 0)

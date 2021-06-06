@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="AlignTool.cs" />
     <Compile Include="AnimationTool.cs" />
+    <Compile Include="DebugUtil.cs" />
     <Compile Include="EdoliRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -170,6 +171,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ShapeExt.cs" />
+    <Compile Include="ShapeTool.cs" />
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="EdoliRibbon.resx">
       <DependentUpon>EdoliRibbon.cs</DependentUpon>

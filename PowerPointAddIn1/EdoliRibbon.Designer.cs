@@ -37,27 +37,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.alignGroup = this.Factory.CreateRibbonGroup();
-            this.grid = this.Factory.CreateRibbonButton();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
+            this.transpose = this.Factory.CreateRibbonButton();
             this.labelLeft = this.Factory.CreateRibbonButton();
             this.labelRight = this.Factory.CreateRibbonButton();
-            this.transpose = this.Factory.CreateRibbonButton();
             this.groupLabel = this.Factory.CreateRibbonButton();
+            this.alignPrevSlide = this.Factory.CreateRibbonButton();
+            this.swapCycle = this.Factory.CreateRibbonButton();
+            this.snapDownRight = this.Factory.CreateRibbonButton();
+            this.alignNextSlide = this.Factory.CreateRibbonButton();
+            this.swapCycleReverse = this.Factory.CreateRibbonButton();
+            this.snapUpRight = this.Factory.CreateRibbonButton();
+            this.groupGrid = this.Factory.CreateRibbonGroup();
+            this.grid = this.Factory.CreateRibbonButton();
+            this.gridPadding = this.Factory.CreateRibbonEditBox();
+            this.gridNumColumn = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
-            this.alignPrevSlide = this.Factory.CreateRibbonButton();
-            this.gridNumColumn = this.Factory.CreateRibbonEditBox();
-            this.gridPadding = this.Factory.CreateRibbonEditBox();
-            this.groupGrid = this.Factory.CreateRibbonGroup();
-            this.swapCycle = this.Factory.CreateRibbonButton();
-            this.swapCycleReverse = this.Factory.CreateRibbonButton();
-            this.snapUpLeft = this.Factory.CreateRibbonButton();
-            this.snapUpRight = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.alignGroup.SuspendLayout();
-            this.animationGroup.SuspendLayout();
             this.groupGrid.SuspendLayout();
+            this.animationGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -80,20 +81,12 @@
             this.alignGroup.Items.Add(this.groupLabel);
             this.alignGroup.Items.Add(this.alignPrevSlide);
             this.alignGroup.Items.Add(this.swapCycle);
+            this.alignGroup.Items.Add(this.snapDownRight);
+            this.alignGroup.Items.Add(this.alignNextSlide);
             this.alignGroup.Items.Add(this.swapCycleReverse);
-            this.alignGroup.Items.Add(this.snapUpLeft);
             this.alignGroup.Items.Add(this.snapUpRight);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
-            // 
-            // grid
-            // 
-            this.grid.Image = ((System.Drawing.Image)(resources.GetObject("grid.Image")));
-            this.grid.Label = "Grid";
-            this.grid.Name = "grid";
-            this.grid.ScreenTip = "Grid";
-            this.grid.ShowImage = true;
-            this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
             // 
             // labelBottom
             // 
@@ -115,6 +108,16 @@
             this.labelTop.ShowLabel = false;
             this.labelTop.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelTop_Click);
             // 
+            // transpose
+            // 
+            this.transpose.Image = ((System.Drawing.Image)(resources.GetObject("transpose.Image")));
+            this.transpose.Label = "Transpose";
+            this.transpose.Name = "transpose";
+            this.transpose.ScreenTip = "Transpose";
+            this.transpose.ShowImage = true;
+            this.transpose.ShowLabel = false;
+            this.transpose.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.transpose_Click);
+            // 
             // labelLeft
             // 
             this.labelLeft.Image = ((System.Drawing.Image)(resources.GetObject("labelLeft.Image")));
@@ -135,16 +138,6 @@
             this.labelRight.ShowLabel = false;
             this.labelRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelRight_Click);
             // 
-            // transpose
-            // 
-            this.transpose.Image = ((System.Drawing.Image)(resources.GetObject("transpose.Image")));
-            this.transpose.Label = "Transpose";
-            this.transpose.Name = "transpose";
-            this.transpose.ScreenTip = "Transpose";
-            this.transpose.ShowImage = true;
-            this.transpose.ShowLabel = false;
-            this.transpose.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.transpose_Click);
-            // 
             // groupLabel
             // 
             this.groupLabel.Image = ((System.Drawing.Image)(resources.GetObject("groupLabel.Image")));
@@ -154,6 +147,97 @@
             this.groupLabel.ShowImage = true;
             this.groupLabel.ShowLabel = false;
             this.groupLabel.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.groupLabel_Click);
+            // 
+            // alignPrevSlide
+            // 
+            this.alignPrevSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignPrevSlide.Image")));
+            this.alignPrevSlide.Label = "Align";
+            this.alignPrevSlide.Name = "alignPrevSlide";
+            this.alignPrevSlide.ScreenTip = "Align with previous slide";
+            this.alignPrevSlide.ShowImage = true;
+            this.alignPrevSlide.ShowLabel = false;
+            this.alignPrevSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignPrevSlide_Click);
+            // 
+            // swapCycle
+            // 
+            this.swapCycle.Image = ((System.Drawing.Image)(resources.GetObject("swapCycle.Image")));
+            this.swapCycle.Label = "Swap cycle";
+            this.swapCycle.Name = "swapCycle";
+            this.swapCycle.ScreenTip = "Swap cycle";
+            this.swapCycle.ShowImage = true;
+            this.swapCycle.ShowLabel = false;
+            this.swapCycle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycle_Click);
+            // 
+            // snapDownRight
+            // 
+            this.snapDownRight.Image = ((System.Drawing.Image)(resources.GetObject("snapDownRight.Image")));
+            this.snapDownRight.Label = "Snap down right";
+            this.snapDownRight.Name = "snapDownRight";
+            this.snapDownRight.ScreenTip = "Snap down right";
+            this.snapDownRight.ShowImage = true;
+            this.snapDownRight.ShowLabel = false;
+            this.snapDownRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapDownRight_Click);
+            // 
+            // alignNextSlide
+            // 
+            this.alignNextSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignNextSlide.Image")));
+            this.alignNextSlide.Label = "Align next slide";
+            this.alignNextSlide.Name = "alignNextSlide";
+            this.alignNextSlide.ScreenTip = "Align with next slide";
+            this.alignNextSlide.ShowImage = true;
+            this.alignNextSlide.ShowLabel = false;
+            this.alignNextSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignNextSlide_Click);
+            // 
+            // swapCycleReverse
+            // 
+            this.swapCycleReverse.Image = ((System.Drawing.Image)(resources.GetObject("swapCycleReverse.Image")));
+            this.swapCycleReverse.Label = "Swap cycle reverse";
+            this.swapCycleReverse.Name = "swapCycleReverse";
+            this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
+            this.swapCycleReverse.ShowImage = true;
+            this.swapCycleReverse.ShowLabel = false;
+            this.swapCycleReverse.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycleReverse_Click);
+            // 
+            // snapUpRight
+            // 
+            this.snapUpRight.Image = ((System.Drawing.Image)(resources.GetObject("snapUpRight.Image")));
+            this.snapUpRight.Label = "Snap up right";
+            this.snapUpRight.Name = "snapUpRight";
+            this.snapUpRight.ScreenTip = "Snap up right";
+            this.snapUpRight.ShowImage = true;
+            this.snapUpRight.ShowLabel = false;
+            this.snapUpRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpRight_Click);
+            // 
+            // groupGrid
+            // 
+            this.groupGrid.Items.Add(this.grid);
+            this.groupGrid.Items.Add(this.gridPadding);
+            this.groupGrid.Items.Add(this.gridNumColumn);
+            this.groupGrid.Label = "Grid";
+            this.groupGrid.Name = "groupGrid";
+            // 
+            // grid
+            // 
+            this.grid.Image = ((System.Drawing.Image)(resources.GetObject("grid.Image")));
+            this.grid.Label = "Grid";
+            this.grid.Name = "grid";
+            this.grid.ScreenTip = "Grid";
+            this.grid.ShowImage = true;
+            this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
+            // 
+            // gridPadding
+            // 
+            this.gridPadding.Label = "Padding";
+            this.gridPadding.Name = "gridPadding";
+            this.gridPadding.ScreenTip = "Padding";
+            this.gridPadding.Text = "0";
+            // 
+            // gridNumColumn
+            // 
+            this.gridNumColumn.Label = "Column";
+            this.gridNumColumn.Name = "gridNumColumn";
+            this.gridNumColumn.ScreenTip = "Column";
+            this.gridNumColumn.Text = "0";
             // 
             // animationGroup
             // 
@@ -170,78 +254,6 @@
             this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
-            // alignPrevSlide
-            // 
-            this.alignPrevSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignPrevSlide.Image")));
-            this.alignPrevSlide.Label = "Align";
-            this.alignPrevSlide.Name = "alignPrevSlide";
-            this.alignPrevSlide.ScreenTip = "Align with previous slide";
-            this.alignPrevSlide.ShowImage = true;
-            this.alignPrevSlide.ShowLabel = false;
-            this.alignPrevSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignPrevSlide_Click);
-            // 
-            // gridNumColumn
-            // 
-            this.gridNumColumn.Label = "Column";
-            this.gridNumColumn.Name = "gridNumColumn";
-            this.gridNumColumn.ScreenTip = "Column";
-            this.gridNumColumn.Text = "0";
-            // 
-            // gridPadding
-            // 
-            this.gridPadding.Label = "Padding";
-            this.gridPadding.Name = "gridPadding";
-            this.gridPadding.ScreenTip = "Padding";
-            this.gridPadding.Text = "0";
-            // 
-            // groupGrid
-            // 
-            this.groupGrid.Items.Add(this.grid);
-            this.groupGrid.Items.Add(this.gridPadding);
-            this.groupGrid.Items.Add(this.gridNumColumn);
-            this.groupGrid.Label = "Grid";
-            this.groupGrid.Name = "groupGrid";
-            // 
-            // swapCycle
-            // 
-            this.swapCycle.Image = ((System.Drawing.Image)(resources.GetObject("swapCycle.Image")));
-            this.swapCycle.Label = "Swap cycle";
-            this.swapCycle.Name = "swapCycle";
-            this.swapCycle.ScreenTip = "Swap cycle";
-            this.swapCycle.ShowImage = true;
-            this.swapCycle.ShowLabel = false;
-            this.swapCycle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycle_Click);
-            // 
-            // swapCycleReverse
-            // 
-            this.swapCycleReverse.Image = ((System.Drawing.Image)(resources.GetObject("swapCycleReverse.Image")));
-            this.swapCycleReverse.Label = "Swap cycle reverse";
-            this.swapCycleReverse.Name = "swapCycleReverse";
-            this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
-            this.swapCycleReverse.ShowImage = true;
-            this.swapCycleReverse.ShowLabel = false;
-            this.swapCycleReverse.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycleReverse_Click);
-            // 
-            // snapUpLeft
-            // 
-            this.snapUpLeft.Image = ((System.Drawing.Image)(resources.GetObject("snapUpLeft.Image")));
-            this.snapUpLeft.Label = "Snap up left";
-            this.snapUpLeft.Name = "snapUpLeft";
-            this.snapUpLeft.ScreenTip = "Snap up left";
-            this.snapUpLeft.ShowImage = true;
-            this.snapUpLeft.ShowLabel = false;
-            this.snapUpLeft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpLeft_Click);
-            // 
-            // snapUpRight
-            // 
-            this.snapUpRight.Image = ((System.Drawing.Image)(resources.GetObject("snapUpRight.Image")));
-            this.snapUpRight.Label = "Snap up right";
-            this.snapUpRight.Name = "snapUpRight";
-            this.snapUpRight.ScreenTip = "Snap up right";
-            this.snapUpRight.ShowImage = true;
-            this.snapUpRight.ShowLabel = false;
-            this.snapUpRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpRight_Click);
-            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -252,10 +264,10 @@
             this.tab1.PerformLayout();
             this.alignGroup.ResumeLayout(false);
             this.alignGroup.PerformLayout();
-            this.animationGroup.ResumeLayout(false);
-            this.animationGroup.PerformLayout();
             this.groupGrid.ResumeLayout(false);
             this.groupGrid.PerformLayout();
+            this.animationGroup.ResumeLayout(false);
+            this.animationGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -279,8 +291,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupGrid;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton swapCycle;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton swapCycleReverse;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton snapUpLeft;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton snapDownRight;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton snapUpRight;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton alignNextSlide;
     }
 
     partial class ThisRibbonCollection

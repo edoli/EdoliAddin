@@ -17,6 +17,21 @@ namespace PowerPointAddIn1
             None
         }
 
+        public static void DoRecur(this PowerPoint.Shape shape, Action<PowerPoint.Shape> action)
+        {
+            if (shape.AutoShapeType == Microsoft.Office.Core.MsoAutoShapeType.msoShapeMixed)
+            {
+                foreach (PowerPoint.Shape item in shape.GroupItems)
+                {
+                    item.DoRecur(action);
+                }
+            }
+            else
+            {
+                action(shape);
+            }
+        }
+
         public static float Right(this PowerPoint.Shape shape)
         {
             return shape.Left + shape.Width;

@@ -5,11 +5,11 @@ namespace PowerPointAddIn1
 {
     public class KeyboardHook
     {
-        public delegate int LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
-        private static LowLevelKeyboardProc _proc = HookCallback;
+        public delegate int KeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        private static KeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
-        private static long timestamp = 0;
+        private static long repeatTimeStamp = 0;
 
         private static bool isCalled;
         private const int WH_KEYBOARD = 2;
@@ -17,6 +17,7 @@ namespace PowerPointAddIn1
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
         private const int HC_ACTION = 0;
+        const int KF_REPEAT = 0x4000;
 
 
         #region VirtualKey
@@ -122,6 +123,18 @@ namespace PowerPointAddIn1
             VK_RCONTROL = 0xA3,  //Right CONTROL key
             VK_LMENU = 0xA4,   //Left MENU key
             VK_RMENU = 0xA5,  //Right MENU key
+            VK_OEM_1 = 0xBA,  // ';:' key
+            VK_OEM_PLUS = 0xBB,  // '+' key
+            VK_OEM_COMMA = 0xBC,  // ',' key
+            VK_OEM_MINUS = 0xBD,  // '-' key
+            VK_OEM_PERIOD = 0xBE,  // '.' key
+            VK_OEM_2 = 0xBF,  // '/?' key
+            VK_OEM_3 = 0xC0,  // '`~' key
+            VK_OEM_4 = 0xDB,  // '[{' key
+            VK_OEM_5 = 0xDC,  // '\|' key
+            VK_OEM_6 = 0xDD,  // ']}' key
+            VK_OEM_7 = 0xDE,  // 'single-quote/double-quote'
+            VK_OEM_8 = 0xDF,  // vary by keyboard
             VK_PLAY = 0xFA,  //Play key
             VK_ZOOM = 0xFB, //Zoom key
         }
@@ -137,15 +150,16 @@ namespace PowerPointAddIn1
             UnhookWindowsHookEx(_hookID);
         }
 
+        private static ulong HiWord(IntPtr ptr)
+        {
+            if (((ulong)ptr & 0x80000000) == 0x80000000)
+                return ((ulong)ptr >> 16);
+            else
+                return ((ulong)ptr >> 16) & 0xffff;
+        }
+
         private static int HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            //long newTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            //bool throttle = newTimeStamp - timestamp < 10;
-
-            //if (!throttle)
-            //{
-            //    timestamp = newTimeStamp;
-            //}
 
             if (nCode < 0)
             {
@@ -166,8 +180,25 @@ namespace PowerPointAddIn1
                     bool alt = GetKeyState((int)VKeys.VK_MENU) < 0;
                     bool shift = GetKeyState((int)VKeys.VK_SHIFT) < 0;
 
+                    var repeat = (HiWord(lParam) & KF_REPEAT);
+
+                    if (repeat == 0)
+                    {
+                        repeatTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    }
+                    else
+                    {
+                        long newTimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                        bool throttle = newTimeStamp - repeatTimeStamp < 250;
+
+                        if (throttle)
+                        {
+                            return (int)CallNextHookEx(_hookID, nCode, wParam, lParam);
+                        }
+                    }
+
                     // align
-                    if (ctrl && alt && !shift)
+                    if (ctrl && alt && !shift && repeat == 0)
                     {
                         switch (key)
                         {
@@ -200,7 +231,7 @@ namespace PowerPointAddIn1
                                 break;
                         }
                     }
-                    if (ctrl && !alt && !shift)
+                    if (ctrl && !alt && !shift && repeat == 0)
                     {
                         switch (key)
                         {
@@ -220,7 +251,7 @@ namespace PowerPointAddIn1
                     }
 
                     // animation
-                    if (ctrl && !alt && shift)
+                    if (ctrl && !alt && shift && repeat == 0)
                     {
                         switch (key)
                         {
@@ -253,8 +284,28 @@ namespace PowerPointAddIn1
                                 break;
                         }
                     }
-                }
 
+                    // shape
+                    if (ctrl && alt)
+                    {
+                        float offset = 1f;
+                        if (shift)
+                        {
+                            offset = 0.25f;
+                        }
+
+                        switch (key)
+                        {
+                            case VKeys.VK_OEM_PLUS:
+                                ShapeTool.ChangeStroke(offset);
+                                break;
+                            case VKeys.VK_OEM_MINUS:
+                                ShapeTool.ChangeStroke(-offset);
+                                break;
+
+                        }
+                    }
+                }
 
                 //switch (key)
                 //{
@@ -275,7 +326,7 @@ namespace PowerPointAddIn1
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook,
-            LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+            KeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]

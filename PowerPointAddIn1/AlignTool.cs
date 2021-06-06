@@ -19,6 +19,8 @@ namespace PowerPointAddIn1
 
         public static void AlignLeft()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -33,6 +35,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignRight()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -47,6 +51,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignTop()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -61,6 +67,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignBottom()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -76,6 +84,8 @@ namespace PowerPointAddIn1
 
         public static void AlignLeftOf()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -91,6 +101,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignRightOf()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -106,6 +118,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignTopOf()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -121,6 +135,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignBottomOf()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -137,6 +153,8 @@ namespace PowerPointAddIn1
 
         public static void AlignCenter()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -153,6 +171,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignCenterHorizontal()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -167,6 +187,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignCenterVertical()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -182,6 +204,8 @@ namespace PowerPointAddIn1
 
         public static void AlignInRow()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count > 1)
             {
@@ -220,6 +244,8 @@ namespace PowerPointAddIn1
         }
         public static void AlignLabels(Anchor anchor)
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             var images = new List<PowerPoint.Shape>();
             var textboxes = new List<PowerPoint.Shape>();
@@ -267,6 +293,8 @@ namespace PowerPointAddIn1
 
         public static void GroupLabels()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             var images = new List<PowerPoint.Shape>();
             var textboxes = new List<PowerPoint.Shape>();
@@ -304,6 +332,8 @@ namespace PowerPointAddIn1
 
         public static void Transpose()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
 
             var minLeft = shapes.Min(shape => shape.Left);
@@ -327,6 +357,8 @@ namespace PowerPointAddIn1
 
         public static void AlignGrid()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
 
             float padding = 0;
@@ -375,17 +407,22 @@ namespace PowerPointAddIn1
             }
         }
 
-        public static void AlignWithPreviousSlide()
+        public static void AlignWithSiblingSlide(int indexOffset)
         {
-            PowerPoint.Slide slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
-            var index = slide.SlideIndex;
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
 
-            if (index <= 1)
+            PowerPoint.Slide slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+            var slides = Globals.ThisAddIn.Application.ActiveWindow.Presentation.Slides;
+
+            int index = slide.SlideIndex;
+            int siblingSlideIndex = index + indexOffset;
+
+            if (siblingSlideIndex < 0 || siblingSlideIndex > slides.Count)
             {
                 return;
             }
 
-            var prevSlide = Globals.ThisAddIn.Application.ActiveWindow.Presentation.Slides[index - 1];
+            var prevSlide = slides[siblingSlideIndex];
 
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
             IEnumerable<PowerPoint.Shape> shapes;
@@ -414,6 +451,8 @@ namespace PowerPointAddIn1
 
         public static void SwapCycle()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count < 2)
             {
@@ -435,6 +474,8 @@ namespace PowerPointAddIn1
 
         public static void SwapCycleReverse()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
             if (shapes.Count < 2)
             {
@@ -453,18 +494,46 @@ namespace PowerPointAddIn1
             shapes[0].Top = lastTop;
         }
 
-        public static void SnapUpLeft()
+        public static void SnapDownRight()
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
             var shapes = Util.ListSelectedShapes();
 
-
+            var firstShape = shapes[0];
+            var left = firstShape.Right();
+            var top = firstShape.Bottom();
 
             for (int i = 1; i < shapes.Count; i++)
             {
-                shapes[i].Left = shapes[i + 1].Left;
-                shapes[i].Top = shapes[i + 1].Top;
+                var shape = shapes[i];
+                shape.Left = left;
+                shape.Top = top;
+
+                top += shape.Height;
+                left += shape.Width;
             }
 
+        }
+
+        public static void SnapUpRight()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+
+            var firstShape = shapes[0];
+            var left = firstShape.Right();
+            var top = firstShape.Top;
+
+            for (int i = 1; i < shapes.Count; i++)
+            {
+                var shape = shapes[i];
+                top -= shape.Height;
+                shape.Left = left;
+                shape.Top = top;
+                left += shape.Width;
+            }
         }
     }
 }
