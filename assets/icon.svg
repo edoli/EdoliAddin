@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="icon.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="icon.svg">
+  <metadata
+     id="metadata304">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <sodipodi:namedview
      id="namedview7"
      pagecolor="#ffffff"
@@ -25,13 +37,13 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="1.4142136"
-     inkscape:cx="885.29769"
-     inkscape:cy="272.94322"
-     inkscape:window-width="2560"
-     inkscape:window-height="1506"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
+     inkscape:cx="1637.6593"
+     inkscape:cy="241.83052"
+     inkscape:window-width="1442"
+     inkscape:window-height="758"
+     inkscape:window-x="1047"
+     inkscape:window-y="1012"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
@@ -48,7 +60,8 @@
      inkscape:snap-page="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:lockguides="true" />
+     inkscape:lockguides="true"
+     inkscape:document-rotation="0" />
   <defs
      id="defs2">
     <marker
@@ -865,7 +878,7 @@
        y="93.799988" />
     <rect
        style="fill:#f2f2f2;fill-rule:evenodd;stroke-width:0.420706"
-       id="rect31-8-7-2-1-4"
+       id="icon_align_grid"
        width="67.73333"
        height="67.73333"
        x="406.39999"
@@ -2223,6 +2236,25 @@
          inkscape:transform-center-x="5.6858874"
          inkscape:transform-center-y="2.1289786e-06"
          d="m 651.48013,218.37916 -76.99276,0 -76.99277,0 38.49638,-66.67769 38.49639,-66.677689 38.49638,66.677689 z" />
+    </g>
+    <g
+       id="g1344">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:4.23333;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 408.51665,47.233322 h 63.5"
+         id="path1278" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:4.23333;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 408.51665,72.633324 h 63.5"
+         id="path1278-2" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:4.23333;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 452.96664,28.183322 V 91.683323"
+         id="path1278-2-7" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:4.23333;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 427.56665,28.18332 V 91.683325"
+         id="path1278-2-7-9" />
     </g>
   </g>
 </svg>

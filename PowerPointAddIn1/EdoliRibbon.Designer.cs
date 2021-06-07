@@ -56,6 +56,7 @@
             this.alignNextSlide = this.Factory.CreateRibbonButton();
             this.swapCycleReverse = this.Factory.CreateRibbonButton();
             this.snapUpRight = this.Factory.CreateRibbonButton();
+            this.alignGrid = this.Factory.CreateRibbonButton();
             this.groupGrid = this.Factory.CreateRibbonGroup();
             this.grid = this.Factory.CreateRibbonButton();
             this.gridPadding = this.Factory.CreateRibbonEditBox();
@@ -160,6 +161,7 @@
             this.alignGroup.Items.Add(this.alignNextSlide);
             this.alignGroup.Items.Add(this.swapCycleReverse);
             this.alignGroup.Items.Add(this.snapUpRight);
+            this.alignGroup.Items.Add(this.alignGrid);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
             // 
@@ -283,6 +285,16 @@
             this.snapUpRight.ShowLabel = false;
             this.snapUpRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpRight_Click);
             // 
+            // alignGrid
+            // 
+            this.alignGrid.Image = ((System.Drawing.Image)(resources.GetObject("alignGrid.Image")));
+            this.alignGrid.Label = "Align grid";
+            this.alignGrid.Name = "alignGrid";
+            this.alignGrid.ScreenTip = "Align grid";
+            this.alignGrid.ShowImage = true;
+            this.alignGrid.ShowLabel = false;
+            this.alignGrid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignGrid_Click);
+            // 
             // groupGrid
             // 
             this.groupGrid.Items.Add(this.grid);
@@ -378,6 +390,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowToggle;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeUp;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeDown;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton alignGrid;
     }
 
     partial class ThisRibbonCollection

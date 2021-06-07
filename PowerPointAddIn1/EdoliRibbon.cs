@@ -83,6 +83,11 @@ namespace PowerPointAddIn1
             AlignTool.SnapUpRight();
         }
 
+        private void alignGrid_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.AlignHorizontalVertical();
+        }
+
         private void beginArrowToggle_Click(object sender, RibbonControlEventArgs e)
         {
             ShapeTool.BeginArrowToggle();

@@ -535,5 +535,54 @@ namespace PowerPointAddIn1
                 left += shape.Width;
             }
         }
+
+        public static void AlignHorizontalVertical()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+
+            if (shapes.Count > 0)
+            {
+                var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
+
+                float minLeft = shapes.Min(s => s.Left);
+                float minTop = shapes.Min(s => s.Top);
+
+                float maxLeft = shapes.Max(s => s.Left);
+                float maxTop = shapes.Max(s => s.Top);
+
+                float meanWidth = shapes.Average(s => s.Width);
+                float meanHeight = shapes.Average(s => s.Height);
+
+                var lefts = shapes.Select(s => s.Left);
+                var tops = shapes.Select(s => s.Top);
+
+                int numHorizontalCluster = Util.NumCluster(lefts, meanWidth);
+                int numVerticalCluster = Util.NumCluster(tops, meanHeight);
+
+                float hInterval = 0;
+                float vInterval = 0;
+
+                if (numHorizontalCluster > 1)
+                {
+                    hInterval = (maxLeft - minLeft) / (numHorizontalCluster - 1);
+                }
+
+                if (numVerticalCluster > 1)
+                {
+                    vInterval = (maxTop - minTop) / (numVerticalCluster - 1);
+                }
+
+                foreach (var shape in shapes)
+                {
+                    int row = (int)((shape.Top - minTop + vInterval / 2) / vInterval);
+                    shape.Top = minTop + row * vInterval;
+
+                    int col = (int)((shape.Left - minLeft + hInterval / 2) / hInterval);
+                    shape.Left = minLeft + col * hInterval;
+                }
+            }
+        }
     }
 }

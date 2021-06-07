@@ -27,7 +27,7 @@ namespace PowerPointAddIn1
             return shapes;
         }
 
-            public static List<PowerPoint.Shape> ListSelectedShapes()
+        public static List<PowerPoint.Shape> ListSelectedShapes()
         {
             var shapes = new List<PowerPoint.Shape>();
             var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
@@ -52,6 +52,38 @@ namespace PowerPointAddIn1
             }
 
             return shapes;
+        }
+
+        public static int NumCluster(IEnumerable<float> values, float threshold)
+        {
+            var list = values.ToList();
+            list.Sort();
+
+            var distances = new float[list.Count - 1];
+            var distanceDiffs = new float[list.Count - 2];
+
+            for (int i = 0; i < list.Count() - 1; i++)
+            {
+                distances[i] = list[i + 1] - list[i];
+            }
+            Array.Sort(distances);
+
+            //for (int i = 0; i < distances.Count() - 1; i++)
+            //{
+            //    distanceDiffs[i] = distances[i + 1] - distances[i];
+            //}
+
+            //int argmax = Array.IndexOf(distanceDiffs, distanceDiffs.Max());
+            //return distances.Count() - argmax;
+
+            for (int i = 0; i < distances.Count(); i++)
+            {
+                if (distances[i] > threshold)
+                {
+                    return distances.Count() - i + 1;
+                }
+            }
+            return 1;
         }
 
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector)

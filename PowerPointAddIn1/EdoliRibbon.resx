@@ -431,6 +431,16 @@
         D1Ik4sGx68ngAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="alignGrid.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
+        xAAAAsQBW5GdCwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACvSURBVGhD7ZdR
+        CoNADET3aB6tR/Nm1sCsWOiHGQM19D0YCCKz+8CPOP6VZc9LidmlqidNHLgpMbtU9aRBQCDggoBAwAUB
+        gYDL4wTOO8mVrHvmwTF/e+dK7vR87E7xYBZ1Sdz5oL1A+08oSxTMg2N2qepJg4BAwAUBgYALAgIBFwQE
+        Ai6PE+CP7AeJOx+0F+CPzKSqJw0CAgEXBAQCLggIBFzaC5x3pzs7SVVPV8Z4A8eC9sAY+ZJZAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <data name="grid.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
