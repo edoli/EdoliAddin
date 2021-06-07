@@ -34,7 +34,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.shape = this.Factory.CreateRibbonGroup();
             this.beginArrowToggle = this.Factory.CreateRibbonButton();
@@ -167,7 +166,7 @@
             // 
             // labelBottom
             // 
-            this.labelBottom.Image = ((System.Drawing.Image)(resources.GetObject("labelBottom.Image")));
+            this.labelBottom.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_bottom;
             this.labelBottom.Label = "LabelBottom";
             this.labelBottom.Name = "labelBottom";
             this.labelBottom.ScreenTip = "Label bottom";
@@ -177,7 +176,7 @@
             // 
             // labelTop
             // 
-            this.labelTop.Image = ((System.Drawing.Image)(resources.GetObject("labelTop.Image")));
+            this.labelTop.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_top;
             this.labelTop.Label = "LabelTop";
             this.labelTop.Name = "labelTop";
             this.labelTop.ScreenTip = "Label top";
@@ -187,7 +186,7 @@
             // 
             // transpose
             // 
-            this.transpose.Image = ((System.Drawing.Image)(resources.GetObject("transpose.Image")));
+            this.transpose.Image = global::PowerPointAddIn1.Properties.Resources.icon_transpose;
             this.transpose.Label = "Transpose";
             this.transpose.Name = "transpose";
             this.transpose.ScreenTip = "Transpose";
@@ -197,7 +196,7 @@
             // 
             // labelLeft
             // 
-            this.labelLeft.Image = ((System.Drawing.Image)(resources.GetObject("labelLeft.Image")));
+            this.labelLeft.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_left;
             this.labelLeft.Label = "LabelLeft";
             this.labelLeft.Name = "labelLeft";
             this.labelLeft.ScreenTip = "Label left";
@@ -207,7 +206,7 @@
             // 
             // labelRight
             // 
-            this.labelRight.Image = ((System.Drawing.Image)(resources.GetObject("labelRight.Image")));
+            this.labelRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_right;
             this.labelRight.Label = "LabelRight";
             this.labelRight.Name = "labelRight";
             this.labelRight.ScreenTip = "Label right";
@@ -217,7 +216,7 @@
             // 
             // groupLabel
             // 
-            this.groupLabel.Image = ((System.Drawing.Image)(resources.GetObject("groupLabel.Image")));
+            this.groupLabel.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_group;
             this.groupLabel.Label = "Group Label";
             this.groupLabel.Name = "groupLabel";
             this.groupLabel.ScreenTip = "Group Label";
@@ -227,7 +226,7 @@
             // 
             // alignPrevSlide
             // 
-            this.alignPrevSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignPrevSlide.Image")));
+            this.alignPrevSlide.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_prev_slide;
             this.alignPrevSlide.Label = "Align";
             this.alignPrevSlide.Name = "alignPrevSlide";
             this.alignPrevSlide.ScreenTip = "Align with previous slide";
@@ -237,7 +236,7 @@
             // 
             // swapCycle
             // 
-            this.swapCycle.Image = ((System.Drawing.Image)(resources.GetObject("swapCycle.Image")));
+            this.swapCycle.Image = global::PowerPointAddIn1.Properties.Resources.icon_swap_cycle;
             this.swapCycle.Label = "Swap cycle";
             this.swapCycle.Name = "swapCycle";
             this.swapCycle.ScreenTip = "Swap cycle";
@@ -247,7 +246,7 @@
             // 
             // snapDownRight
             // 
-            this.snapDownRight.Image = ((System.Drawing.Image)(resources.GetObject("snapDownRight.Image")));
+            this.snapDownRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_snap_diag_downright;
             this.snapDownRight.Label = "Snap down right";
             this.snapDownRight.Name = "snapDownRight";
             this.snapDownRight.ScreenTip = "Snap down right";
@@ -257,7 +256,7 @@
             // 
             // alignNextSlide
             // 
-            this.alignNextSlide.Image = ((System.Drawing.Image)(resources.GetObject("alignNextSlide.Image")));
+            this.alignNextSlide.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_next_slide;
             this.alignNextSlide.Label = "Align next slide";
             this.alignNextSlide.Name = "alignNextSlide";
             this.alignNextSlide.ScreenTip = "Align with next slide";
@@ -267,7 +266,7 @@
             // 
             // swapCycleReverse
             // 
-            this.swapCycleReverse.Image = ((System.Drawing.Image)(resources.GetObject("swapCycleReverse.Image")));
+            this.swapCycleReverse.Image = global::PowerPointAddIn1.Properties.Resources.icon_swap_cycle_reverse;
             this.swapCycleReverse.Label = "Swap cycle reverse";
             this.swapCycleReverse.Name = "swapCycleReverse";
             this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
@@ -277,7 +276,7 @@
             // 
             // snapUpRight
             // 
-            this.snapUpRight.Image = ((System.Drawing.Image)(resources.GetObject("snapUpRight.Image")));
+            this.snapUpRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_snap_diag_upright;
             this.snapUpRight.Label = "Snap up right";
             this.snapUpRight.Name = "snapUpRight";
             this.snapUpRight.ScreenTip = "Snap up right";
@@ -287,7 +286,7 @@
             // 
             // alignGrid
             // 
-            this.alignGrid.Image = ((System.Drawing.Image)(resources.GetObject("alignGrid.Image")));
+            this.alignGrid.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_grid;
             this.alignGrid.Label = "Align grid";
             this.alignGrid.Name = "alignGrid";
             this.alignGrid.ScreenTip = "Align grid";
@@ -305,7 +304,7 @@
             // 
             // grid
             // 
-            this.grid.Image = ((System.Drawing.Image)(resources.GetObject("grid.Image")));
+            this.grid.Image = global::PowerPointAddIn1.Properties.Resources.icon_grid;
             this.grid.Label = "Grid";
             this.grid.Name = "grid";
             this.grid.ScreenTip = "Grid";

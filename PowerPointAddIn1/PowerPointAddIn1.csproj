@@ -208,7 +208,26 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image1.png" />
+    <Content Include="Resources\icon_align_grid.png" />
+    <Content Include="Resources\icon_align_next_slide.png" />
+    <Content Include="Resources\icon_align_prev_slide.png" />
+    <Content Include="Resources\icon_begin_arrow_size_down.png" />
+    <Content Include="Resources\icon_begin_arrow_size_up.png" />
+    <Content Include="Resources\icon_begin_arrow_toggle.png" />
+    <Content Include="Resources\icon_end_arrow_size_down.png" />
+    <Content Include="Resources\icon_end_arrow_size_up.png" />
+    <Content Include="Resources\icon_end_arrow_toggle.png" />
+    <Content Include="Resources\icon_grid.png" />
+    <Content Include="Resources\icon_label_bottom.png" />
+    <Content Include="Resources\icon_label_group.png" />
+    <Content Include="Resources\icon_label_left.png" />
+    <Content Include="Resources\icon_label_right.png" />
+    <Content Include="Resources\icon_label_top.png" />
+    <Content Include="Resources\icon_snap_diag_downright.png" />
+    <Content Include="Resources\icon_snap_diag_upright.png" />
+    <Content Include="Resources\icon_swap_cycle.png" />
+    <Content Include="Resources\icon_swap_cycle_reverse.png" />
+    <Content Include="Resources\icon_transpose.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
