@@ -94,7 +94,7 @@
             // 
             // beginArrowToggle
             // 
-            this.beginArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowToggle.Image")));
+            this.beginArrowToggle.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_toggle;
             this.beginArrowToggle.Label = "button1";
             this.beginArrowToggle.Name = "beginArrowToggle";
             this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
@@ -104,7 +104,7 @@
             // 
             // beginArrowSizeUp
             // 
-            this.beginArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeUp.Image")));
+            this.beginArrowSizeUp.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_size_up;
             this.beginArrowSizeUp.Label = "button1";
             this.beginArrowSizeUp.Name = "beginArrowSizeUp";
             this.beginArrowSizeUp.ShowImage = true;
@@ -113,7 +113,7 @@
             // 
             // beginArrowSizeDown
             // 
-            this.beginArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("beginArrowSizeDown.Image")));
+            this.beginArrowSizeDown.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_size_down;
             this.beginArrowSizeDown.Label = "button1";
             this.beginArrowSizeDown.Name = "beginArrowSizeDown";
             this.beginArrowSizeDown.ShowImage = true;
@@ -122,7 +122,7 @@
             // 
             // endArrowToggle
             // 
-            this.endArrowToggle.Image = ((System.Drawing.Image)(resources.GetObject("endArrowToggle.Image")));
+            this.endArrowToggle.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_toggle;
             this.endArrowToggle.Label = "button1";
             this.endArrowToggle.Name = "endArrowToggle";
             this.endArrowToggle.ShowImage = true;
@@ -131,7 +131,7 @@
             // 
             // endArrowSizeUp
             // 
-            this.endArrowSizeUp.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeUp.Image")));
+            this.endArrowSizeUp.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_size_up;
             this.endArrowSizeUp.Label = "button1";
             this.endArrowSizeUp.Name = "endArrowSizeUp";
             this.endArrowSizeUp.ShowImage = true;
@@ -140,7 +140,7 @@
             // 
             // endArrowSizeDown
             // 
-            this.endArrowSizeDown.Image = ((System.Drawing.Image)(resources.GetObject("endArrowSizeDown.Image")));
+            this.endArrowSizeDown.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_size_down;
             this.endArrowSizeDown.Label = "button1";
             this.endArrowSizeDown.Name = "endArrowSizeDown";
             this.endArrowSizeDown.ShowImage = true;
