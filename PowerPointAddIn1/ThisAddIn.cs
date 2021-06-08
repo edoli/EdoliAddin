@@ -17,7 +17,6 @@ namespace PowerPointAddIn1
 
         public void WindowSelectionChange(Selection sel)
         {
-            var t = DateTime.Now;
             var shapes = Util.ListSelectedShapes();
             String name = "";
             if (shapes.Count > 0)

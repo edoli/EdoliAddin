@@ -3,11 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace PowerPointAddIn1
 {
     public static class ShapeTool
     {
+        public static void ToggleLine()
+        {
+            var shapes = Util.ListSelectedShapes();
+
+            shapes.ForEach(s =>
+            {
+                if (s.Line.Visible == Microsoft.Office.Core.MsoTriState.msoFalse)
+                {
+                    s.Line.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                }
+                else
+                {
+                    s.Line.Visible = Microsoft.Office.Core.MsoTriState.msoFalse;
+                }
+            });
+        }
+
         public static void ChangeLineWeight(float offset)
         {
             var shapes = Util.ListSelectedShapes();

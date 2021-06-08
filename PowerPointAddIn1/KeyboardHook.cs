@@ -296,6 +296,9 @@ namespace PowerPointAddIn1
 
                         switch (key)
                         {
+                            case VKeys.VK_0:
+                                ShapeTool.ToggleLine();
+                                break;
                             case VKeys.VK_OEM_PLUS:
                                 ShapeTool.ChangeLineWeight(offset);
                                 break;
