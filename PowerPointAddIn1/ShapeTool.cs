@@ -197,5 +197,72 @@ namespace PowerPointAddIn1
                 }
             }
         }
+
+        public static void ConnectShapesByLine()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+            var shapes = Util.ListSelectedShapes();
+
+            for (int i = 0; i < shapes.Count - 1; i++)
+            {
+                var shape1 = shapes[i];
+                var shape2 = shapes[i + 1];
+
+                var rel = shape1.GetRelativePos(shape2, 0.1f);
+
+                if (rel == ShapeExt.Anchor.None)
+                {
+                    continue;
+                }
+
+                PowerPoint.Slide slide = Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+
+                float left1 = shape1.Left;
+                float top1 = shape1.Top;
+                float right1 = shape1.Right();
+                float bottom1 = shape1.Bottom();
+
+                float left2 = shape2.Left;
+                float top2 = shape2.Top;
+                float right2 = shape2.Right();
+                float bottom2 = shape2.Bottom();
+
+                if (rel == ShapeExt.Anchor.TopLeft || rel == ShapeExt.Anchor.BottomRight)
+                {
+                    slide.Shapes.AddLine(left1, bottom1, left2, bottom2);
+                    slide.Shapes.AddLine(right1, top1, right2, top2);
+                }
+
+                if (rel == ShapeExt.Anchor.TopRight || rel == ShapeExt.Anchor.BottomLeft)
+                {
+                    slide.Shapes.AddLine(right1, bottom1, right2, bottom2);
+                    slide.Shapes.AddLine(left1, top1, left2, top2);
+                }
+
+                if (rel == ShapeExt.Anchor.Left)
+                {
+                    slide.Shapes.AddLine(left1, top1, right2, top2);
+                    slide.Shapes.AddLine(left1, bottom1, right2, bottom2);
+                }
+
+                if (rel == ShapeExt.Anchor.Right)
+                {
+                    slide.Shapes.AddLine(right1, top1, left2, top2);
+                    slide.Shapes.AddLine(right1, bottom1, left2, bottom2);
+                }
+
+                if (rel == ShapeExt.Anchor.Top)
+                {
+                    slide.Shapes.AddLine(left1, top1, left2, bottom2);
+                    slide.Shapes.AddLine(right1, top1, right2, bottom2);
+                }
+
+                if (rel == ShapeExt.Anchor.Bottom)
+                {
+                    slide.Shapes.AddLine(left1, bottom1, left2, top2);
+                    slide.Shapes.AddLine(right1, bottom1, right2, top2);
+                }
+            }
+        }
     }
 }

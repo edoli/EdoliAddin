@@ -584,5 +584,49 @@ namespace PowerPointAddIn1
                 }
             }
         }
+
+        public static void BringToFront()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            shapes.ForEach(shape =>
+            {
+                shape.ZOrder(Core.MsoZOrderCmd.msoBringToFront);
+            });
+        }
+
+        public static void SendToBack()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            shapes.ForEach(shape =>
+            {
+                shape.ZOrder(Core.MsoZOrderCmd.msoSendToBack);
+            });
+        }
+
+        public static void BringForward()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            shapes.ForEach(shape =>
+            {
+                shape.ZOrder(Core.MsoZOrderCmd.msoBringForward);
+            });
+        }
+
+        public static void SendBackward()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            shapes.ForEach(shape =>
+            {
+                shape.ZOrder(Core.MsoZOrderCmd.msoSendBackward);
+            });
+        }
     }
 }

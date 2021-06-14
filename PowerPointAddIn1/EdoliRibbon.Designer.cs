@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.shape = this.Factory.CreateRibbonGroup();
             this.beginArrowToggle = this.Factory.CreateRibbonButton();
@@ -56,6 +57,7 @@
             this.swapCycleReverse = this.Factory.CreateRibbonButton();
             this.snapUpRight = this.Factory.CreateRibbonButton();
             this.alignGrid = this.Factory.CreateRibbonButton();
+            this.connectShapeByLine = this.Factory.CreateRibbonButton();
             this.groupGrid = this.Factory.CreateRibbonGroup();
             this.grid = this.Factory.CreateRibbonButton();
             this.gridPadding = this.Factory.CreateRibbonEditBox();
@@ -161,6 +163,7 @@
             this.alignGroup.Items.Add(this.swapCycleReverse);
             this.alignGroup.Items.Add(this.snapUpRight);
             this.alignGroup.Items.Add(this.alignGrid);
+            this.alignGroup.Items.Add(this.connectShapeByLine);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
             // 
@@ -294,6 +297,16 @@
             this.alignGrid.ShowLabel = false;
             this.alignGrid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignGrid_Click);
             // 
+            // connectShapeByLine
+            // 
+            this.connectShapeByLine.Image = ((System.Drawing.Image)(resources.GetObject("connectShapeByLine.Image")));
+            this.connectShapeByLine.Label = "Connect Line";
+            this.connectShapeByLine.Name = "connectShapeByLine";
+            this.connectShapeByLine.ScreenTip = "Connect Line";
+            this.connectShapeByLine.ShowImage = true;
+            this.connectShapeByLine.ShowLabel = false;
+            this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
+            // 
             // groupGrid
             // 
             this.groupGrid.Items.Add(this.grid);
@@ -390,6 +403,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeUp;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeDown;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignGrid;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton connectShapeByLine;
     }
 
     partial class ThisRibbonCollection

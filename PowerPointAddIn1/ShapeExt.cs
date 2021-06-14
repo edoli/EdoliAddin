@@ -140,5 +140,52 @@ namespace PowerPointAddIn1
             }
             return shapes.MaxBy(shape => shape.Bottom());
         }
+
+        public static Anchor GetRelativePos(this PowerPoint.Shape shape, PowerPoint.Shape other, float epsilon=0)
+        {
+            float left1 = shape.Left;
+            float top1 = shape.Top;
+            float right1 = shape.Right();
+            float bottom1 = shape.Bottom();
+
+            float left2 = other.Left;
+            float top2 = other.Top;
+            float right2 = other.Right();
+            float bottom2 = other.Bottom();
+
+            if (right2 < left1 - epsilon && bottom2 < top1 - epsilon)
+            {
+                return Anchor.TopLeft;
+            }
+            if (left2 > right1 + epsilon && bottom2 < top1 - epsilon)
+            {
+                return Anchor.TopRight;
+            }
+            if (right2 < left1 - epsilon && top2 > bottom1 + epsilon)
+            {
+                return Anchor.BottomLeft;
+            }
+            if (left2 > right1 + epsilon && top2 > bottom1 + epsilon)
+            {
+                return Anchor.BottomRight;
+            }
+            if (right2 < left1)
+            {
+                return Anchor.Left;
+            }
+            if (left2 > right1)
+            {
+                return Anchor.Right;
+            }
+            if (bottom2 < top1)
+            {
+                return Anchor.Top;
+            }
+            if (top2 > bottom1)
+            {
+                return Anchor.Bottom;
+            }
+            return Anchor.None;
+        }
     }
 }

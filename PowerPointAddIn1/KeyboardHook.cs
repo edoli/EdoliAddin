@@ -41,6 +41,8 @@ namespace PowerPointAddIn1
             VK_SPACE = 0x20,  //SPACEBAR
             VK_PRIOR = 0x21,  //PAGE UP key
             VK_NEXT = 0x22,  //PAGE DOWN key
+            VK_PAGEUP = 0x21,  //PAGE UP key
+            VK_PAGEDOWN = 0x22,  //PAGE DOWN key
             VK_END = 0x23,  //END key
             VK_HOME = 0x24,  //HOME key
             VK_LEFT = 0x25,  //LEFT ARROW key
@@ -223,11 +225,25 @@ namespace PowerPointAddIn1
                             case VKeys.VK_T:
                                 AlignTool.AlignCenterVertical();
                                 break;
+
                             case VKeys.VK_NUMPAD7:
                                 AlignTool.AlignInRow();
                                 break;
                             case VKeys.VK_NUMPAD1:
                                 AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
+                                break;
+
+                            case VKeys.VK_HOME:
+                                AlignTool.BringToFront();
+                                break;
+                            case VKeys.VK_END:
+                                AlignTool.SendToBack();
+                                break;
+                            case VKeys.VK_PAGEUP:
+                                AlignTool.BringForward();
+                                break;
+                            case VKeys.VK_PAGEDOWN:
+                                AlignTool.SendBackward();
                                 break;
                         }
                     }

@@ -117,5 +117,10 @@ namespace PowerPointAddIn1
         {
             ShapeTool.EndArrowChangeSize(-1);
         }
+
+        private void connectShapeByLine_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.ConnectShapesByLine();
+        }
     }
 }
