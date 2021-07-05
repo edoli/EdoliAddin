@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
+using Microsoft.Scripting.Hosting;
 
 namespace PowerPointAddIn1
 {
@@ -121,6 +124,20 @@ namespace PowerPointAddIn1
         private void connectShapeByLine_Click(object sender, RibbonControlEventArgs e)
         {
             ShapeTool.ConnectShapesByLine();
+        }
+
+        private void curveOfEquation_Click(object sender, RibbonControlEventArgs e)
+        {
+            var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
+            var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
+            ShapeTool.AddCurveOfExpression(equationX, equationY);
+        }
+
+        private void polylineOfEquation_Click(object sender, RibbonControlEventArgs e)
+        {
+            var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
+            var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
+            ShapeTool.AddPolylineOfExpression(equationX, equationY);
         }
     }
 }

@@ -10,6 +10,10 @@ namespace PowerPointAddIn1
 {
     public static class Util
     {
+        public static PowerPoint.Slide CurrentSlide()
+        {
+            return Globals.ThisAddIn.Application.ActiveWindow.View.Slide;
+        }
 
         public static List<PowerPoint.Shape> ListSlideShapes(PowerPoint.Slide slide = null)
         {

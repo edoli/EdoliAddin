@@ -100,6 +100,15 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.Dynamic, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLanguageRuntime.1.3.0\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -166,11 +175,157 @@
     <Compile Include="EdoliRibbon.Designer.cs">
       <DependentUpon>EdoliRibbon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expressive\Context.cs" />
+    <Compile Include="Expressive\Exceptions\ExpressiveException.cs" />
+    <Compile Include="Expressive\Exceptions\FunctionNameAlreadyRegisteredException.cs" />
+    <Compile Include="Expressive\Exceptions\MissingParticipantException.cs" />
+    <Compile Include="Expressive\Exceptions\MissingTokenException.cs" />
+    <Compile Include="Expressive\Exceptions\OperatorNameAlreadyRegisteredException.cs" />
+    <Compile Include="Expressive\Exceptions\ParameterCountMismatchException.cs" />
+    <Compile Include="Expressive\Exceptions\UnrecognisedTokenException.cs" />
+    <Compile Include="Expressive\Expression.cs" />
+    <Compile Include="Expressive\ExpressionParser.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Additive\AddExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Additive\SubtractExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\BinaryExpressionBase.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Bitwise\BitwiseAndExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Bitwise\BitwiseExclusiveOrExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Bitwise\BitwiseOrExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Bitwise\LeftShiftExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Bitwise\RightShiftExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Conditional\NullCoalescingExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Logical\AndExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Logical\OrExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Multiplicative\DivideExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Multiplicative\ExponentExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Multiplicative\ModulusExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Multiplicative\MultiplyExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\EqualExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\GreaterThanExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\GreaterThanOrEqualExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\LessThanExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\LessThanOrEqualExpression.cs" />
+    <Compile Include="Expressive\Expressions\Binary\Relational\NotEqualExpression.cs" />
+    <Compile Include="Expressive\Expressions\ConstantValueExpression.cs" />
+    <Compile Include="Expressive\Expressions\FunctionExpression.cs" />
+    <Compile Include="Expressive\Expressions\IExpression.cs" />
+    <Compile Include="Expressive\Expressions\ParenthesisedExpression.cs" />
+    <Compile Include="Expressive\Expressions\Unary\Additive\MinusExpression.cs" />
+    <Compile Include="Expressive\Expressions\Unary\Additive\PlusExpression.cs" />
+    <Compile Include="Expressive\Expressions\Unary\Logical\NotExpression.cs" />
+    <Compile Include="Expressive\Expressions\Unary\UnaryExpressionBase.cs" />
+    <Compile Include="Expressive\Expressions\VariableExpression.cs" />
+    <Compile Include="Expressive\ExpressiveOptions.cs" />
+    <Compile Include="Expressive\ExtensionMethods.cs" />
+    <Compile Include="Expressive\Functions\Conversion\DateFunction.cs" />
+    <Compile Include="Expressive\Functions\Conversion\DecimalFunction.cs" />
+    <Compile Include="Expressive\Functions\Conversion\DoubleFunction.cs" />
+    <Compile Include="Expressive\Functions\Conversion\IntegerFunction.cs" />
+    <Compile Include="Expressive\Functions\Conversion\LongFunction.cs" />
+    <Compile Include="Expressive\Functions\Conversion\StringFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddDaysFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddHoursFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddMillisecondsFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddMinutesFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddMonthsFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddSecondsFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\AddYearsFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\DayOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\DaysBetweenFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\HourOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\HoursBetweenFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\MillisecondOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\MillisecondsBetweenFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\MinuteOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\MinutesBetweenFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\MonthOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\SecondOfFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\SecondsBetweenFunction.cs" />
+    <Compile Include="Expressive\Functions\Date\YearOfFunction.cs" />
+    <Compile Include="Expressive\Functions\FunctionBase.cs" />
+    <Compile Include="Expressive\Functions\IFunction.cs" />
+    <Compile Include="Expressive\Functions\Logical\IfFunction.cs" />
+    <Compile Include="Expressive\Functions\Logical\InFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\AbsFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\AcosFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\AsinFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\AtanFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\CeilingFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\CosFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\CountFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\EFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\ExpFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\FloorFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\IEEERemainderFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\Log10Function.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\LogFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\PIFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\PowFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\RandomFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\RoundFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\SignFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\SinFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\SqrtFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\SumFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\TanFunction.cs" />
+    <Compile Include="Expressive\Functions\Mathematical\TruncateFunction.cs" />
+    <Compile Include="Expressive\Functions\Relational\MaxFunction.cs" />
+    <Compile Include="Expressive\Functions\Relational\MinFunction.cs" />
+    <Compile Include="Expressive\Functions\Statistical\AverageFunction.cs" />
+    <Compile Include="Expressive\Functions\Statistical\MeanFunction.cs" />
+    <Compile Include="Expressive\Functions\Statistical\MedianFunction.cs" />
+    <Compile Include="Expressive\Functions\Statistical\ModeFunction.cs" />
+    <Compile Include="Expressive\Functions\String\ContainsFunction.cs" />
+    <Compile Include="Expressive\Functions\String\EndsWithFunction.cs" />
+    <Compile Include="Expressive\Functions\String\LengthFunction.cs" />
+    <Compile Include="Expressive\Functions\String\PadLeftFunction.cs" />
+    <Compile Include="Expressive\Functions\String\PadRightFunction.cs" />
+    <Compile Include="Expressive\Functions\String\RegexFunction.cs" />
+    <Compile Include="Expressive\Functions\String\StartsWithFunction.cs" />
+    <Compile Include="Expressive\Functions\String\SubstringFunction.cs" />
+    <Compile Include="Expressive\GlobalSuppressions.cs" />
+    <Compile Include="Expressive\Helpers\Comparison.cs" />
+    <Compile Include="Expressive\Helpers\Numbers.cs" />
+    <Compile Include="Expressive\Helpers\TypeHelper.cs" />
+    <Compile Include="Expressive\IVariableProvider.cs" />
+    <Compile Include="Expressive\Operators\Additive\PlusOperator.cs" />
+    <Compile Include="Expressive\Operators\Additive\SubtractOperator.cs" />
+    <Compile Include="Expressive\Operators\Bitwise\BitwiseAndOperator.cs" />
+    <Compile Include="Expressive\Operators\Bitwise\BitwiseExclusiveOrOperator.cs" />
+    <Compile Include="Expressive\Operators\Bitwise\BitwiseOrOperator.cs" />
+    <Compile Include="Expressive\Operators\Bitwise\LeftShiftOperator.cs" />
+    <Compile Include="Expressive\Operators\Bitwise\RightShiftOperator.cs" />
+    <Compile Include="Expressive\Operators\Conditional\NullCoalescingOperator.cs" />
+    <Compile Include="Expressive\Operators\Grouping\ParenthesisCloseOperator.cs" />
+    <Compile Include="Expressive\Operators\Grouping\ParenthesisOpenOperator.cs" />
+    <Compile Include="Expressive\Operators\IOperator.cs" />
+    <Compile Include="Expressive\Operators\Logical\AndOperator.cs" />
+    <Compile Include="Expressive\Operators\Logical\NotOperator.cs" />
+    <Compile Include="Expressive\Operators\Logical\OrOperator.cs" />
+    <Compile Include="Expressive\Operators\Multiplicative\DivideOperator.cs" />
+    <Compile Include="Expressive\Operators\Multiplicative\ExponentOperator.cs" />
+    <Compile Include="Expressive\Operators\Multiplicative\ModulusOperator.cs" />
+    <Compile Include="Expressive\Operators\Multiplicative\MultiplyOperator.cs" />
+    <Compile Include="Expressive\Operators\OperatorBase.cs" />
+    <Compile Include="Expressive\Operators\OperatorPrecedence.cs" />
+    <Compile Include="Expressive\Operators\Relational\EqualOperator.cs" />
+    <Compile Include="Expressive\Operators\Relational\GreaterThanOperator.cs" />
+    <Compile Include="Expressive\Operators\Relational\GreaterThanOrEqualOperator.cs" />
+    <Compile Include="Expressive\Operators\Relational\LessThanOperator.cs" />
+    <Compile Include="Expressive\Operators\Relational\LessThanOrEqualOperator.cs" />
+    <Compile Include="Expressive\Operators\Relational\NotEqualOperator.cs" />
+    <Compile Include="Expressive\Properties\AssemblyInfo.cs" />
+    <Compile Include="Expressive\Token.cs" />
+    <Compile Include="Expressive\Tokenisation\ITokenExtractor.cs" />
+    <Compile Include="Expressive\Tokenisation\KeywordTokenExtractor.cs" />
+    <Compile Include="Expressive\Tokenisation\NumericTokenExtractor.cs" />
+    <Compile Include="Expressive\Tokenisation\ParenthesisedTokenExtractor.cs" />
+    <Compile Include="Expressive\Tokenisation\Tokeniser.cs" />
+    <Compile Include="Expressive\Tokenisation\ValueTokenExtractor.cs" />
+    <Compile Include="Expressive\VariableProviderDictionary.cs" />
     <Compile Include="ImageTool.cs" />
     <Compile Include="KeyboardHook.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="ScriptEngine.cs" />
     <Compile Include="ShapeExt.cs" />
     <Compile Include="ShapeTool.cs" />
     <Compile Include="Util.cs" />

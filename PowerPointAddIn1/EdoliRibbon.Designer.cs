@@ -43,6 +43,10 @@
             this.endArrowToggle = this.Factory.CreateRibbonButton();
             this.endArrowSizeUp = this.Factory.CreateRibbonButton();
             this.endArrowSizeDown = this.Factory.CreateRibbonButton();
+            this.curveOfEquation = this.Factory.CreateRibbonButton();
+            this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
+            this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
+            this.connectShapeByLine = this.Factory.CreateRibbonButton();
             this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
@@ -57,18 +61,22 @@
             this.swapCycleReverse = this.Factory.CreateRibbonButton();
             this.snapUpRight = this.Factory.CreateRibbonButton();
             this.alignGrid = this.Factory.CreateRibbonButton();
-            this.connectShapeByLine = this.Factory.CreateRibbonButton();
             this.groupGrid = this.Factory.CreateRibbonGroup();
             this.grid = this.Factory.CreateRibbonButton();
             this.gridPadding = this.Factory.CreateRibbonEditBox();
             this.gridNumColumn = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
+            this.group1 = this.Factory.CreateRibbonGroup();
+            this.buttonGroup1 = this.Factory.CreateRibbonButtonGroup();
+            this.polylineOfEquation = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
             this.groupGrid.SuspendLayout();
             this.animationGroup.SuspendLayout();
+            this.group1.SuspendLayout();
+            this.buttonGroup1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -79,6 +87,7 @@
             this.tab1.Groups.Add(this.alignGroup);
             this.tab1.Groups.Add(this.groupGrid);
             this.tab1.Groups.Add(this.animationGroup);
+            this.tab1.Groups.Add(this.group1);
             this.tab1.Label = "TabHome";
             this.tab1.Name = "tab1";
             // 
@@ -90,6 +99,7 @@
             this.shape.Items.Add(this.endArrowToggle);
             this.shape.Items.Add(this.endArrowSizeUp);
             this.shape.Items.Add(this.endArrowSizeDown);
+            this.shape.Items.Add(this.connectShapeByLine);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
             // 
@@ -148,6 +158,38 @@
             this.endArrowSizeDown.ShowLabel = false;
             this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
             // 
+            // curveOfEquation
+            // 
+            this.curveOfEquation.Image = ((System.Drawing.Image)(resources.GetObject("curveOfEquation.Image")));
+            this.curveOfEquation.Label = "Curve of equation";
+            this.curveOfEquation.Name = "curveOfEquation";
+            this.curveOfEquation.ScreenTip = "Curve of equation";
+            this.curveOfEquation.ShowImage = true;
+            this.curveOfEquation.ShowLabel = false;
+            this.curveOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curveOfEquation_Click);
+            // 
+            // curveOfEquationX
+            // 
+            this.curveOfEquationX.Label = "X";
+            this.curveOfEquationX.Name = "curveOfEquationX";
+            this.curveOfEquationX.Text = null;
+            // 
+            // curveOfEquationY
+            // 
+            this.curveOfEquationY.Label = "Y";
+            this.curveOfEquationY.Name = "curveOfEquationY";
+            this.curveOfEquationY.Text = null;
+            // 
+            // connectShapeByLine
+            // 
+            this.connectShapeByLine.Image = ((System.Drawing.Image)(resources.GetObject("connectShapeByLine.Image")));
+            this.connectShapeByLine.Label = "Connect Line";
+            this.connectShapeByLine.Name = "connectShapeByLine";
+            this.connectShapeByLine.ScreenTip = "Connect Line";
+            this.connectShapeByLine.ShowImage = true;
+            this.connectShapeByLine.ShowLabel = false;
+            this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
+            // 
             // alignGroup
             // 
             this.alignGroup.Items.Add(this.labelBottom);
@@ -163,7 +205,6 @@
             this.alignGroup.Items.Add(this.swapCycleReverse);
             this.alignGroup.Items.Add(this.snapUpRight);
             this.alignGroup.Items.Add(this.alignGrid);
-            this.alignGroup.Items.Add(this.connectShapeByLine);
             this.alignGroup.Label = "Align";
             this.alignGroup.Name = "alignGroup";
             // 
@@ -297,16 +338,6 @@
             this.alignGrid.ShowLabel = false;
             this.alignGrid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignGrid_Click);
             // 
-            // connectShapeByLine
-            // 
-            this.connectShapeByLine.Image = ((System.Drawing.Image)(resources.GetObject("connectShapeByLine.Image")));
-            this.connectShapeByLine.Label = "Connect Line";
-            this.connectShapeByLine.Name = "connectShapeByLine";
-            this.connectShapeByLine.ScreenTip = "Connect Line";
-            this.connectShapeByLine.ShowImage = true;
-            this.connectShapeByLine.ShowLabel = false;
-            this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
-            // 
             // groupGrid
             // 
             this.groupGrid.Items.Add(this.grid);
@@ -353,6 +384,30 @@
             this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
+            // group1
+            // 
+            this.group1.Items.Add(this.buttonGroup1);
+            this.group1.Items.Add(this.curveOfEquationX);
+            this.group1.Items.Add(this.curveOfEquationY);
+            this.group1.Label = "group1";
+            this.group1.Name = "group1";
+            // 
+            // buttonGroup1
+            // 
+            this.buttonGroup1.Items.Add(this.curveOfEquation);
+            this.buttonGroup1.Items.Add(this.polylineOfEquation);
+            this.buttonGroup1.Name = "buttonGroup1";
+            // 
+            // polylineOfEquation
+            // 
+            this.polylineOfEquation.Image = ((System.Drawing.Image)(resources.GetObject("polylineOfEquation.Image")));
+            this.polylineOfEquation.Label = "Polyline of equation";
+            this.polylineOfEquation.Name = "polylineOfEquation";
+            this.polylineOfEquation.ScreenTip = "Polyline of equation";
+            this.polylineOfEquation.ShowImage = true;
+            this.polylineOfEquation.ShowLabel = false;
+            this.polylineOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.polylineOfEquation_Click);
+            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -369,6 +424,10 @@
             this.groupGrid.PerformLayout();
             this.animationGroup.ResumeLayout(false);
             this.animationGroup.PerformLayout();
+            this.group1.ResumeLayout(false);
+            this.group1.PerformLayout();
+            this.buttonGroup1.ResumeLayout(false);
+            this.buttonGroup1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -404,6 +463,12 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton endArrowSizeDown;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignGrid;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton connectShapeByLine;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton curveOfEquation;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox curveOfEquationX;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox curveOfEquationY;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButtonGroup buttonGroup1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton polylineOfEquation;
     }
 
     partial class ThisRibbonCollection
