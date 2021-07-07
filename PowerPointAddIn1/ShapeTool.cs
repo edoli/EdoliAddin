@@ -12,6 +12,8 @@ namespace PowerPointAddIn1
 {
     public static class ShapeTool
     {
+
+        private static float shapeScale = 28.3465f;
         public static void ToggleLine()
         {
             var shapes = Util.ListSelectedShapes();
@@ -290,7 +292,7 @@ namespace PowerPointAddIn1
                 for (int t = 0; t < numPoints; t++)
                 {
                     var f = ((float)t) / numPoints;
-                    initVectors[t] = func(f);
+                    initVectors[t] = func(f) * shapeScale;
                 }
 
                 var vectors = new Vector2[numPoints];
@@ -369,7 +371,7 @@ namespace PowerPointAddIn1
                 for (int t = 0; t < numPoints; t++)
                 {
                     var f = ((float)t) / numPoints;
-                    vectors[t] = func(f);
+                    vectors[t] = func(f) * shapeScale;
                 }
 
                 var points = new float[numPoints, 2];
