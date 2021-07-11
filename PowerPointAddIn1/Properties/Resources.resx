@@ -124,11 +124,56 @@
   <data name="icon_align_next_slide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_align_next_slide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_align_prev_slide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_align_prev_slide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_end_arrow_size_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_end_arrow_size_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_label_group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_label_group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_begin_arrow_size_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_begin_arrow_size_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_snap_diag_downright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_snap_diag_downright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_align_prev_slide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_align_prev_slide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_label_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_label_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_snap_diag_upright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_snap_diag_upright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_swap_cycle_reverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_swap_cycle_reverse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_transpose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_transpose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_connect_shape_by_lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_connect_shape_by_lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_label_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_label_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_of_equation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_of_equation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_swap_cycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_swap_cycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_end_arrow_size_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_end_arrow_size_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_label_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_label_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_label_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_label_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_begin_arrow_size_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_begin_arrow_size_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,46 +181,10 @@
   <data name="icon_begin_arrow_toggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_begin_arrow_toggle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_end_arrow_size_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_end_arrow_size_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_end_arrow_size_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_end_arrow_size_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icon_end_arrow_toggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_end_arrow_toggle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_label_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_label_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_label_group" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_label_group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_label_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_label_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_label_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_label_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_label_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_label_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_snap_diag_downright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_snap_diag_downright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_snap_diag_upright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_snap_diag_upright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_swap_cycle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_swap_cycle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_swap_cycle_reverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_swap_cycle_reverse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_transpose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_transpose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_polyline_of_equation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_polyline_of_equation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

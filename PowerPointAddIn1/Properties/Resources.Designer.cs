@@ -123,6 +123,26 @@ namespace PowerPointAddIn1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_connect_shape_by_lines {
+            get {
+                object obj = ResourceManager.GetObject("icon_connect_shape_by_lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_of_equation {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_of_equation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_end_arrow_size_down {
             get {
                 object obj = ResourceManager.GetObject("icon_end_arrow_size_down", resourceCulture);
@@ -206,6 +226,16 @@ namespace PowerPointAddIn1.Properties {
         internal static System.Drawing.Bitmap icon_label_top {
             get {
                 object obj = ResourceManager.GetObject("icon_label_top", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_polyline_of_equation {
+            get {
+                object obj = ResourceManager.GetObject("icon_polyline_of_equation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

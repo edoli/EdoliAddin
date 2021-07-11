@@ -34,7 +34,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdoliRibbon));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.shape = this.Factory.CreateRibbonGroup();
             this.beginArrowToggle = this.Factory.CreateRibbonButton();
@@ -43,9 +42,6 @@
             this.endArrowToggle = this.Factory.CreateRibbonButton();
             this.endArrowSizeUp = this.Factory.CreateRibbonButton();
             this.endArrowSizeDown = this.Factory.CreateRibbonButton();
-            this.curveOfEquation = this.Factory.CreateRibbonButton();
-            this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
-            this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
             this.connectShapeByLine = this.Factory.CreateRibbonButton();
             this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
@@ -69,7 +65,10 @@
             this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.buttonGroup1 = this.Factory.CreateRibbonButtonGroup();
+            this.curveOfEquation = this.Factory.CreateRibbonButton();
             this.polylineOfEquation = this.Factory.CreateRibbonButton();
+            this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
+            this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
@@ -158,31 +157,9 @@
             this.endArrowSizeDown.ShowLabel = false;
             this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
             // 
-            // curveOfEquation
-            // 
-            this.curveOfEquation.Image = ((System.Drawing.Image)(resources.GetObject("curveOfEquation.Image")));
-            this.curveOfEquation.Label = "Curve of equation";
-            this.curveOfEquation.Name = "curveOfEquation";
-            this.curveOfEquation.ScreenTip = "Curve of equation";
-            this.curveOfEquation.ShowImage = true;
-            this.curveOfEquation.ShowLabel = false;
-            this.curveOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curveOfEquation_Click);
-            // 
-            // curveOfEquationX
-            // 
-            this.curveOfEquationX.Label = "X";
-            this.curveOfEquationX.Name = "curveOfEquationX";
-            this.curveOfEquationX.Text = null;
-            // 
-            // curveOfEquationY
-            // 
-            this.curveOfEquationY.Label = "Y";
-            this.curveOfEquationY.Name = "curveOfEquationY";
-            this.curveOfEquationY.Text = null;
-            // 
             // connectShapeByLine
             // 
-            this.connectShapeByLine.Image = ((System.Drawing.Image)(resources.GetObject("connectShapeByLine.Image")));
+            this.connectShapeByLine.Image = global::PowerPointAddIn1.Properties.Resources.icon_connect_shape_by_lines;
             this.connectShapeByLine.Label = "Connect Line";
             this.connectShapeByLine.Name = "connectShapeByLine";
             this.connectShapeByLine.ScreenTip = "Connect Line";
@@ -398,15 +375,37 @@
             this.buttonGroup1.Items.Add(this.polylineOfEquation);
             this.buttonGroup1.Name = "buttonGroup1";
             // 
+            // curveOfEquation
+            // 
+            this.curveOfEquation.Image = global::PowerPointAddIn1.Properties.Resources.icon_curve_of_equation;
+            this.curveOfEquation.Label = "Curve of equation";
+            this.curveOfEquation.Name = "curveOfEquation";
+            this.curveOfEquation.ScreenTip = "Curve of equation";
+            this.curveOfEquation.ShowImage = true;
+            this.curveOfEquation.ShowLabel = false;
+            this.curveOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curveOfEquation_Click);
+            // 
             // polylineOfEquation
             // 
-            this.polylineOfEquation.Image = ((System.Drawing.Image)(resources.GetObject("polylineOfEquation.Image")));
+            this.polylineOfEquation.Image = global::PowerPointAddIn1.Properties.Resources.icon_polyline_of_equation;
             this.polylineOfEquation.Label = "Polyline of equation";
             this.polylineOfEquation.Name = "polylineOfEquation";
             this.polylineOfEquation.ScreenTip = "Polyline of equation";
             this.polylineOfEquation.ShowImage = true;
             this.polylineOfEquation.ShowLabel = false;
             this.polylineOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.polylineOfEquation_Click);
+            // 
+            // curveOfEquationX
+            // 
+            this.curveOfEquationX.Label = "X";
+            this.curveOfEquationX.Name = "curveOfEquationX";
+            this.curveOfEquationX.Text = null;
+            // 
+            // curveOfEquationY
+            // 
+            this.curveOfEquationY.Label = "Y";
+            this.curveOfEquationY.Name = "curveOfEquationY";
+            this.curveOfEquationY.Text = null;
             // 
             // EdoliRibbon
             // 
