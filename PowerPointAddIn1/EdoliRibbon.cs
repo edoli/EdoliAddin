@@ -139,5 +139,15 @@ namespace PowerPointAddIn1
             var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
             ShapeTool.AddPolylineOfExpression(equationX, equationY);
         }
+
+        private void invertImage_Click(object sender, RibbonControlEventArgs e)
+        {
+            ImageTool.InvertImage();
+        }
+
+        private void trimImage_Click(object sender, RibbonControlEventArgs e)
+        {
+            ImageTool.TrimImage();
+        }
     }
 }

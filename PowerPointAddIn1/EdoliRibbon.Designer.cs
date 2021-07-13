@@ -43,6 +43,8 @@
             this.endArrowSizeUp = this.Factory.CreateRibbonButton();
             this.endArrowSizeDown = this.Factory.CreateRibbonButton();
             this.connectShapeByLine = this.Factory.CreateRibbonButton();
+            this.invertImage = this.Factory.CreateRibbonButton();
+            this.trimImage = this.Factory.CreateRibbonButton();
             this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
@@ -99,6 +101,8 @@
             this.shape.Items.Add(this.endArrowSizeUp);
             this.shape.Items.Add(this.endArrowSizeDown);
             this.shape.Items.Add(this.connectShapeByLine);
+            this.shape.Items.Add(this.invertImage);
+            this.shape.Items.Add(this.trimImage);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
             // 
@@ -166,6 +170,18 @@
             this.connectShapeByLine.ShowImage = true;
             this.connectShapeByLine.ShowLabel = false;
             this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
+            // 
+            // invertImage
+            // 
+            this.invertImage.Label = "Invert";
+            this.invertImage.Name = "invertImage";
+            this.invertImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.invertImage_Click);
+            // 
+            // trimImage
+            // 
+            this.trimImage.Label = "Trim";
+            this.trimImage.Name = "trimImage";
+            this.trimImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimImage_Click);
             // 
             // alignGroup
             // 
@@ -468,6 +484,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButtonGroup buttonGroup1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton polylineOfEquation;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton invertImage;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton trimImage;
     }
 
     partial class ThisRibbonCollection
