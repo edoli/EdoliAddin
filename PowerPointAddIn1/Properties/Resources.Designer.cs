@@ -183,6 +183,26 @@ namespace PowerPointAddIn1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_image_invert {
+            get {
+                object obj = ResourceManager.GetObject("icon_image_invert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_image_trim {
+            get {
+                object obj = ResourceManager.GetObject("icon_image_trim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_label_bottom {
             get {
                 object obj = ResourceManager.GetObject("icon_label_bottom", resourceCulture);

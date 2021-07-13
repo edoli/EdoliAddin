@@ -105,6 +105,9 @@ namespace PowerPointAddIn1
 
                 var shapeWidth = shape.Width;
                 var shapeHeight = shape.Height;
+
+                rect = rect.Dilate(1, width, height);
+
                 shape.PictureFormat.CropLeft = (rect.X * shapeWidth) / width;
                 shape.PictureFormat.CropRight = ((width - rect.X - rect.Width) * shapeWidth) / width;
                 shape.PictureFormat.CropBottom = (rect.Y * shapeHeight) / height;

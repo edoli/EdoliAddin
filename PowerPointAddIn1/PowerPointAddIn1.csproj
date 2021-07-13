@@ -375,6 +375,8 @@
     <Content Include="Resources\icon_end_arrow_size_up.png" />
     <Content Include="Resources\icon_end_arrow_toggle.png" />
     <Content Include="Resources\icon_grid.png" />
+    <None Include="Resources\icon_image_trim.png" />
+    <None Include="Resources\icon_image_invert.png" />
     <Content Include="Resources\icon_label_bottom.png" />
     <Content Include="Resources\icon_label_group.png" />
     <Content Include="Resources\icon_label_left.png" />

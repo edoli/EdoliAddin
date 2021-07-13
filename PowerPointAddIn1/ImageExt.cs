@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PowerPointAddIn1
 {
-    public class ImageExt
+    public static class ImageExt
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct BmpHeader
@@ -181,6 +181,33 @@ namespace PowerPointAddIn1
                 }
             }
             return new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
+        }
+
+        public static Rectangle Dilate(this Rectangle rectangle, int amount = 1, int xBound = -1, int yBound = -1)
+        {
+            int x = rectangle.X;
+            int y = rectangle.Y;
+            int width = rectangle.Width;
+            int height = rectangle.Height;
+
+            if (x >= amount) {
+                x -= amount;
+                width += amount;
+            }
+            if (y >= amount)
+            {
+                y -= amount;
+                height += amount;
+            }
+            if (xBound == -1 || x + width + amount <= xBound)
+            {
+                width += amount;
+            }
+            if (yBound == -1 || y + height + amount <= yBound)
+            {
+                height += amount;
+            }
+            return new Rectangle(x, y, width, height);
         }
     }
 }

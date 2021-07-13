@@ -173,14 +173,20 @@
             // 
             // invertImage
             // 
+            this.invertImage.Image = global::PowerPointAddIn1.Properties.Resources.icon_image_invert;
             this.invertImage.Label = "Invert";
             this.invertImage.Name = "invertImage";
+            this.invertImage.ShowImage = true;
+            this.invertImage.ShowLabel = false;
             this.invertImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.invertImage_Click);
             // 
             // trimImage
             // 
+            this.trimImage.Image = global::PowerPointAddIn1.Properties.Resources.icon_image_trim;
             this.trimImage.Label = "Trim";
             this.trimImage.Name = "trimImage";
+            this.trimImage.ShowImage = true;
+            this.trimImage.ShowLabel = false;
             this.trimImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimImage_Click);
             // 
             // alignGroup
