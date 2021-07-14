@@ -51,7 +51,6 @@ namespace PowerPointAddIn1
             shape.Top = bottom - shape.Height;
         }
 
-
         public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB, Anchor anchor)
         {
             if (anchor == Anchor.None)

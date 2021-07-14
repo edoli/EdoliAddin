@@ -66,7 +66,15 @@ namespace PowerPointAddIn1
         }
         */
 
-        public static Rectangle Trim(byte[] imageArray, int width, int height)
+        public static float ColorDistance(byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
+        {
+            int rd = (int)r1 - r2;
+            int gd = (int)g1 - g2;
+            int bd = (int)b1 - b2;
+            return (float)Math.Sqrt(rd * rd + gd * gd + bd * bd);
+        }
+
+        public static Rectangle Trim(byte[] imageArray, int width, int height, float threshold = 10)
         {
             int columnInterval = width * 4;
 
@@ -75,9 +83,11 @@ namespace PowerPointAddIn1
             int xEnd = width;
             int yEnd = height;
 
-            byte b = imageArray[0];
-            byte g = imageArray[1];
-            byte r = imageArray[2];
+            int refIndex = (height - 1) * width * 4;
+
+            byte b = imageArray[refIndex + 0];
+            byte g = imageArray[refIndex + 1];
+            byte r = imageArray[refIndex + 2];
 
             // row scan
             for (int i = 0; i < height; i++)
@@ -86,7 +96,7 @@ namespace PowerPointAddIn1
                 var cumpin = true;
                 for (int j = 0; j < width; j++)
                 {
-                    var pin = imageArray[index] == b && imageArray[index + 1] == g && imageArray[index + 2] == r;
+                    var pin = ColorDistance(r, g, b, imageArray[index + 2], imageArray[index + 1], imageArray[index]) < threshold;
                     if (!pin)
                     {
                         cumpin = false;
@@ -111,7 +121,7 @@ namespace PowerPointAddIn1
                 var cumpin = true;
                 for (int j = 0; j < width; j++)
                 {
-                    var pin = imageArray[index] == b && imageArray[index + 1] == g && imageArray[index + 2] == r;
+                    var pin = ColorDistance(r, g, b, imageArray[index + 2], imageArray[index + 1], imageArray[index]) < threshold;
                     if (!pin)
                     {
                         cumpin = false;
@@ -137,7 +147,7 @@ namespace PowerPointAddIn1
                 var cumpin = true;
                 for (int i = 0; i < height; i++)
                 {
-                    var pin = imageArray[index] == b && imageArray[index + 1] == g && imageArray[index + 2] == r;
+                    var pin = ColorDistance(r, g, b, imageArray[index + 2], imageArray[index + 1], imageArray[index]) < threshold;
                     if (!pin)
                     {
                         cumpin = false;
@@ -162,7 +172,7 @@ namespace PowerPointAddIn1
                 var cumpin = true;
                 for (int i = 0; i < height; i++)
                 {
-                    var pin = imageArray[index] == b && imageArray[index + 1] == g && imageArray[index + 2] == r;
+                    var pin = ColorDistance(r, g, b, imageArray[index + 2], imageArray[index + 1], imageArray[index]) < threshold;
                     if (!pin)
                     {
                         cumpin = false;
