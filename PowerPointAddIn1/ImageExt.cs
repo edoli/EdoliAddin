@@ -74,7 +74,7 @@ namespace PowerPointAddIn1
             return (float)Math.Sqrt(rd * rd + gd * gd + bd * bd);
         }
 
-        public static Rectangle Trim(byte[] imageArray, int width, int height, float threshold = 10)
+        public static Rectangle Trim(byte[] imageArray, int width, int height, float threshold = 3)
         {
             int columnInterval = width * 4;
 

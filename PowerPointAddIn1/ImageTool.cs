@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,50 +38,15 @@ namespace PowerPointAddIn1
         public static void TrimImage()
         {
             var shapes = Util.ListSelectedShapes();
+            if (shapes.Count == 0)
+            {
+                return;
+            }
 
             var shape = shapes[0];
             if (shape.Type == Core.MsoShapeType.msoPicture)
             {
                 Globals.ThisAddIn.Application.StartNewUndoEntry();
-                /*
-                Rectangle rectangle = new Rectangle();
-                FilterImage((imageArray, arraySize, image) =>
-                {
-                    int width = image.Width;
-                    int height = image.Height;
-
-                    rectangle = ImageExt.Trim(imageArray, width, height);
-
-                    byte[] originalImageArray = new byte[imageArray.Length];
-                    imageArray.CopyTo(originalImageArray, 0);
-
-                    var dstIndex = 0;
-                    for (int i = rectangle.Y; i < rectangle.Y + rectangle.Height; i++)
-                    {
-                        var srcIndex = i * width * 4 + rectangle.X * 4;
-                        for (int j = rectangle.X; j < rectangle.X + rectangle.Width; j++)
-                        {
-                            imageArray[dstIndex] = originalImageArray[srcIndex];
-                            imageArray[dstIndex + 1] = originalImageArray[srcIndex + 1];
-                            imageArray[dstIndex + 2] = originalImageArray[srcIndex + 2];
-                            imageArray[dstIndex + 3] = originalImageArray[srcIndex + 3];
-
-                            srcIndex += 4;
-                            dstIndex += 4;
-                        }
-                    }
-
-                    return null;
-                }, bmpHeader => {
-                    bmpHeader.biWidth = (uint) rectangle.Width;
-                    bmpHeader.biHeight = (uint) rectangle.Height;
-                    return bmpHeader;
-                });
-
-                var slide = Util.CurrentSlide();
-                slide.Shapes.Paste();
-                */
-
 
                 var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
 
@@ -106,7 +71,7 @@ namespace PowerPointAddIn1
                 var shapeWidth = shape.Width;
                 var shapeHeight = shape.Height;
 
-                rect = rect.Dilate(1, width, height);
+                rect = rect.Dilate(-1, width, height);
 
                 shape.PictureFormat.CropLeft += (rect.X * shapeWidth) / width;
                 shape.PictureFormat.CropRight += ((width - rect.X - rect.Width) * shapeWidth) / width;

@@ -344,6 +344,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="PowerPointAddIn1_1_TemporaryKey.pfx" />
     <None Include="PowerPointAddIn1_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -396,10 +397,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PowerPointAddIn1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PowerPointAddIn1_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>EEDB8CA3CF83B6F183846B443459ED210E414BC4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>254AB4F12FF2633CBF234AF744DF6DA3A16D8C05</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
