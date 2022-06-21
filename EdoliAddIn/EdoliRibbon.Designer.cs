@@ -1,4 +1,4 @@
-﻿namespace PowerPointAddIn1
+﻿namespace EdoliAddIn
 {
     partial class EdoliRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
@@ -108,7 +108,7 @@
             // 
             // beginArrowToggle
             // 
-            this.beginArrowToggle.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_toggle;
+            this.beginArrowToggle.Image = global::EdoliAddIn.Properties.Resources.icon_begin_arrow_toggle;
             this.beginArrowToggle.Label = "button1";
             this.beginArrowToggle.Name = "beginArrowToggle";
             this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
@@ -118,7 +118,7 @@
             // 
             // beginArrowSizeUp
             // 
-            this.beginArrowSizeUp.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_size_up;
+            this.beginArrowSizeUp.Image = global::EdoliAddIn.Properties.Resources.icon_begin_arrow_size_up;
             this.beginArrowSizeUp.Label = "button1";
             this.beginArrowSizeUp.Name = "beginArrowSizeUp";
             this.beginArrowSizeUp.ShowImage = true;
@@ -127,7 +127,7 @@
             // 
             // beginArrowSizeDown
             // 
-            this.beginArrowSizeDown.Image = global::PowerPointAddIn1.Properties.Resources.icon_begin_arrow_size_down;
+            this.beginArrowSizeDown.Image = global::EdoliAddIn.Properties.Resources.icon_begin_arrow_size_down;
             this.beginArrowSizeDown.Label = "button1";
             this.beginArrowSizeDown.Name = "beginArrowSizeDown";
             this.beginArrowSizeDown.ShowImage = true;
@@ -136,7 +136,7 @@
             // 
             // endArrowToggle
             // 
-            this.endArrowToggle.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_toggle;
+            this.endArrowToggle.Image = global::EdoliAddIn.Properties.Resources.icon_end_arrow_toggle;
             this.endArrowToggle.Label = "button1";
             this.endArrowToggle.Name = "endArrowToggle";
             this.endArrowToggle.ShowImage = true;
@@ -145,7 +145,7 @@
             // 
             // endArrowSizeUp
             // 
-            this.endArrowSizeUp.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_size_up;
+            this.endArrowSizeUp.Image = global::EdoliAddIn.Properties.Resources.icon_end_arrow_size_up;
             this.endArrowSizeUp.Label = "button1";
             this.endArrowSizeUp.Name = "endArrowSizeUp";
             this.endArrowSizeUp.ShowImage = true;
@@ -154,7 +154,7 @@
             // 
             // endArrowSizeDown
             // 
-            this.endArrowSizeDown.Image = global::PowerPointAddIn1.Properties.Resources.icon_end_arrow_size_down;
+            this.endArrowSizeDown.Image = global::EdoliAddIn.Properties.Resources.icon_end_arrow_size_down;
             this.endArrowSizeDown.Label = "button1";
             this.endArrowSizeDown.Name = "endArrowSizeDown";
             this.endArrowSizeDown.ShowImage = true;
@@ -163,7 +163,7 @@
             // 
             // connectShapeByLine
             // 
-            this.connectShapeByLine.Image = global::PowerPointAddIn1.Properties.Resources.icon_connect_shape_by_lines;
+            this.connectShapeByLine.Image = global::EdoliAddIn.Properties.Resources.icon_connect_shape_by_lines;
             this.connectShapeByLine.Label = "Connect Line";
             this.connectShapeByLine.Name = "connectShapeByLine";
             this.connectShapeByLine.ScreenTip = "Connect Line";
@@ -173,7 +173,7 @@
             // 
             // invertImage
             // 
-            this.invertImage.Image = global::PowerPointAddIn1.Properties.Resources.icon_image_invert;
+            this.invertImage.Image = global::EdoliAddIn.Properties.Resources.icon_image_invert;
             this.invertImage.Label = "Invert";
             this.invertImage.Name = "invertImage";
             this.invertImage.ShowImage = true;
@@ -182,7 +182,7 @@
             // 
             // trimImage
             // 
-            this.trimImage.Image = global::PowerPointAddIn1.Properties.Resources.icon_image_trim;
+            this.trimImage.Image = global::EdoliAddIn.Properties.Resources.icon_image_trim;
             this.trimImage.Label = "Trim";
             this.trimImage.Name = "trimImage";
             this.trimImage.ShowImage = true;
@@ -209,7 +209,7 @@
             // 
             // labelBottom
             // 
-            this.labelBottom.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_bottom;
+            this.labelBottom.Image = global::EdoliAddIn.Properties.Resources.icon_label_bottom;
             this.labelBottom.Label = "LabelBottom";
             this.labelBottom.Name = "labelBottom";
             this.labelBottom.ScreenTip = "Label bottom";
@@ -219,7 +219,7 @@
             // 
             // labelTop
             // 
-            this.labelTop.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_top;
+            this.labelTop.Image = global::EdoliAddIn.Properties.Resources.icon_label_top;
             this.labelTop.Label = "LabelTop";
             this.labelTop.Name = "labelTop";
             this.labelTop.ScreenTip = "Label top";
@@ -229,7 +229,7 @@
             // 
             // transpose
             // 
-            this.transpose.Image = global::PowerPointAddIn1.Properties.Resources.icon_transpose;
+            this.transpose.Image = global::EdoliAddIn.Properties.Resources.icon_transpose;
             this.transpose.Label = "Transpose";
             this.transpose.Name = "transpose";
             this.transpose.ScreenTip = "Transpose";
@@ -239,7 +239,7 @@
             // 
             // labelLeft
             // 
-            this.labelLeft.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_left;
+            this.labelLeft.Image = global::EdoliAddIn.Properties.Resources.icon_label_left;
             this.labelLeft.Label = "LabelLeft";
             this.labelLeft.Name = "labelLeft";
             this.labelLeft.ScreenTip = "Label left";
@@ -249,7 +249,7 @@
             // 
             // labelRight
             // 
-            this.labelRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_right;
+            this.labelRight.Image = global::EdoliAddIn.Properties.Resources.icon_label_right;
             this.labelRight.Label = "LabelRight";
             this.labelRight.Name = "labelRight";
             this.labelRight.ScreenTip = "Label right";
@@ -259,7 +259,7 @@
             // 
             // groupLabel
             // 
-            this.groupLabel.Image = global::PowerPointAddIn1.Properties.Resources.icon_label_group;
+            this.groupLabel.Image = global::EdoliAddIn.Properties.Resources.icon_label_group;
             this.groupLabel.Label = "Group Label";
             this.groupLabel.Name = "groupLabel";
             this.groupLabel.ScreenTip = "Group Label";
@@ -269,7 +269,7 @@
             // 
             // alignPrevSlide
             // 
-            this.alignPrevSlide.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_prev_slide;
+            this.alignPrevSlide.Image = global::EdoliAddIn.Properties.Resources.icon_align_prev_slide;
             this.alignPrevSlide.Label = "Align";
             this.alignPrevSlide.Name = "alignPrevSlide";
             this.alignPrevSlide.ScreenTip = "Align with previous slide";
@@ -279,7 +279,7 @@
             // 
             // swapCycle
             // 
-            this.swapCycle.Image = global::PowerPointAddIn1.Properties.Resources.icon_swap_cycle;
+            this.swapCycle.Image = global::EdoliAddIn.Properties.Resources.icon_swap_cycle;
             this.swapCycle.Label = "Swap cycle";
             this.swapCycle.Name = "swapCycle";
             this.swapCycle.ScreenTip = "Swap cycle";
@@ -289,7 +289,7 @@
             // 
             // snapDownRight
             // 
-            this.snapDownRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_snap_diag_downright;
+            this.snapDownRight.Image = global::EdoliAddIn.Properties.Resources.icon_snap_diag_downright;
             this.snapDownRight.Label = "Snap down right";
             this.snapDownRight.Name = "snapDownRight";
             this.snapDownRight.ScreenTip = "Snap down right";
@@ -299,7 +299,7 @@
             // 
             // alignNextSlide
             // 
-            this.alignNextSlide.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_next_slide;
+            this.alignNextSlide.Image = global::EdoliAddIn.Properties.Resources.icon_align_next_slide;
             this.alignNextSlide.Label = "Align next slide";
             this.alignNextSlide.Name = "alignNextSlide";
             this.alignNextSlide.ScreenTip = "Align with next slide";
@@ -309,7 +309,7 @@
             // 
             // swapCycleReverse
             // 
-            this.swapCycleReverse.Image = global::PowerPointAddIn1.Properties.Resources.icon_swap_cycle_reverse;
+            this.swapCycleReverse.Image = global::EdoliAddIn.Properties.Resources.icon_swap_cycle_reverse;
             this.swapCycleReverse.Label = "Swap cycle reverse";
             this.swapCycleReverse.Name = "swapCycleReverse";
             this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
@@ -319,7 +319,7 @@
             // 
             // snapUpRight
             // 
-            this.snapUpRight.Image = global::PowerPointAddIn1.Properties.Resources.icon_snap_diag_upright;
+            this.snapUpRight.Image = global::EdoliAddIn.Properties.Resources.icon_snap_diag_upright;
             this.snapUpRight.Label = "Snap up right";
             this.snapUpRight.Name = "snapUpRight";
             this.snapUpRight.ScreenTip = "Snap up right";
@@ -329,7 +329,7 @@
             // 
             // alignGrid
             // 
-            this.alignGrid.Image = global::PowerPointAddIn1.Properties.Resources.icon_align_grid;
+            this.alignGrid.Image = global::EdoliAddIn.Properties.Resources.icon_align_grid;
             this.alignGrid.Label = "Align grid";
             this.alignGrid.Name = "alignGrid";
             this.alignGrid.ScreenTip = "Align grid";
@@ -347,7 +347,7 @@
             // 
             // grid
             // 
-            this.grid.Image = global::PowerPointAddIn1.Properties.Resources.icon_grid;
+            this.grid.Image = global::EdoliAddIn.Properties.Resources.icon_grid;
             this.grid.Label = "Grid";
             this.grid.Name = "grid";
             this.grid.ScreenTip = "Grid";
@@ -399,7 +399,7 @@
             // 
             // curveOfEquation
             // 
-            this.curveOfEquation.Image = global::PowerPointAddIn1.Properties.Resources.icon_curve_of_equation;
+            this.curveOfEquation.Image = global::EdoliAddIn.Properties.Resources.icon_curve_of_equation;
             this.curveOfEquation.Label = "Curve of equation";
             this.curveOfEquation.Name = "curveOfEquation";
             this.curveOfEquation.ScreenTip = "Curve of equation";
@@ -409,7 +409,7 @@
             // 
             // polylineOfEquation
             // 
-            this.polylineOfEquation.Image = global::PowerPointAddIn1.Properties.Resources.icon_polyline_of_equation;
+            this.polylineOfEquation.Image = global::EdoliAddIn.Properties.Resources.icon_polyline_of_equation;
             this.polylineOfEquation.Label = "Polyline of equation";
             this.polylineOfEquation.Name = "polylineOfEquation";
             this.polylineOfEquation.ScreenTip = "Polyline of equation";

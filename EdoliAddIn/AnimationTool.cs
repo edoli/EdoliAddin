@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     class AnimationTool
     {

@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Microsoft.Scripting.Hosting;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public partial class EdoliRibbon
     {

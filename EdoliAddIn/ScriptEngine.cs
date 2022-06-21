@@ -1,4 +1,4 @@
-﻿namespace PowerPointAddIn1
+﻿namespace EdoliAddIn
 {
     internal class ScriptEngine
     {

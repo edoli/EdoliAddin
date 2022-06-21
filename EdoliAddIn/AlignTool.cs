@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Core = Microsoft.Office.Core;
-using static PowerPointAddIn1.ShapeExt;
+using static EdoliAddIn.ShapeExt;
 using System.Numerics;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public class AlignTool
     {

@@ -10,7 +10,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public static class ImageTool
     {

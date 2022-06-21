@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public static class ImageExt
     {

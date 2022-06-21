@@ -7,7 +7,7 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public partial class ThisAddIn
     {

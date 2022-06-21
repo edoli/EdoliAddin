@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace PowerPointAddIn1
+namespace EdoliAddIn
 {
     public class KeyboardHook
     {
