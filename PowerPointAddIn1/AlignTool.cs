@@ -25,11 +25,11 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tLeft = lastShape.Left;
+                float tLeft = lastShape.Left();
 
                 foreach (var shape in shapes)
                 {
-                    shape.Left = tLeft;
+                    shape.SetLeft(tLeft);
                 }
             }
         }
@@ -41,11 +41,11 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tRight = lastShape.Left + lastShape.Width;
+                float tRight = lastShape.Right();
 
                 foreach (var shape in shapes)
                 {
-                    shape.Left = tRight - shape.Width;
+                    shape.SetRight(tRight);
                 }
             }
         }
@@ -57,11 +57,11 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tTop = lastShape.Top;
+                float tTop = lastShape.Top();
 
                 foreach (var shape in shapes)
                 {
-                    shape.Top = tTop;
+                    shape.SetTop(tTop);
                 }
             }
         }
@@ -73,11 +73,11 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tBottom = lastShape.Top + lastShape.Height;
+                float tBottom = lastShape.Bottom();
 
                 foreach (var shape in shapes)
                 {
-                    shape.Top = tBottom - shape.Height;
+                    shape.SetBottom(tBottom);
                 }
             }
         }
@@ -90,12 +90,12 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tLeft = lastShape.Left;
+                float tLeft = lastShape.Left();
 
                 for (int i = 0; i < shapes.Count - 1; i++)
                 {
                     var shape = shapes[i];
-                    shape.Left = tLeft - shape.Width;
+                    shape.SetRight(tLeft);
                 }
             }
         }
@@ -107,12 +107,12 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tRight = lastShape.Left + lastShape.Width;
+                float tRight = lastShape.Right();
 
                 for (int i = 0; i < shapes.Count - 1; i++)
                 {
                     var shape = shapes[i];
-                    shape.Left = tRight;
+                    shape.SetLeft(tRight);
                 }
             }
         }
@@ -124,12 +124,12 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tTop = lastShape.Top;
+                float tTop = lastShape.Top();
 
                 for (int i = 0; i < shapes.Count - 1; i++)
                 {
                     var shape = shapes[i];
-                    shape.Top = tTop - shape.Height;
+                    shape.SetBottom(tTop);
                 }
             }
         }
@@ -141,12 +141,12 @@ namespace PowerPointAddIn1
             if (shapes.Count > 1)
             {
                 var lastShape = shapes.Last();
-                float tBottom = lastShape.Top + lastShape.Height;
+                float tBottom = lastShape.Bottom();
 
                 for (int i = 0; i < shapes.Count - 1; i++)
                 {
                     var shape = shapes[i];
-                    shape.Top = tBottom;
+                    shape.SetTop(tBottom);
                 }
             }
         }
@@ -336,22 +336,22 @@ namespace PowerPointAddIn1
 
             var shapes = Util.ListSelectedShapes();
 
-            var minLeft = shapes.Min(shape => shape.Left);
-            var maxLeft = shapes.Max(shape => shape.Left);
+            var minLeft = shapes.Min(shape => shape.Left());
+            var maxLeft = shapes.Max(shape => shape.Left());
 
-            var minTop = shapes.Min(shape => shape.Top);
-            var maxTop = shapes.Max(shape => shape.Top);
+            var minTop = shapes.Min(shape => shape.Top());
+            var maxTop = shapes.Max(shape => shape.Top());
 
             var diag = new Vector2(maxLeft - minLeft, maxTop - minTop);
 
             foreach (var shape in shapes)
             {
-                float x = shape.Left - minLeft;
-                float y = shape.Top - minTop;
+                float x = shape.Left() - minLeft;
+                float y = shape.Top() - minTop;
                 float newX = y * diag.X / diag.Y;
                 float newY = x * diag.Y / diag.X;
-                shape.Left = newX + minLeft;
-                shape.Top = newY + minTop;
+                shape.SetLeft(newX + minLeft);
+                shape.SetTop(newY + minTop);
             }
         }
 
@@ -379,7 +379,7 @@ namespace PowerPointAddIn1
             }
 
             float left = 0;
-            float top = shapes[0].Top;
+            float top = shapes[0].Top();
             float maxHeight = 0;
 
             for (int i = 0; i < shapes.Count(); i++)
@@ -390,19 +390,21 @@ namespace PowerPointAddIn1
 
                 if (col == 0)
                 {
-                    left = shapes[0].Left;
+                    left = shapes[0].Left();
                     if (row >= 1)
                     {
                         top += maxHeight + padding;
                     }
                     maxHeight = 0;
                 }
-                shape.Left = left;
-                shape.Top = top;
-                left += shapes[col].Width + padding;
-                if (shape.Height > maxHeight)
+                shape.SetLeft(left);
+                shape.SetTop(top);
+
+                left += shapes[col].Width() + padding;
+                var height = shape.Height();
+                if (height > maxHeight)
                 {
-                    maxHeight = shape.Height;
+                    maxHeight = height;
                 }
             }
         }
@@ -417,7 +419,7 @@ namespace PowerPointAddIn1
             int index = slide.SlideIndex;
             int siblingSlideIndex = index + indexOffset;
 
-            if (siblingSlideIndex < 0 || siblingSlideIndex > slides.Count)
+            if (siblingSlideIndex < 1 || siblingSlideIndex > slides.Count)
             {
                 return;
             }
@@ -441,11 +443,10 @@ namespace PowerPointAddIn1
             foreach (var shape in shapes)
             {
                 var matchedShape = shape.FindNearestShape(prevShapes, Anchor.TopLeft);
-                shape.Left = matchedShape.Left;
-                shape.Top = matchedShape.Top;
+                shape.SetLeft(matchedShape.Left());
+                shape.SetTop(matchedShape.Top());
 
-                shape.Height = shape.Height * matchedShape.Width / shape.Width;
-                shape.Width = matchedShape.Width;
+                shape.SetSize(matchedShape.Width(), shape.Height() * matchedShape.Width() / shape.Width());
             }
         }
 
@@ -459,17 +460,17 @@ namespace PowerPointAddIn1
                 return;
             }
 
-            float firstLeft = shapes[0].Left;
-            float firstTop = shapes[0].Top;
+            float firstLeft = shapes[0].Left();
+            float firstTop = shapes[0].Top();
 
             for (int i = 0; i < shapes.Count - 1; i++)
             {
-                shapes[i].Left = shapes[i + 1].Left;
-                shapes[i].Top = shapes[i + 1].Top;
+                shapes[i].SetLeft(shapes[i + 1].Left());
+                shapes[i].SetTop(shapes[i + 1].Top());
             }
 
-            shapes.Last().Left = firstLeft;
-            shapes.Last().Top = firstTop;
+            shapes.Last().SetLeft(firstLeft);
+            shapes.Last().SetTop(firstTop);
         }
 
         public static void SwapCycleReverse()
@@ -482,16 +483,16 @@ namespace PowerPointAddIn1
                 return;
             }
 
-            float lastLeft = shapes.Last().Left;
-            float lastTop = shapes.Last().Top;
+            float lastLeft = shapes.Last().Left();
+            float lastTop = shapes.Last().Top();
 
             for (int i = shapes.Count - 1; i > 0; i--)
             {
-                shapes[i].Left = shapes[i - 1].Left;
-                shapes[i].Top = shapes[i - 1].Top;
+                shapes[i].SetLeft(shapes[i - 1].Left());
+                shapes[i].SetTop(shapes[i - 1].Top());
             }
-            shapes[0].Left = lastLeft;
-            shapes[0].Top = lastTop;
+            shapes[0].SetLeft(lastLeft);
+            shapes[0].SetTop(lastTop);
         }
 
         public static void SnapDownRight()
@@ -507,11 +508,11 @@ namespace PowerPointAddIn1
             for (int i = 1; i < shapes.Count; i++)
             {
                 var shape = shapes[i];
-                shape.Left = left;
-                shape.Top = top;
+                shape.SetLeft(left);
+                shape.SetTop(top);
 
-                top += shape.Height;
-                left += shape.Width;
+                top += shape.Height();
+                left += shape.Width();
             }
 
         }
@@ -524,15 +525,15 @@ namespace PowerPointAddIn1
 
             var firstShape = shapes[0];
             var left = firstShape.Right();
-            var top = firstShape.Top;
+            var top = firstShape.Top();
 
             for (int i = 1; i < shapes.Count; i++)
             {
                 var shape = shapes[i];
-                top -= shape.Height;
-                shape.Left = left;
-                shape.Top = top;
-                left += shape.Width;
+                top -= shape.Height();
+                shape.SetLeft(left);
+                shape.SetTop(top);
+                left += shape.Width();
             }
         }
 
