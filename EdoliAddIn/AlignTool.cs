@@ -272,20 +272,20 @@ namespace EdoliAddIn
                 switch (anchor)
                 {
                     case Anchor.Top:
-                        textbox.Left = nearestImage.Left + nearestImage.Width / 2 - textbox.Width / 2;
-                        textbox.SetBottom(nearestImage.Top);
+                        textbox.SetLeft(nearestImage.Left() + nearestImage.Width() / 2 - textbox.Width() / 2);
+                        textbox.SetBottom(nearestImage.Top());
                         break;
                     case Anchor.Bottom:
-                        textbox.Left = nearestImage.Left + nearestImage.Width / 2 - textbox.Width / 2;
-                        textbox.Top = nearestImage.Bottom();
+                        textbox.SetLeft(nearestImage.Left() + nearestImage.Width() / 2 - textbox.Width() / 2);
+                        textbox.SetTop(nearestImage.Bottom());
                         break;
                     case Anchor.Left:
-                        textbox.SetRight(nearestImage.Left);
-                        textbox.Top = nearestImage.Top + nearestImage.Height / 2 - textbox.Height / 2;
+                        textbox.SetRight(nearestImage.Left());
+                        textbox.SetTop(nearestImage.Top() + nearestImage.Height() / 2 - textbox.Height() / 2);
                         break;
                     case Anchor.Right:
-                        textbox.Left = nearestImage.Right();
-                        textbox.Top = nearestImage.Top + nearestImage.Height / 2 - textbox.Height / 2;
+                        textbox.SetLeft(nearestImage.Right());
+                        textbox.SetTop(nearestImage.Top() + nearestImage.Height() / 2 - textbox.Height() / 2);
                         break;
                 }
             }
