@@ -130,14 +130,18 @@ namespace EdoliAddIn
         {
             var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
             var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
-            ShapeTool.AddCurveOfExpression(equationX, equationY);
+            var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
+            var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
+            ShapeTool.AddCurveOfExpression(equationX, equationY, startValue, endValue);
         }
 
         private void polylineOfEquation_Click(object sender, RibbonControlEventArgs e)
         {
             var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
             var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
-            ShapeTool.AddPolylineOfExpression(equationX, equationY);
+            var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
+            var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
+            ShapeTool.AddPolylineOfExpression(equationX, equationY, startValue, endValue);
         }
 
         private void invertImage_Click(object sender, RibbonControlEventArgs e)

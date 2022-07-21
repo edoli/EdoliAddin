@@ -270,13 +270,15 @@ namespace EdoliAddIn
             }
         }
 
-        public static void AddCurveOfExpression(string expX, string expY)
+        public static void AddCurveOfExpression(string expX, string expY, string startValue, string endValue)
         {
-            AddCurveOfFunction(t => new Vector2(Convert.ToSingle(new Expression(expX.Replace("t", t.ToString())).Evaluate()), 
-                                                Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())));
+            AddCurveOfFunction(t => new Vector2(Convert.ToSingle(new Expression(expX.Replace("t", t.ToString())).Evaluate()),
+                                                Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())),
+                                                Convert.ToSingle(new Expression(startValue).Evaluate()),
+                                                Convert.ToSingle(new Expression(endValue).Evaluate()));
         }
 
-        public static void AddCurveOfFunction(Func<float, Vector2> func)
+        public static void AddCurveOfFunction(Func<float, Vector2> func, float startValue, float endValue)
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             var slide = Util.CurrentSlide();
@@ -285,14 +287,16 @@ namespace EdoliAddIn
             float slideHeight = currentPresentation.PageSetup.SlideHeight;
             float slideWidth = currentPresentation.PageSetup.SlideWidth;
 
+            float rangeValue = endValue - startValue;
+
             try
             {
                 var numPoints = 100;
                 var initVectors = new Vector2[numPoints];
                 for (int t = 0; t < numPoints; t++)
                 {
-                    var f = ((float)t) / numPoints;
-                    initVectors[t] = func(f) * shapeScale;
+                    var f = ((float)t) / (numPoints - 1);
+                    initVectors[t] = func(startValue + f * rangeValue) * shapeScale;
                 }
 
                 var vectors = new Vector2[numPoints];
@@ -337,7 +341,7 @@ namespace EdoliAddIn
                 {
                     var v = vectors[i];
                     points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = v.Y + slideHeight / 2 - cy;
+                    points[i, 1] = -v.Y + slideHeight / 2 - cy;
                 }
 
                 slide.Shapes.AddCurve(points);
@@ -348,14 +352,16 @@ namespace EdoliAddIn
             }
         }
 
-        public static void AddPolylineOfExpression(string expX, string expY)
+        public static void AddPolylineOfExpression(string expX, string expY, string startValue, string endValue)
         {
             AddPolylineOfFunction(t => new Vector2(Convert.ToSingle(new Expression(expX.Replace("t", t.ToString())).Evaluate()),
-                                                   Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())));
+                                                   Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())),
+                                                   Convert.ToSingle(new Expression(startValue).Evaluate()),
+                                                   Convert.ToSingle(new Expression(endValue).Evaluate()));
         }
 
 
-        public static void AddPolylineOfFunction(Func<float, Vector2> func)
+        public static void AddPolylineOfFunction(Func<float, Vector2> func, float startValue, float endValue)
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             var slide = Util.CurrentSlide();
@@ -364,14 +370,16 @@ namespace EdoliAddIn
             float slideHeight = currentPresentation.PageSetup.SlideHeight;
             float slideWidth = currentPresentation.PageSetup.SlideWidth;
 
+            float rangeValue = endValue - startValue;
+
             try
             {
                 var numPoints = 100;
                 var vectors = new Vector2[numPoints];
                 for (int t = 0; t < numPoints; t++)
                 {
-                    var f = ((float)t) / numPoints;
-                    vectors[t] = func(f) * shapeScale;
+                    var f = ((float)t) / (numPoints - 1);
+                    vectors[t] = func(startValue + f * rangeValue) * shapeScale;
                 }
 
                 var points = new float[numPoints, 2];
@@ -391,9 +399,8 @@ namespace EdoliAddIn
                 {
                     var v = vectors[i];
                     points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = v.Y + slideHeight / 2 - cy;
+                    points[i, 1] = -v.Y + slideHeight / 2 - cy;
                 }
-
                 slide.Shapes.AddPolyline(points);
             }
             catch
