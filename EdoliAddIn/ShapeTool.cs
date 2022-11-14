@@ -272,10 +272,13 @@ namespace EdoliAddIn
 
         public static void AddCurveOfExpression(string expX, string expY, string startValue, string endValue)
         {
-            AddCurveOfFunction(t => new Vector2(Convert.ToSingle(new Expression(expX.Replace("t", t.ToString())).Evaluate()),
-                                                Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())),
-                                                Convert.ToSingle(new Expression(startValue).Evaluate()),
-                                                Convert.ToSingle(new Expression(endValue).Evaluate()));
+            float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            AddCurveOfFunction(t => {
+                var dict = new Dictionary<string, object> { ["t"] = t };
+                return new Vector2(Convert.ToSingle(new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)),
+                                   Convert.ToSingle(new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)));
+            }, startValueEvaluated, endValueEvaluated);
         }
 
         public static void AddCurveOfFunction(Func<float, Vector2> func, float startValue, float endValue)
@@ -326,25 +329,38 @@ namespace EdoliAddIn
 
                 var points = new float[numPoints, 2];
 
-                float cx = 0;
-                float cy = 0;
+                var minV = new Vector2(float.MaxValue, float.MaxValue);
+                var maxV = new Vector2(float.MinValue, float.MinValue);
                 for (int i = 0; i < numPoints; i++)
                 {
                     var v = vectors[i];
-                    cx += v.X;
-                    cy += v.Y;
+
+                    if (v.X < minV.X) { minV.X = v.X; }
+                    if (v.Y < minV.Y) { minV.Y = v.Y; }
+                    if (v.X > maxV.X) { maxV.X = v.X; }
+                    if (v.Y > maxV.Y) { maxV.Y = v.Y; }
                 }
-                cx /= numPoints;
-                cy /= numPoints;
+                float cx = (minV.X + maxV.X) / 2;
+                float cy = (minV.Y + maxV.Y) / 2;
+
+                float width = maxV.X - minV.X;
+                float height = maxV.Y - minV.Y;
 
                 for (int i = 0; i < numPoints; i++)
                 {
                     var v = vectors[i];
                     points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = -v.Y + slideHeight / 2 - cy;
+                    points[i, 1] = -v.Y + slideHeight / 2 + cy;
                 }
 
-                slide.Shapes.AddCurve(points);
+                var shape = slide.Shapes.AddCurve(points);
+
+                if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
+                {
+                    float scale = 64 / width;
+                    shape.ScaleWidth(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
+                    shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
+                }
             }
             catch
             {
@@ -354,10 +370,13 @@ namespace EdoliAddIn
 
         public static void AddPolylineOfExpression(string expX, string expY, string startValue, string endValue)
         {
-            AddPolylineOfFunction(t => new Vector2(Convert.ToSingle(new Expression(expX.Replace("t", t.ToString())).Evaluate()),
-                                                   Convert.ToSingle(new Expression(expY.Replace("t", t.ToString())).Evaluate())),
-                                                   Convert.ToSingle(new Expression(startValue).Evaluate()),
-                                                   Convert.ToSingle(new Expression(endValue).Evaluate()));
+            float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            AddPolylineOfFunction(t => {
+                var dict = new Dictionary<string, object> { ["t"] = t };
+                return new Vector2(Convert.ToSingle(new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)),
+                                   Convert.ToSingle(new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)));
+            }, startValueEvaluated, endValueEvaluated);
         }
 
 
@@ -384,24 +403,37 @@ namespace EdoliAddIn
 
                 var points = new float[numPoints, 2];
 
-                float cx = 0;
-                float cy = 0;
+                var minV = new Vector2(float.MaxValue, float.MaxValue);
+                var maxV = new Vector2(float.MinValue, float.MinValue);
                 for (int i = 0; i < numPoints; i++)
                 {
                     var v = vectors[i];
-                    cx += v.X;
-                    cy += v.Y;
+
+                    if (v.X < minV.X) { minV.X = v.X; }
+                    if (v.Y < minV.Y) { minV.Y = v.Y; }
+                    if (v.X > maxV.X) { maxV.X = v.X; }
+                    if (v.Y > maxV.Y) { maxV.Y = v.Y; }
                 }
-                cx /= numPoints;
-                cy /= numPoints;
+                float cx = (minV.X + maxV.X) / 2;
+                float cy = (minV.Y + maxV.Y) / 2;
+
+                float width = maxV.X - minV.X;
+                float height = maxV.Y - minV.Y;
 
                 for (int i = 0; i < numPoints; i++)
                 {
                     var v = vectors[i];
                     points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = -v.Y + slideHeight / 2 - cy;
+                    points[i, 1] = -v.Y + slideHeight / 2 + cy;
                 }
-                slide.Shapes.AddPolyline(points);
+
+                var shape = slide.Shapes.AddPolyline(points);
+                if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
+                {
+                    float scale = 64 / width;
+                    shape.ScaleWidth(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
+                    shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
+                }
             }
             catch
             {

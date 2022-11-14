@@ -164,30 +164,57 @@ namespace EdoliAddIn
             return (float)Math.Sqrt(dx * dx + dy * dy);
         }
 
-        public static float RectangleDistance(float x1, float y1, float x1b, float y1b,
-            float x2, float y2, float x2b, float y2b)
+        public static float RectanglePointDistance(float left, float top, float right, float bottom, float x, float y)
         {
-            bool left = x2b < x1;
-            bool right = x1b < x2;
-            bool bottom = y2b < y1;
-            bool top = y1b < y2;
+            bool isLeft = x < left;
+            bool isRight = x > right;
+            bool isTop = y < top;
+            bool isBottom = y > bottom;
+
+            if (isTop && isLeft)
+                return Dist(left, top, x, y);
+            else if (isLeft && isBottom)
+                return Dist(left, bottom, x, y);
+            else if (isBottom && isRight)
+                return Dist(right, bottom, x, y);
+            else if (isRight && isTop)
+                return Dist(right, top, x, y);
+            else if (isLeft)
+                return left - x;
+            else if (isRight)
+                return x - right;
+            else if (isBottom)
+                return y - bottom;
+            else if (isTop)
+                return top - y;
+            else  // contains
+                return 0;
+        }
+
+        public static float RectangleDistance(float leftA, float topA, float rightA, float bottomA,
+            float leftB, float topB, float rightB, float bottomB)
+        {
+            bool left = rightB < leftA;
+            bool right = rightA < leftB;
+            bool bottom = bottomB < topA;
+            bool top = bottomA < topB;
 
             if (top && left)
-                return Dist(x1, y1b, x2b, y2);
+                return Dist(leftA, bottomA, rightB, topB);
             else if (left && bottom)
-                return Dist(x1, y1, x2b, y2b);
+                return Dist(leftA, topA, rightB, bottomB);
             else if (bottom && right)
-                return Dist(x1b, y1, x2, y2b);
+                return Dist(rightA, topA, leftB, bottomB);
             else if (right && top)
-                return Dist(x1b, y1b, x2, y2);
+                return Dist(rightA, bottomA, leftB, topB);
             else if (left)
-                return x1 - x2b;
+                return leftA - rightB;
             else if (right)
-                return x2 - x1b;
+                return leftB - rightA;
             else if (bottom)
-                return y1 - y2b;
+                return topA - bottomB;
             else if (top)
-                return y2 - y1b;
+                return topB - bottomA;
             else  // rectangles intersect
                 return 0;
         }

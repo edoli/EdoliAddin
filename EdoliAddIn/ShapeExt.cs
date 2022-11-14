@@ -14,7 +14,27 @@ namespace EdoliAddIn
         {
             Top, Bottom, Left, Right,
             TopLeft, TopRight, BottomLeft, BottomRight,
+            Center,
             None
+        }
+
+        public static Anchor Opposite(this Anchor anchor)
+        {
+            switch (anchor)
+            {
+                case Anchor.Top: return Anchor.Bottom;
+                case Anchor.Bottom: return Anchor.Top;
+                case Anchor.Left: return Anchor.Right;
+                case Anchor.Right: return Anchor.Left;
+                case Anchor.TopLeft: return Anchor.BottomRight;
+                case Anchor.TopRight: return Anchor.BottomLeft;
+                case Anchor.BottomLeft: return Anchor.TopRight;
+                case Anchor.BottomRight: return Anchor.TopLeft;
+                case Anchor.Center: return Anchor.Center;
+                case Anchor.None: return Anchor.None;
+                default: return Anchor.None;
+
+            }
         }
 
         public static void DoRecur(this PowerPoint.Shape shape, Action<PowerPoint.Shape> action)
@@ -107,26 +127,54 @@ namespace EdoliAddIn
             shape.Top = value - height + offset;
         }
 
+        public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB)
+        {
+            var left1 = shapeA.Left();
+            var right1 = shapeA.Right();
+            var top1 = shapeA.Top();
+            var bottom1 = shapeA.Bottom();
+
+            var left2 = shapeB.Left();
+            var right2 = shapeB.Right();
+            var top2 = shapeB.Top();
+            var bottom2 = shapeB.Bottom();
+
+            return Util.RectangleDistance(left1, top1, right1, bottom1, left2, top2, right2, bottom2);
+        }
+
         public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB, Anchor anchor)
         {
             if (anchor == Anchor.None)
             {
-                var left1 = shapeA.Left();
-                var right1 = shapeA.Right();
-                var top1 = shapeA.Top();
-                var bottom1 = shapeA.Bottom();
-
-                var left2 = shapeB.Left();
-                var right2 = shapeB.Right();
-                var top2 = shapeB.Top();
-                var bottom2 = shapeB.Bottom();
-
-                return Util.RectangleDistance(left1, top1, right1, bottom1, left2, top2, right2, bottom2);
+                return DistanceOfShapes(shapeA, shapeB);
             } 
             else
             {
                 var p1 = shapeA.Position(anchor);
                 var p2 = shapeB.Position(anchor);
+                return Vector2.Distance(p1, p2);
+            }
+        }
+        public static float DistanceOfShapes(PowerPoint.Shape shapeA, PowerPoint.Shape shapeB, Anchor anchorA, Anchor anchorB)
+        {
+            if (anchorA == Anchor.None && anchorB == Anchor.None)
+            {
+                return DistanceOfShapes(shapeA, shapeB);
+            }
+            else if (anchorA == Anchor.None)
+            {
+                var p2 = shapeB.Position(anchorB);
+                return Util.RectanglePointDistance(shapeA.Left(), shapeA.Top(), shapeA.Right(), shapeA.Bottom(), p2.X, p2.Y);
+            }
+            else if (anchorB == Anchor.None)
+            {
+                var p1 = shapeA.Position(anchorA);
+                return Util.RectanglePointDistance(shapeB.Left(), shapeB.Top(), shapeB.Right(), shapeB.Bottom(), p1.X, p1.Y);
+            }
+            else
+            {
+                var p1 = shapeA.Position(anchorA);
+                var p2 = shapeB.Position(anchorB);
                 return Vector2.Distance(p1, p2);
             }
         }
@@ -151,6 +199,8 @@ namespace EdoliAddIn
                     return new Vector2(shape.Left(), shape.Top() + shape.Height());
                 case Anchor.BottomRight:
                     return new Vector2(shape.Left() + shape.Width(), shape.Top() + shape.Height());
+                case Anchor.Center:
+                    return new Vector2(shape.Left() + shape.Width() / 2, shape.Top() + shape.Height() / 2);
             }
             return new Vector2();
         }
@@ -158,6 +208,11 @@ namespace EdoliAddIn
         public static PowerPoint.Shape FindNearestShape(this PowerPoint.Shape shape, List<PowerPoint.Shape> shapes, Anchor anchor)
         {
             return shapes.MinBy(s => DistanceOfShapes(shape, s, anchor));
+        }
+
+        public static PowerPoint.Shape FindNearestShape(this PowerPoint.Shape shape, List<PowerPoint.Shape> shapes, Anchor anchorA, Anchor anchorB)
+        {
+            return shapes.MinBy(s => DistanceOfShapes(shape, s, anchorA, anchorB));
         }
 
         public static PowerPoint.Shape GetLeftMostShape(List<PowerPoint.Shape> shapes)

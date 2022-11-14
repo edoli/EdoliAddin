@@ -267,7 +267,8 @@ namespace EdoliAddIn
 
             foreach (var textbox in textboxes)
             {
-                var nearestImage = textbox.FindNearestShape(images, Anchor.None);
+                var textAnchor = anchor.Opposite();
+                var nearestImage = textbox.FindNearestShape(images, textAnchor, anchor);
 
                 switch (anchor)
                 {
@@ -442,7 +443,7 @@ namespace EdoliAddIn
 
             foreach (var shape in shapes)
             {
-                var matchedShape = shape.FindNearestShape(prevShapes, Anchor.TopLeft);
+                var matchedShape = shape.FindNearestShape(prevShapes, Anchor.Center);
                 shape.SetLeft(matchedShape.Left());
                 shape.SetTop(matchedShape.Top());
 
