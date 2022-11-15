@@ -34,6 +34,7 @@ namespace Expressive
         #region Fields
 
         // TODO: Perhaps this knowledge is better held under specific expression compilers? Or is that a level too far?
+        private readonly IDictionary<string, object> registeredConstants;
         private readonly IDictionary<string, Func<IExpression[], IDictionary<string, object>, object>> registeredFunctions;
         private readonly IDictionary<string, IOperator> registeredOperators;
 
@@ -102,8 +103,14 @@ namespace Expressive
             this.DecimalCurrentCulture = decimalCurrentCulture ?? throw new ArgumentNullException(nameof(decimalCurrentCulture));
 
             DecimalSeparator = Convert.ToChar(this.DecimalCurrentCulture.NumberFormat.NumberDecimalSeparator, this.DecimalCurrentCulture);
+            this.registeredConstants = new Dictionary<string, object>(this.ParsingStringComparer);
             this.registeredFunctions = new Dictionary<string, Func<IExpression[], IDictionary<string, object>, object>>(this.ParsingStringComparer);
             this.registeredOperators = new Dictionary<string, IOperator>(this.ParsingStringComparer);
+
+            #region Constants
+            this.RegisterConstant("PI", Math.PI);
+            this.RegisterConstant("E", Math.E);
+            #endregion
 
             #region Operators
             // TODO: Do we allow for turning off operators?
@@ -190,8 +197,8 @@ namespace Expressive
             this.RegisterFunction(new TanFunction());
             this.RegisterFunction(new TruncateFunction());
             // Mathematical Constants
-            this.RegisterFunction(new EFunction());
-            this.RegisterFunction(new PIFunction());
+            // this.RegisterFunction(new EFunction());
+            // this.RegisterFunction(new PIFunction());
             // Logical
             this.RegisterFunction(new IfFunction());
             this.RegisterFunction(new InFunction());
@@ -218,6 +225,19 @@ namespace Expressive
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Registers the supplied <paramref name="constant"/> for use within compiling and evaluating an <see cref="Expression"/>.
+        /// </summary>
+        /// <param name="constantName">The name of the function to register.</param>
+        /// <param name="value">A value of constant.</param>
+        /// <param name="force">Whether to forcefully override any existing constant.</param>
+        public void RegisterConstant(string constantName, object value, bool force = false)
+        {
+            this.CheckForExistingFunctionName(constantName, force);
+
+            this.registeredConstants[constantName] = value;
+        }
 
         /// <summary>
         /// Registers the supplied <paramref name="function"/> for use within compiling and evaluating an <see cref="Expression"/>.
@@ -314,6 +334,11 @@ namespace Expressive
 
         #region Internal Methods
 
+        internal bool TryGetConstant(string constantName, out object value)
+        {
+            return this.registeredConstants.TryGetValue(constantName, out value);
+        }
+
         internal bool TryGetFunction(string functionName, out Func<IExpression[], IDictionary<string, object>, object> value)
         {
             return this.registeredFunctions.TryGetValue(functionName, out value);
@@ -327,6 +352,15 @@ namespace Expressive
         #endregion
 
         #region Private Methods
+
+        private void CheckForExistingConstantName(string constantName, bool force)
+        {
+            if (!force && this.registeredConstants.ContainsKey(constantName))
+            {
+                throw new FunctionNameAlreadyRegisteredException(constantName);
+            }
+        }
+
 
         private void CheckForExistingFunctionName(string functionName, bool force)
         {

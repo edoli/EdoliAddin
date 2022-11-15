@@ -93,7 +93,15 @@ namespace Expressive
 
             while (currentToken != null)
             {
-                if (this.context.TryGetOperator(currentToken.CurrentToken, out var op)) // Are we an IOperator?
+                if (this.context.TryGetConstant(currentToken.CurrentToken, out var constantValue)) // Are we an Constant?
+                {
+                    CheckForExistingParticipant(leftHandSide, currentToken, isWithinFunction);
+
+                    tokens.Dequeue();
+
+                    leftHandSide = new ConstantValueExpression(constantValue);
+                }
+                else if (this.context.TryGetOperator(currentToken.CurrentToken, out var op)) // or an IOperator?
                 {
                     var precedence = op.GetPrecedence(previousToken);
 
