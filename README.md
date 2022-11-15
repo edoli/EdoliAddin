@@ -93,29 +93,36 @@ Create bezier curve of equation
 
 ![icon_curve_of_equation](./EdoliAddIn/Resources/icon_curve_of_equation.png)
 
-This addin uses [expressive](https://github.com/bijington/expressive) for parsing equation. Use parameter `t` for drawing curve. Also the range should be set for `t`. There are some examples
+This addin uses [expressive](https://github.com/bijington/expressive) for parsing equation. Use parameter `[t]` for drawing curve. Also the range should be set for `[t]`. There are some examples
 
 
 ```
-Range: 0 - 10*PI
-X: t
-Y: Cos(t)
+Range: 0 ~ 10*PI
+X: [t]
+Y: Cos([t])
 ```
 ![t_cos](./images/t_cos.png)
 
 ```
-Range: 0 - 2*PI
-X: Cos(t)
-Y: Sin(t)
+Range: 0 ~ 2*PI
+X: Cos([t])
+Y: Sin([t])
 ```
 ![cos_sin](./images/cos_sin.png)
 
 ```
-Range: 0 - 2*PI
-X: Cos(3*t)
-Y: Sin(2*t)
+Range: 0 ~ 2*PI
+X: Cos(3*[t])
+Y: Sin(2*[t])
 ```
 ![3cos_2sin](./images/3cos_2sin.png)
+
+```
+Range: -3 ~ 3
+X: [t]
+Y: 4 * Exp(-[t] ** 2)
+```
+![gaussian](./images/gaussian.png)
 
 
 ## Shortcuts
