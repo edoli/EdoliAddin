@@ -8,7 +8,7 @@ namespace Expressive.Operators.Multiplicative
     {
         #region OperatorBase Members
 
-        public override IEnumerable<string> Tags => new[] { "^", "\u2038" };
+        public override IEnumerable<string> Tags => new[] { "**" };
 
         public override IExpression BuildExpression(Token previousToken, IExpression[] expressions, Context context)
         {
@@ -17,7 +17,7 @@ namespace Expressive.Operators.Multiplicative
 
         public override OperatorPrecedence GetPrecedence(Token previousToken)
         {
-            return OperatorPrecedence.Multiply;
+            return OperatorPrecedence.Exponent;
         }
 
         #endregion

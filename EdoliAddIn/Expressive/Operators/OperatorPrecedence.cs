@@ -123,13 +123,18 @@
         UnaryMinus = 22,
 
         /// <summary>
+        /// The Multiply operator precedence.
+        /// </summary>
+        Exponent = 23,
+
+        /// <summary>
         /// The ParenthesisOpen operator precedence.
         /// </summary>
-        ParenthesisOpen = 23,
+        ParenthesisOpen = 24,
 
         /// <summary>
         /// The ParenthesisClose operator precedence.
         /// </summary>
-        ParenthesisClose = 24
+        ParenthesisClose = 25
     }
 }

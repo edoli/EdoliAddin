@@ -417,14 +417,14 @@
             this.curveStart.Name = "curveStart";
             this.curveStart.ShowLabel = false;
             this.curveStart.SizeString = "00000";
-            this.curveStart.Text = null;
+            this.curveStart.Text = "0";
             // 
             // curveEnd
             // 
             this.curveEnd.Label = "-";
             this.curveEnd.Name = "curveEnd";
             this.curveEnd.SizeString = "00000";
-            this.curveEnd.Text = null;
+            this.curveEnd.Text = "1";
             // 
             // checkBoxNormalizeEqShape
             // 

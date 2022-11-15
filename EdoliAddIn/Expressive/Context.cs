@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -129,6 +129,7 @@ namespace Expressive
             this.RegisterOperator(new DivideOperator());
             this.RegisterOperator(new ModulusOperator());
             this.RegisterOperator(new MultiplyOperator());
+            this.RegisterOperator(new ExponentOperator());
             // Relational
             this.RegisterOperator(new EqualOperator());
             this.RegisterOperator(new GreaterThanOperator());
