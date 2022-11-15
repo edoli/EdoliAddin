@@ -33,7 +33,7 @@
     <PublishUrl>D:\workspace\EdoliAddin\publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.1.0.5</ApplicationVersion>
+    <ApplicationVersion>1.1.0.6</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -405,6 +405,8 @@
     <Content Include="Resources\icon_label_left.png" />
     <Content Include="Resources\icon_label_right.png" />
     <Content Include="Resources\icon_label_top.png" />
+    <None Include="Resources\icon_resize_width.png" />
+    <None Include="Resources\icon_resize_height.png" />
     <Content Include="Resources\icon_snap_diag_downright.png" />
     <Content Include="Resources\icon_snap_diag_upright.png" />
     <Content Include="Resources\icon_swap_cycle.png" />

@@ -36,6 +36,20 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.shape = this.Factory.CreateRibbonGroup();
+            this.alignGroup = this.Factory.CreateRibbonGroup();
+            this.groupGrid = this.Factory.CreateRibbonGroup();
+            this.gridPadding = this.Factory.CreateRibbonEditBox();
+            this.gridNumColumn = this.Factory.CreateRibbonEditBox();
+            this.equationGroup = this.Factory.CreateRibbonGroup();
+            this.box1 = this.Factory.CreateRibbonBox();
+            this.curveStart = this.Factory.CreateRibbonEditBox();
+            this.curveEnd = this.Factory.CreateRibbonEditBox();
+            this.checkBoxNormalizeEqShape = this.Factory.CreateRibbonCheckBox();
+            this.box2 = this.Factory.CreateRibbonBox();
+            this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
+            this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
+            this.animationGroup = this.Factory.CreateRibbonGroup();
+            this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.beginArrowToggle = this.Factory.CreateRibbonButton();
             this.beginArrowSizeUp = this.Factory.CreateRibbonButton();
             this.beginArrowSizeDown = this.Factory.CreateRibbonButton();
@@ -45,7 +59,6 @@
             this.connectShapeByLine = this.Factory.CreateRibbonButton();
             this.invertImage = this.Factory.CreateRibbonButton();
             this.trimImage = this.Factory.CreateRibbonButton();
-            this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
             this.labelTop = this.Factory.CreateRibbonButton();
             this.transpose = this.Factory.CreateRibbonButton();
@@ -59,22 +72,11 @@
             this.swapCycleReverse = this.Factory.CreateRibbonButton();
             this.snapUpRight = this.Factory.CreateRibbonButton();
             this.alignGrid = this.Factory.CreateRibbonButton();
-            this.groupGrid = this.Factory.CreateRibbonGroup();
+            this.resizeWidth = this.Factory.CreateRibbonButton();
+            this.resizeHeight = this.Factory.CreateRibbonButton();
             this.grid = this.Factory.CreateRibbonButton();
-            this.gridPadding = this.Factory.CreateRibbonEditBox();
-            this.gridNumColumn = this.Factory.CreateRibbonEditBox();
-            this.equationGroup = this.Factory.CreateRibbonGroup();
-            this.box1 = this.Factory.CreateRibbonBox();
             this.curveOfEquation = this.Factory.CreateRibbonButton();
             this.polylineOfEquation = this.Factory.CreateRibbonButton();
-            this.curveStart = this.Factory.CreateRibbonEditBox();
-            this.curveEnd = this.Factory.CreateRibbonEditBox();
-            this.checkBoxNormalizeEqShape = this.Factory.CreateRibbonCheckBox();
-            this.box2 = this.Factory.CreateRibbonBox();
-            this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
-            this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
-            this.animationGroup = this.Factory.CreateRibbonGroup();
-            this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
@@ -110,6 +112,120 @@
             this.shape.Items.Add(this.trimImage);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
+            // 
+            // alignGroup
+            // 
+            this.alignGroup.Items.Add(this.labelBottom);
+            this.alignGroup.Items.Add(this.labelTop);
+            this.alignGroup.Items.Add(this.transpose);
+            this.alignGroup.Items.Add(this.labelLeft);
+            this.alignGroup.Items.Add(this.labelRight);
+            this.alignGroup.Items.Add(this.groupLabel);
+            this.alignGroup.Items.Add(this.alignPrevSlide);
+            this.alignGroup.Items.Add(this.swapCycle);
+            this.alignGroup.Items.Add(this.snapDownRight);
+            this.alignGroup.Items.Add(this.alignNextSlide);
+            this.alignGroup.Items.Add(this.swapCycleReverse);
+            this.alignGroup.Items.Add(this.snapUpRight);
+            this.alignGroup.Items.Add(this.alignGrid);
+            this.alignGroup.Items.Add(this.resizeWidth);
+            this.alignGroup.Items.Add(this.resizeHeight);
+            this.alignGroup.Label = "Align";
+            this.alignGroup.Name = "alignGroup";
+            // 
+            // groupGrid
+            // 
+            this.groupGrid.Items.Add(this.grid);
+            this.groupGrid.Items.Add(this.gridPadding);
+            this.groupGrid.Items.Add(this.gridNumColumn);
+            this.groupGrid.Label = "Grid";
+            this.groupGrid.Name = "groupGrid";
+            // 
+            // gridPadding
+            // 
+            this.gridPadding.Label = "Padding";
+            this.gridPadding.Name = "gridPadding";
+            this.gridPadding.ScreenTip = "Padding";
+            this.gridPadding.SizeString = "000";
+            this.gridPadding.Text = "0";
+            // 
+            // gridNumColumn
+            // 
+            this.gridNumColumn.Label = "Column";
+            this.gridNumColumn.Name = "gridNumColumn";
+            this.gridNumColumn.ScreenTip = "Column";
+            this.gridNumColumn.SizeString = "000";
+            this.gridNumColumn.Text = "0";
+            // 
+            // equationGroup
+            // 
+            this.equationGroup.Items.Add(this.box1);
+            this.equationGroup.Items.Add(this.box2);
+            this.equationGroup.Label = "Equation";
+            this.equationGroup.Name = "equationGroup";
+            // 
+            // box1
+            // 
+            this.box1.Items.Add(this.curveOfEquation);
+            this.box1.Items.Add(this.polylineOfEquation);
+            this.box1.Items.Add(this.curveStart);
+            this.box1.Items.Add(this.curveEnd);
+            this.box1.Items.Add(this.checkBoxNormalizeEqShape);
+            this.box1.Name = "box1";
+            // 
+            // curveStart
+            // 
+            this.curveStart.Label = "editBox1";
+            this.curveStart.Name = "curveStart";
+            this.curveStart.ShowLabel = false;
+            this.curveStart.SizeString = "00000";
+            this.curveStart.Text = "0";
+            // 
+            // curveEnd
+            // 
+            this.curveEnd.Label = "-";
+            this.curveEnd.Name = "curveEnd";
+            this.curveEnd.SizeString = "00000";
+            this.curveEnd.Text = "1";
+            // 
+            // checkBoxNormalizeEqShape
+            // 
+            this.checkBoxNormalizeEqShape.Label = "Norm";
+            this.checkBoxNormalizeEqShape.Name = "checkBoxNormalizeEqShape";
+            // 
+            // box2
+            // 
+            this.box2.Items.Add(this.curveOfEquationX);
+            this.box2.Items.Add(this.curveOfEquationY);
+            this.box2.Name = "box2";
+            // 
+            // curveOfEquationX
+            // 
+            this.curveOfEquationX.Label = "X";
+            this.curveOfEquationX.Name = "curveOfEquationX";
+            this.curveOfEquationX.Text = null;
+            // 
+            // curveOfEquationY
+            // 
+            this.curveOfEquationY.Label = "Y";
+            this.curveOfEquationY.Name = "curveOfEquationY";
+            this.curveOfEquationY.Text = null;
+            // 
+            // animationGroup
+            // 
+            this.animationGroup.Items.Add(this.editBoxName);
+            this.animationGroup.Label = "Animation";
+            this.animationGroup.Name = "animationGroup";
+            // 
+            // editBoxName
+            // 
+            this.editBoxName.Label = "Animation Name";
+            this.editBoxName.Name = "editBoxName";
+            this.editBoxName.ScreenTip = "Animation Name";
+            this.editBoxName.ShowLabel = false;
+            this.editBoxName.SizeString = "00000000";
+            this.editBoxName.Text = null;
+            this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
             // beginArrowToggle
             // 
@@ -193,24 +309,6 @@
             this.trimImage.ShowImage = true;
             this.trimImage.ShowLabel = false;
             this.trimImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimImage_Click);
-            // 
-            // alignGroup
-            // 
-            this.alignGroup.Items.Add(this.labelBottom);
-            this.alignGroup.Items.Add(this.labelTop);
-            this.alignGroup.Items.Add(this.transpose);
-            this.alignGroup.Items.Add(this.labelLeft);
-            this.alignGroup.Items.Add(this.labelRight);
-            this.alignGroup.Items.Add(this.groupLabel);
-            this.alignGroup.Items.Add(this.alignPrevSlide);
-            this.alignGroup.Items.Add(this.swapCycle);
-            this.alignGroup.Items.Add(this.snapDownRight);
-            this.alignGroup.Items.Add(this.alignNextSlide);
-            this.alignGroup.Items.Add(this.swapCycleReverse);
-            this.alignGroup.Items.Add(this.snapUpRight);
-            this.alignGroup.Items.Add(this.alignGrid);
-            this.alignGroup.Label = "Align";
-            this.alignGroup.Name = "alignGroup";
             // 
             // labelBottom
             // 
@@ -342,13 +440,22 @@
             this.alignGrid.ShowLabel = false;
             this.alignGrid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignGrid_Click);
             // 
-            // groupGrid
+            // resizeWidth
             // 
-            this.groupGrid.Items.Add(this.grid);
-            this.groupGrid.Items.Add(this.gridPadding);
-            this.groupGrid.Items.Add(this.gridNumColumn);
-            this.groupGrid.Label = "Grid";
-            this.groupGrid.Name = "groupGrid";
+            this.resizeWidth.Image = global::EdoliAddIn.Properties.Resources.icon_resize_width;
+            this.resizeWidth.Label = "Resize width";
+            this.resizeWidth.Name = "resizeWidth";
+            this.resizeWidth.ShowImage = true;
+            this.resizeWidth.ShowLabel = false;
+            this.resizeWidth.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.resizeWidth_Click);
+            // 
+            // resizeHeight
+            // 
+            this.resizeHeight.Image = global::EdoliAddIn.Properties.Resources.icon_resize_height;
+            this.resizeHeight.Label = "Resize height";
+            this.resizeHeight.Name = "resizeHeight";
+            this.resizeHeight.ShowImage = true;
+            this.resizeHeight.ShowLabel = false;
             // 
             // grid
             // 
@@ -358,38 +465,6 @@
             this.grid.ScreenTip = "Grid";
             this.grid.ShowImage = true;
             this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
-            // 
-            // gridPadding
-            // 
-            this.gridPadding.Label = "Padding";
-            this.gridPadding.Name = "gridPadding";
-            this.gridPadding.ScreenTip = "Padding";
-            this.gridPadding.SizeString = "000";
-            this.gridPadding.Text = "0";
-            // 
-            // gridNumColumn
-            // 
-            this.gridNumColumn.Label = "Column";
-            this.gridNumColumn.Name = "gridNumColumn";
-            this.gridNumColumn.ScreenTip = "Column";
-            this.gridNumColumn.SizeString = "000";
-            this.gridNumColumn.Text = "0";
-            // 
-            // equationGroup
-            // 
-            this.equationGroup.Items.Add(this.box1);
-            this.equationGroup.Items.Add(this.box2);
-            this.equationGroup.Label = "Equation";
-            this.equationGroup.Name = "equationGroup";
-            // 
-            // box1
-            // 
-            this.box1.Items.Add(this.curveOfEquation);
-            this.box1.Items.Add(this.polylineOfEquation);
-            this.box1.Items.Add(this.curveStart);
-            this.box1.Items.Add(this.curveEnd);
-            this.box1.Items.Add(this.checkBoxNormalizeEqShape);
-            this.box1.Name = "box1";
             // 
             // curveOfEquation
             // 
@@ -410,60 +485,6 @@
             this.polylineOfEquation.ShowImage = true;
             this.polylineOfEquation.ShowLabel = false;
             this.polylineOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.polylineOfEquation_Click);
-            // 
-            // curveStart
-            // 
-            this.curveStart.Label = "editBox1";
-            this.curveStart.Name = "curveStart";
-            this.curveStart.ShowLabel = false;
-            this.curveStart.SizeString = "00000";
-            this.curveStart.Text = "0";
-            // 
-            // curveEnd
-            // 
-            this.curveEnd.Label = "-";
-            this.curveEnd.Name = "curveEnd";
-            this.curveEnd.SizeString = "00000";
-            this.curveEnd.Text = "1";
-            // 
-            // checkBoxNormalizeEqShape
-            // 
-            this.checkBoxNormalizeEqShape.Label = "Norm";
-            this.checkBoxNormalizeEqShape.Name = "checkBoxNormalizeEqShape";
-            // 
-            // box2
-            // 
-            this.box2.Items.Add(this.curveOfEquationX);
-            this.box2.Items.Add(this.curveOfEquationY);
-            this.box2.Name = "box2";
-            // 
-            // curveOfEquationX
-            // 
-            this.curveOfEquationX.Label = "X";
-            this.curveOfEquationX.Name = "curveOfEquationX";
-            this.curveOfEquationX.Text = null;
-            // 
-            // curveOfEquationY
-            // 
-            this.curveOfEquationY.Label = "Y";
-            this.curveOfEquationY.Name = "curveOfEquationY";
-            this.curveOfEquationY.Text = null;
-            // 
-            // animationGroup
-            // 
-            this.animationGroup.Items.Add(this.editBoxName);
-            this.animationGroup.Label = "Animation";
-            this.animationGroup.Name = "animationGroup";
-            // 
-            // editBoxName
-            // 
-            this.editBoxName.Label = "Animation Name";
-            this.editBoxName.Name = "editBoxName";
-            this.editBoxName.ScreenTip = "Animation Name";
-            this.editBoxName.ShowLabel = false;
-            this.editBoxName.SizeString = "00000000";
-            this.editBoxName.Text = null;
-            this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
             // EdoliRibbon
             // 
@@ -534,6 +555,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box2;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBoxNormalizeEqShape;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeWidth;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeHeight;
     }
 
     partial class ThisRibbonCollection

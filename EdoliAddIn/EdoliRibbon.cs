@@ -153,5 +153,15 @@ namespace EdoliAddIn
         {
             ImageTool.TrimImage();
         }
+
+        private void resizeWidth_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.MatchWidth();
+        }
+
+        private void resizeHeight_Click(object sender, RibbonControlEventArgs e)
+        {
+            AlignTool.MatchHeight();
+        }
     }
 }

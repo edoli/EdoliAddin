@@ -538,6 +538,40 @@ namespace EdoliAddIn
             }
         }
 
+        public static void MatchWidth()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float width = lastShape.Width;
+
+                foreach (var shape in shapes)
+                {
+                    shape.Width = width;
+                }
+            }
+        }
+
+        public static void MatchHeight()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                var lastShape = shapes.Last();
+                float height = lastShape.Height;
+
+                foreach (var shape in shapes)
+                {
+                    shape.Height = height;
+                }
+            }
+        }
+
         public static void AlignHorizontalVertical()
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
