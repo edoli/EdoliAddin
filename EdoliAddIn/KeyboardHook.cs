@@ -102,10 +102,12 @@ namespace EdoliAddIn
             VK_NUMPAD7 = 0x67,  //Numeric keypad 7 key
             VK_NUMPAD8 = 0x68,  //Numeric keypad 8 key
             VK_NUMPAD9 = 0x69,  //Numeric keypad 9 key
-            VK_SEPARATOR = 0x6C,  //Separator key
-            VK_SUBTRACT = 0x6D,  //Subtract key
-            VK_DECIMAL = 0x6E,  //Decimal key
-            VK_DIVIDE = 0x6F,  //Divide key
+            VK_Mutiply = 0x6A,  //Keypad Multiply key
+            VK_ADD = 0x6B,  //Keypad Add key
+            VK_SEPARATOR = 0x6C,  //Keypad Separator key
+            VK_SUBTRACT = 0x6D,  //Keypad Subtract key
+            VK_DECIMAL = 0x6E,  //Keypad Decimal key
+            VK_DIVIDE = 0x6F,  //Keypad Divide key
             VK_F1 = 0x70,  //F1 key
             VK_F2 = 0x71,  //F2 key
             VK_F3 = 0x72,  //F3 key
@@ -231,6 +233,13 @@ namespace EdoliAddIn
                                 break;
                             case VKeys.VK_NUMPAD1:
                                 AlignTool.AlignLabels(ShapeExt.Anchor.Bottom);
+                                break;
+
+                            case VKeys.VK_ADD:
+                                AlignTool.DistributeVertical();
+                                break;
+                            case VKeys.VK_SUBTRACT:
+                                AlignTool.DistributeHorizontal();
                                 break;
 
                             case VKeys.VK_HOME:

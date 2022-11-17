@@ -292,6 +292,62 @@ namespace EdoliAddIn
             }
         }
 
+        public static void DistributeHorizontal()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                shapes.Sort((shapeA, shapeB) => Math.Sign(shapeA.Left - shapeB.Left));
+
+                var leftMostShape = ShapeExt.GetLeftMostShape(shapes);
+                var rightMostShape = ShapeExt.GetRightMostShape(shapes);
+
+                var left = leftMostShape.Left() + leftMostShape.Width() / 2;
+                var right = rightMostShape.Left() + rightMostShape.Width() / 2;
+
+                float interval = (right - left) / (shapes.Count - 1);
+                float culLeft = left + interval;
+                for (int i = 1; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.SetLeft(culLeft - shape.Width() / 2);
+
+                    culLeft += interval;
+                }
+
+            }
+        }
+
+        public static void DistributeVertical()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+
+            var shapes = Util.ListSelectedShapes();
+            if (shapes.Count > 1)
+            {
+                shapes.Sort((shapeA, shapeB) => Math.Sign(shapeA.Top - shapeB.Top));
+
+                var topMostShape = ShapeExt.GetTopMostShape(shapes);
+                var bottomMostShape = ShapeExt.GetBottomMostShape(shapes);
+
+                var top = topMostShape.Top() + topMostShape.Height() / 2;
+                var bottom = bottomMostShape.Top() + bottomMostShape.Height() / 2;
+
+                float interval = (bottom - top) / (shapes.Count - 1);
+                float culTop = top + interval;
+                for (int i = 1; i < shapes.Count - 1; i++)
+                {
+                    var shape = shapes[i];
+                    shape.SetTop(culTop - shape.Height() / 2);
+
+                    culTop += interval;
+                }
+
+            }
+        }
+
         public static void GroupLabels()
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
