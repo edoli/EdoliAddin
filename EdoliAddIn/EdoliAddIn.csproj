@@ -347,6 +347,7 @@
     <Compile Include="Expressive\Tokenisation\ValueTokenExtractor.cs" />
     <Compile Include="Expressive\VariableProviderDictionary.cs" />
     <Compile Include="ImageExt.cs" />
+    <Compile Include="TextTool.cs" />
     <Compile Include="ImageTool.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="ScriptEngine.cs" />

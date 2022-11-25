@@ -164,6 +164,7 @@ namespace EdoliAddIn
 
         private static int HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
+            Console.WriteLine("{0}", nCode);
 
             if (nCode < 0)
             {
@@ -337,6 +338,20 @@ namespace EdoliAddIn
                                 ShapeTool.ChangeLineDash(-1);
                                 break;
 
+                        }
+                    }
+
+                    // text
+                    if (ctrl && !alt && !shift)
+                    {
+                        switch (key)
+                        {
+                            case VKeys.VK_ADD:
+                                TextTool.IncreaseNumber();
+                                break;
+                            case VKeys.VK_SUBTRACT:
+                                TextTool.DecreaseNumber();
+                                break;
                         }
                     }
                 }
