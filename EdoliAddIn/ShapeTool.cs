@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace EdoliAddIn
@@ -274,10 +275,13 @@ namespace EdoliAddIn
         {
             float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
             float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+
+            var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
+            var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
             AddCurveOfFunction(t => {
                 var dict = new Dictionary<string, object> { ["t"] = t };
-                return new Vector2(Convert.ToSingle(new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)),
-                                   Convert.ToSingle(new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)));
+                return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
+                                   Convert.ToSingle(expressiveY.Evaluate(dict)));
             }, startValueEvaluated, endValueEvaluated);
         }
 
@@ -362,9 +366,9 @@ namespace EdoliAddIn
                     shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -372,10 +376,12 @@ namespace EdoliAddIn
         {
             float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
             float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
+            var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
             AddPolylineOfFunction(t => {
                 var dict = new Dictionary<string, object> { ["t"] = t };
-                return new Vector2(Convert.ToSingle(new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)),
-                                   Convert.ToSingle(new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing).Evaluate(dict)));
+                return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
+                                   Convert.ToSingle(expressiveY.Evaluate(dict)));
             }, startValueEvaluated, endValueEvaluated);
         }
 
@@ -435,9 +441,9 @@ namespace EdoliAddIn
                     shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
     }

@@ -352,6 +352,9 @@ namespace EdoliAddIn
                             case VKeys.VK_SUBTRACT:
                                 TextTool.DecreaseNumber();
                                 break;
+                            case VKeys.VK_DECIMAL:
+                                TextTool.EvaluateExpression();
+                                break;
                         }
                     }
                 }

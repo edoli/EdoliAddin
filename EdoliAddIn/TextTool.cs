@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Expressive;
 
 namespace EdoliAddIn
 {
@@ -24,6 +25,22 @@ namespace EdoliAddIn
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             ReplaceSelectedText(s => (float.Parse(s) - 1).ToString());
+        }
+
+        public static void EvaluateExpression()
+        {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+            ReplaceSelectedText(s => {
+                try
+                {
+                    return new Expression(s, ExpressiveOptions.IgnoreCaseForParsing).Evaluate().ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return s;
+                }
+            });
         }
 
         public static String GetSelectedText()
@@ -58,8 +75,17 @@ namespace EdoliAddIn
                 {
                     try
                     {
-                        var text = selection.TextRange.Text;
-                        selection.TextRange.Text = replacer(text);
+                        if (selection.TextRange.Text == "")
+                        {
+                            var shapes = Util.ListSelectedShapes();
+                            var shape = shapes[0];
+                            var text = shape.TextFrame.TextRange.Text;
+                            shape.TextFrame.TextRange.Text = replacer(text);
+                        } else
+                        {
+                            var text = selection.TextRange.Text;
+                            selection.TextRange.Text = replacer(text);
+                        }
                     }
                     catch
                     {
