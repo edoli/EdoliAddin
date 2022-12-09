@@ -77,6 +77,7 @@
             this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
+            this.followAnimation = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
@@ -474,6 +475,7 @@
             // animationGroup
             // 
             this.animationGroup.Items.Add(this.editBoxName);
+            this.animationGroup.Items.Add(this.followAnimation);
             this.animationGroup.Label = "Animation";
             this.animationGroup.Name = "animationGroup";
             // 
@@ -486,6 +488,12 @@
             this.editBoxName.SizeString = "00000000";
             this.editBoxName.Text = null;
             this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
+            // 
+            // followAnimation
+            // 
+            this.followAnimation.Label = "Follow";
+            this.followAnimation.Name = "followAnimation";
+            this.followAnimation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.followAnimation_Click);
             // 
             // EdoliRibbon
             // 
@@ -558,6 +566,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBoxNormalizeEqShape;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeWidth;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeHeight;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton followAnimation;
     }
 
     partial class ThisRibbonCollection

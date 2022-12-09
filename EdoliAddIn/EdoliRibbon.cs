@@ -163,5 +163,10 @@ namespace EdoliAddIn
         {
             AlignTool.MatchHeight();
         }
+
+        private void followAnimation_Click(object sender, RibbonControlEventArgs e)
+        {
+            AnimationTool.FollowAnimation();
+        }
     }
 }
