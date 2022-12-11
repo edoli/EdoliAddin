@@ -97,10 +97,6 @@ namespace EdoliAddIn
                     var sequence = slide.TimeLine.MainSequence;
 
                     var motionEffect = sequence.AddEffect(shape, MsoAnimEffect.msoAnimEffectPathZigzag);
-                    // var motion = motionEffect.Behaviors.Add(MsoAnimType.msoAnimTypeMotion);
-                    // motion.MotionEffect.Path = pathVml;
-                    // ((MotionEffect)motionEffect).Path = pathVml;
-                    var q = motionEffect.Behaviors[1];
                     motionEffect.Behaviors[1].MotionEffect.Path = pathVml;
                 }
             }
