@@ -24,18 +24,6 @@ namespace EdoliAddIn
             }
         }
 
-        public static void TT()
-        {
-            var shapes = Util.ListSelectedShapes();
-
-            var slide = Util.CurrentSlide();
-            var mainSequence = slide.TimeLine.MainSequence;
-            var t = mainSequence[1];
-            var e = t.EffectParameters;
-            var q = t.Behaviors[1];
-            var a = 1;
-        }
-
         public static void FollowAnimation()
         { 
             Globals.ThisAddIn.Application.StartNewUndoEntry();

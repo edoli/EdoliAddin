@@ -168,5 +168,15 @@ namespace EdoliAddIn
         {
             AnimationTool.FollowAnimation();
         }
+
+        private void alignLines_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.AlignLines();
+        }
+
+        private void trimLines_Click(object sender, RibbonControlEventArgs e)
+        {
+            ShapeTool.TrimLines();
+        }
     }
 }

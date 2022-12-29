@@ -57,8 +57,6 @@ namespace EdoliAddIn
                 var mStream = new MemoryStream();
                 image.Save(mStream, ImageFormat.Bmp);
                 var pixelSize = image.Height * image.Width * 4;
-                var arraySize = (int)mStream.Length;
-                int offset = arraySize - pixelSize;
 
                 var pixelArray = new byte[pixelSize];
                 mStream.Position = 54;

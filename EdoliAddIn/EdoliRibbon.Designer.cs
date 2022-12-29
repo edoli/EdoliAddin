@@ -78,6 +78,8 @@
             this.animationGroup = this.Factory.CreateRibbonGroup();
             this.editBoxName = this.Factory.CreateRibbonEditBox();
             this.followAnimation = this.Factory.CreateRibbonButton();
+            this.alignLines = this.Factory.CreateRibbonButton();
+            this.trimLines = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
@@ -111,6 +113,8 @@
             this.shape.Items.Add(this.connectShapeByLine);
             this.shape.Items.Add(this.invertImage);
             this.shape.Items.Add(this.trimImage);
+            this.shape.Items.Add(this.alignLines);
+            this.shape.Items.Add(this.trimLines);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
             // 
@@ -495,6 +499,24 @@
             this.followAnimation.Name = "followAnimation";
             this.followAnimation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.followAnimation_Click);
             // 
+            // alignLines
+            // 
+            this.alignLines.Image = global::EdoliAddIn.Properties.Resources.icon_image_trim;
+            this.alignLines.Label = "AlignLines";
+            this.alignLines.Name = "alignLines";
+            this.alignLines.ShowImage = true;
+            this.alignLines.ShowLabel = false;
+            this.alignLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignLines_Click);
+            // 
+            // trimLines
+            // 
+            this.trimLines.Image = global::EdoliAddIn.Properties.Resources.icon_image_trim;
+            this.trimLines.Label = "TrimLines";
+            this.trimLines.Name = "trimLines";
+            this.trimLines.ShowImage = true;
+            this.trimLines.ShowLabel = false;
+            this.trimLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimLines_Click);
+            // 
             // EdoliRibbon
             // 
             this.Name = "EdoliRibbon";
@@ -567,6 +589,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeWidth;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton resizeHeight;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton followAnimation;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton alignLines;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton trimLines;
     }
 
     partial class ThisRibbonCollection

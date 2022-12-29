@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace EdoliAddIn
 {
@@ -56,6 +59,106 @@ namespace EdoliAddIn
             }
 
             return shapes;
+        }
+
+        public class ImageData
+        {
+            public byte[] pixelArray;
+            public int width;
+            public int height;
+
+            public ImageData(byte[] pixelArray, int width, int height)
+            {
+                this.pixelArray = pixelArray;
+                this.width = width;
+                this.height = height;
+            }
+
+        }
+
+        public static ImageData GetClipboardImageData()
+        {
+            var image = Clipboard.GetImage();
+
+            var mStream = new MemoryStream();
+            image.Save(mStream, ImageFormat.Bmp);
+            var pixelSize = image.Height * image.Width * 4;
+
+            var pixelArray = new byte[pixelSize];
+            mStream.Position = 54;
+            mStream.Read(pixelArray, 0, pixelSize);
+
+            int width = image.Width;
+            int height = image.Height;
+
+            Clipboard.Clear();
+
+            return new ImageData(pixelArray, width, height);
+        }
+
+        public static bool IsLine(PowerPoint.Shape shape)
+        {
+            var line = shape.Line;
+            return shape.Type == Microsoft.Office.Core.MsoShapeType.msoLine || (int) line.EndArrowheadStyle > 1 || (int) line.BeginArrowheadStyle > 1;
+        }
+
+
+        public class LinePoints
+        {
+            public float x1;
+            public float y1;
+            public float x2;
+            public float y2;
+
+            public LinePoints() { }
+
+            public LinePoints(float x1, float y1, float x2, float y2)
+            {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.x2 = x2;
+                this.y2 = y2;
+            }
+        }
+
+        public static LinePoints GetLinePoints(PowerPoint.Shape shape)
+        {
+            shape.Copy();
+
+            var imageData = GetClipboardImageData();
+            var pixelArray = imageData.pixelArray;
+            var width = imageData.width;
+            var height = imageData.height;
+
+            var index1 = 0;
+            var index2 = (width - 1) * 4;
+            var index3 = (height - 1) * width * 4;
+            var index4 = (height - 1) * width * 4 + (width - 1) * 4;
+
+            byte a1 = pixelArray[index1 + 3];
+            byte a2 = pixelArray[index2 + 3];
+            byte a3 = pixelArray[index3 + 3];
+            byte a4 = pixelArray[index4 + 3];
+
+
+            var linePoints = new LinePoints();
+
+            if (a1 > 0 || a4 > 0)
+            {
+                linePoints.x1 = shape.Left();
+                linePoints.y1 = shape.Bottom();
+                linePoints.x2 = shape.Right();
+                linePoints.y2 = shape.Top();
+            } 
+            else if (a2 > 0 || a3 > 0)
+            {
+                linePoints.x1 = shape.Left();
+                linePoints.y1 = shape.Top();
+                linePoints.x2 = shape.Right();
+                linePoints.y2 = shape.Bottom();
+
+            }
+            return linePoints;
         }
 
         public static int NumCluster(IEnumerable<float> values, float threshold)
