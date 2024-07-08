@@ -382,7 +382,7 @@
             this.resizeWidth.ScreenTip = "Resize Width";
             this.resizeWidth.ShowImage = true;
             this.resizeWidth.ShowLabel = false;
-            this.resizeWidth.SuperTip = "Resize the width of selected objects to match the first selected object";
+            this.resizeWidth.SuperTip = "Resize the width of selected objects to match the last selected object";
             this.resizeWidth.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.resizeWidth_Click);
             // 
             // resizeHeight
@@ -393,7 +393,7 @@
             this.resizeHeight.ScreenTip = "Resize Height";
             this.resizeHeight.ShowImage = true;
             this.resizeHeight.ShowLabel = false;
-            this.resizeHeight.SuperTip = "Resize the height of selected objects to match the first selected object";
+            this.resizeHeight.SuperTip = "Resize the height of selected objects to match the last selected object";
             this.resizeHeight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.resizeHeight_Click);
             // 
             // groupGrid
