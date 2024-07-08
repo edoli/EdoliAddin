@@ -76,10 +76,8 @@
             this.curveOfEquationX = this.Factory.CreateRibbonEditBox();
             this.curveOfEquationY = this.Factory.CreateRibbonEditBox();
             this.animationGroup = this.Factory.CreateRibbonGroup();
-            this.editBoxName = this.Factory.CreateRibbonEditBox();
+            this.animationName = this.Factory.CreateRibbonEditBox();
             this.followAnimation = this.Factory.CreateRibbonButton();
-            this.alignLines = this.Factory.CreateRibbonButton();
-            this.trimLines = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.shape.SuspendLayout();
             this.alignGroup.SuspendLayout();
@@ -113,8 +111,6 @@
             this.shape.Items.Add(this.connectShapeByLine);
             this.shape.Items.Add(this.invertImage);
             this.shape.Items.Add(this.trimImage);
-            this.shape.Items.Add(this.alignLines);
-            this.shape.Items.Add(this.trimLines);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
             // 
@@ -126,6 +122,8 @@
             this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
             this.beginArrowToggle.ShowImage = true;
             this.beginArrowToggle.ShowLabel = false;
+            this.beginArrowToggle.ScreenTip = "Begin Arrow Toggle";
+            this.beginArrowToggle.SuperTip = "Toggle the arrow at the beginning of the selected line";
             this.beginArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowToggle_Click);
             // 
             // beginArrowSizeUp
@@ -135,6 +133,8 @@
             this.beginArrowSizeUp.Name = "beginArrowSizeUp";
             this.beginArrowSizeUp.ShowImage = true;
             this.beginArrowSizeUp.ShowLabel = false;
+            this.beginArrowSizeUp.ScreenTip = "Increase Begin Arrow Size";
+            this.beginArrowSizeUp.SuperTip = "Increase the size of the arrow at the beginning of the selected line";
             this.beginArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowChangeSize_Click);
             // 
             // beginArrowSizeDown
@@ -144,6 +144,8 @@
             this.beginArrowSizeDown.Name = "beginArrowSizeDown";
             this.beginArrowSizeDown.ShowImage = true;
             this.beginArrowSizeDown.ShowLabel = false;
+            this.beginArrowSizeDown.ScreenTip = "Decrease Begin Arrow Size";
+            this.beginArrowSizeDown.SuperTip = "Decrease the size of the arrow at the beginning of the selected line";
             this.beginArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.beginArrowSizeDown_Click);
             // 
             // endArrowToggle
@@ -153,6 +155,8 @@
             this.endArrowToggle.Name = "endArrowToggle";
             this.endArrowToggle.ShowImage = true;
             this.endArrowToggle.ShowLabel = false;
+            this.endArrowToggle.ScreenTip = "End Arrow Toggle";
+            this.endArrowToggle.SuperTip = "Toggle the arrow at the end of the selected line";
             this.endArrowToggle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowToggle_Click);
             // 
             // endArrowSizeUp
@@ -162,6 +166,8 @@
             this.endArrowSizeUp.Name = "endArrowSizeUp";
             this.endArrowSizeUp.ShowImage = true;
             this.endArrowSizeUp.ShowLabel = false;
+            this.endArrowToggle.ScreenTip = "End Arrow Toggle";
+            this.endArrowToggle.SuperTip = "Toggle the arrow at the end of the selected line";
             this.endArrowSizeUp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeUp_Click);
             // 
             // endArrowSizeDown
@@ -171,6 +177,8 @@
             this.endArrowSizeDown.Name = "endArrowSizeDown";
             this.endArrowSizeDown.ShowImage = true;
             this.endArrowSizeDown.ShowLabel = false;
+            this.endArrowSizeDown.ScreenTip = "Decrease End Arrow Size";
+            this.endArrowSizeDown.SuperTip = "Decrease the size of the arrow at the end of the selected line";
             this.endArrowSizeDown.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.endArrowSizeDown_Click);
             // 
             // connectShapeByLine
@@ -181,6 +189,8 @@
             this.connectShapeByLine.ScreenTip = "Connect Line";
             this.connectShapeByLine.ShowImage = true;
             this.connectShapeByLine.ShowLabel = false;
+            this.connectShapeByLine.ScreenTip = "Connect Shapes";
+            this.connectShapeByLine.SuperTip = "Connect selected shapes with lines";
             this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
             // 
             // invertImage
@@ -190,6 +200,8 @@
             this.invertImage.Name = "invertImage";
             this.invertImage.ShowImage = true;
             this.invertImage.ShowLabel = false;
+            this.invertImage.ScreenTip = "Invert Image";
+            this.invertImage.SuperTip = "Invert the colors of the selected image";
             this.invertImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.invertImage_Click);
             // 
             // trimImage
@@ -199,6 +211,8 @@
             this.trimImage.Name = "trimImage";
             this.trimImage.ShowImage = true;
             this.trimImage.ShowLabel = false;
+            this.trimImage.ScreenTip = "Trim Image";
+            this.trimImage.SuperTip = "Trim blank area of images";
             this.trimImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimImage_Click);
             // 
             // alignGroup
@@ -229,6 +243,8 @@
             this.labelBottom.ScreenTip = "Label bottom";
             this.labelBottom.ShowImage = true;
             this.labelBottom.ShowLabel = false;
+            this.labelBottom.ScreenTip = "Label Bottom";
+            this.labelBottom.SuperTip = "Move the label to the bottom of the selected shape";
             this.labelBottom.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelBottom_Click);
             // 
             // labelTop
@@ -239,6 +255,8 @@
             this.labelTop.ScreenTip = "Label top";
             this.labelTop.ShowImage = true;
             this.labelTop.ShowLabel = false;
+            this.labelTop.ScreenTip = "Label Top";
+            this.labelTop.SuperTip = "Move the label to the top of the selected shape";
             this.labelTop.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelTop_Click);
             // 
             // transpose
@@ -249,6 +267,8 @@
             this.transpose.ScreenTip = "Transpose";
             this.transpose.ShowImage = true;
             this.transpose.ShowLabel = false;
+            this.transpose.ScreenTip = "Transpose";
+            this.transpose.SuperTip = "Transpose the selected shapes";
             this.transpose.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.transpose_Click);
             // 
             // labelLeft
@@ -259,6 +279,8 @@
             this.labelLeft.ScreenTip = "Label left";
             this.labelLeft.ShowImage = true;
             this.labelLeft.ShowLabel = false;
+            this.labelLeft.ScreenTip = "Label Left";
+            this.labelLeft.SuperTip = "Move the label to the left of the selected shape";
             this.labelLeft.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelLeft_Click);
             // 
             // labelRight
@@ -269,6 +291,8 @@
             this.labelRight.ScreenTip = "Label right";
             this.labelRight.ShowImage = true;
             this.labelRight.ShowLabel = false;
+            this.labelRight.ScreenTip = "Label Right";
+            this.labelRight.SuperTip = "Move the label to the right of the selected shape";
             this.labelRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.labelRight_Click);
             // 
             // groupLabel
@@ -279,6 +303,8 @@
             this.groupLabel.ScreenTip = "Group Label";
             this.groupLabel.ShowImage = true;
             this.groupLabel.ShowLabel = false;
+            this.groupLabel.ScreenTip = "Group Label";
+            this.groupLabel.SuperTip = "Group the selected labels";
             this.groupLabel.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.groupLabel_Click);
             // 
             // alignPrevSlide
@@ -289,6 +315,8 @@
             this.alignPrevSlide.ScreenTip = "Align with previous slide";
             this.alignPrevSlide.ShowImage = true;
             this.alignPrevSlide.ShowLabel = false;
+            this.alignPrevSlide.ScreenTip = "Align with Previous Slide";
+            this.alignPrevSlide.SuperTip = "Align selected objects with corresponding objects on the previous slide";
             this.alignPrevSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignPrevSlide_Click);
             // 
             // swapCycle
@@ -299,6 +327,8 @@
             this.swapCycle.ScreenTip = "Swap cycle";
             this.swapCycle.ShowImage = true;
             this.swapCycle.ShowLabel = false;
+            this.swapCycle.ScreenTip = "Swap Cycle";
+            this.swapCycle.SuperTip = "Cycle through swapping positions of selected objects";
             this.swapCycle.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycle_Click);
             // 
             // snapDownRight
@@ -309,6 +339,8 @@
             this.snapDownRight.ScreenTip = "Snap down right";
             this.snapDownRight.ShowImage = true;
             this.snapDownRight.ShowLabel = false;
+            this.snapDownRight.ScreenTip = "Snap Down Right";
+            this.snapDownRight.SuperTip = "Snap selected object to the bottom right of the nearest object";
             this.snapDownRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapDownRight_Click);
             // 
             // alignNextSlide
@@ -319,6 +351,8 @@
             this.alignNextSlide.ScreenTip = "Align with next slide";
             this.alignNextSlide.ShowImage = true;
             this.alignNextSlide.ShowLabel = false;
+            this.alignNextSlide.ScreenTip = "Align with Next Slide";
+            this.alignNextSlide.SuperTip = "Align selected objects with corresponding objects on the next slide";
             this.alignNextSlide.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignNextSlide_Click);
             // 
             // swapCycleReverse
@@ -329,6 +363,8 @@
             this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
             this.swapCycleReverse.ShowImage = true;
             this.swapCycleReverse.ShowLabel = false;
+            this.swapCycleReverse.ScreenTip = "Swap Cycle Reverse";
+            this.swapCycleReverse.SuperTip = "Cycle through swapping positions of selected objects in reverse order";
             this.swapCycleReverse.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.swapCycleReverse_Click);
             // 
             // snapUpRight
@@ -339,6 +375,8 @@
             this.snapUpRight.ScreenTip = "Snap up right";
             this.snapUpRight.ShowImage = true;
             this.snapUpRight.ShowLabel = false;
+            this.snapUpRight.ScreenTip = "Snap Up Right";
+            this.snapUpRight.SuperTip = "Snap selected object to the top right of the nearest object";
             this.snapUpRight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.snapUpRight_Click);
             // 
             // alignGrid
@@ -349,6 +387,8 @@
             this.alignGrid.ScreenTip = "Align grid";
             this.alignGrid.ShowImage = true;
             this.alignGrid.ShowLabel = false;
+            this.alignGrid.ScreenTip = "Align to Grid";
+            this.alignGrid.SuperTip = "Align selected objects to a grid";
             this.alignGrid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignGrid_Click);
             // 
             // resizeWidth
@@ -358,6 +398,8 @@
             this.resizeWidth.Name = "resizeWidth";
             this.resizeWidth.ShowImage = true;
             this.resizeWidth.ShowLabel = false;
+            this.resizeWidth.ScreenTip = "Resize Width";
+            this.resizeWidth.SuperTip = "Resize the width of selected objects to match the first selected object";
             this.resizeWidth.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.resizeWidth_Click);
             // 
             // resizeHeight
@@ -367,6 +409,8 @@
             this.resizeHeight.Name = "resizeHeight";
             this.resizeHeight.ShowImage = true;
             this.resizeHeight.ShowLabel = false;
+            this.resizeHeight.ScreenTip = "Resize Height";
+            this.resizeHeight.SuperTip = "Resize the height of selected objects to match the first selected object";
             this.resizeHeight.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.resizeHeight_Click);
             // 
             // groupGrid
@@ -384,6 +428,8 @@
             this.grid.Name = "grid";
             this.grid.ScreenTip = "Grid";
             this.grid.ShowImage = true;
+            this.grid.ScreenTip = "Create Grid";
+            this.grid.SuperTip = "Create a grid of shapes based on the selected shapes";
             this.grid.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grid_Click);
             // 
             // gridPadding
@@ -393,6 +439,8 @@
             this.gridPadding.ScreenTip = "Padding";
             this.gridPadding.SizeString = "000";
             this.gridPadding.Text = "0";
+            this.gridPadding.ScreenTip = "Grid Padding";
+            this.gridPadding.SuperTip = "Set the padding between grid items";
             // 
             // gridNumColumn
             // 
@@ -401,6 +449,8 @@
             this.gridNumColumn.ScreenTip = "Column";
             this.gridNumColumn.SizeString = "000";
             this.gridNumColumn.Text = "0";
+            this.gridNumColumn.ScreenTip = "Grid Columns";
+            this.gridNumColumn.SuperTip = "Set the number of columns in the grid";
             // 
             // equationGroup
             // 
@@ -427,6 +477,8 @@
             this.curveOfEquation.ShowImage = true;
             this.curveOfEquation.ShowLabel = false;
             this.curveOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curveOfEquation_Click);
+            this.curveOfEquation.ScreenTip = "Curve of Equation";
+            this.curveOfEquation.SuperTip = "Create a curve based on the entered equation";
             // 
             // polylineOfEquation
             // 
@@ -437,6 +489,8 @@
             this.polylineOfEquation.ShowImage = true;
             this.polylineOfEquation.ShowLabel = false;
             this.polylineOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.polylineOfEquation_Click);
+            this.polylineOfEquation.ScreenTip = "Polyline of Equation";
+            this.polylineOfEquation.SuperTip = "Create a polyline based on the entered equation";
             // 
             // curveStart
             // 
@@ -445,6 +499,8 @@
             this.curveStart.ShowLabel = false;
             this.curveStart.SizeString = "00000";
             this.curveStart.Text = "0";
+            this.curveStart.ScreenTip = "Curve Start";
+            this.curveStart.SuperTip = "Set the starting point for the curve";
             // 
             // curveEnd
             // 
@@ -452,23 +508,31 @@
             this.curveEnd.Name = "curveEnd";
             this.curveEnd.SizeString = "00000";
             this.curveEnd.Text = "1";
+            this.curveEnd.ScreenTip = "Curve End";
+            this.curveEnd.SuperTip = "Set the ending point for the curve";
             // 
             // checkBoxNormalizeEqShape
             // 
             this.checkBoxNormalizeEqShape.Label = "Norm";
             this.checkBoxNormalizeEqShape.Name = "checkBoxNormalizeEqShape";
+            this.checkBoxNormalizeEqShape.ScreenTip = "Normalize Shape";
+            this.checkBoxNormalizeEqShape.SuperTip = "Normalize the shape of the equation curve";
             // 
             // box2
             // 
             this.box2.Items.Add(this.curveOfEquationX);
             this.box2.Items.Add(this.curveOfEquationY);
             this.box2.Name = "box2";
+            this.curveOfEquationX.ScreenTip = "X Equation";
+            this.curveOfEquationX.SuperTip = "Enter the equation for the X coordinate";
             // 
             // curveOfEquationX
             // 
             this.curveOfEquationX.Label = "X";
             this.curveOfEquationX.Name = "curveOfEquationX";
             this.curveOfEquationX.Text = null;
+            this.curveOfEquationY.ScreenTip = "Y Equation";
+            this.curveOfEquationY.SuperTip = "Enter the equation for the Y coordinate";
             // 
             // curveOfEquationY
             // 
@@ -478,44 +542,30 @@
             // 
             // animationGroup
             // 
-            this.animationGroup.Items.Add(this.editBoxName);
+            this.animationGroup.Items.Add(this.animationName);
             this.animationGroup.Items.Add(this.followAnimation);
             this.animationGroup.Label = "Animation";
             this.animationGroup.Name = "animationGroup";
             // 
-            // editBoxName
+            // animationName
             // 
-            this.editBoxName.Label = "Animation Name";
-            this.editBoxName.Name = "editBoxName";
-            this.editBoxName.ScreenTip = "Animation Name";
-            this.editBoxName.ShowLabel = false;
-            this.editBoxName.SizeString = "00000000";
-            this.editBoxName.Text = null;
-            this.editBoxName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
+            this.animationName.Label = "Animation Name";
+            this.animationName.Name = "editBoxName";
+            this.animationName.ScreenTip = "Animation Name";
+            this.animationName.ShowLabel = false;
+            this.animationName.SizeString = "00000000";
+            this.animationName.Text = null;
+            this.animationName.ScreenTip = "Animation Name";
+            this.animationName.SuperTip = "Enter the name of the animation";
+            this.animationName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
             // 
             // followAnimation
             // 
             this.followAnimation.Label = "Follow";
             this.followAnimation.Name = "followAnimation";
+            this.followAnimation.ScreenTip = "Follow Animation";
+            this.followAnimation.SuperTip = "Make the selected object follow the animation path"; 
             this.followAnimation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.followAnimation_Click);
-            // 
-            // alignLines
-            // 
-            this.alignLines.Image = global::EdoliAddIn.Properties.Resources.icon_image_trim;
-            this.alignLines.Label = "AlignLines";
-            this.alignLines.Name = "alignLines";
-            this.alignLines.ShowImage = true;
-            this.alignLines.ShowLabel = false;
-            this.alignLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.alignLines_Click);
-            // 
-            // trimLines
-            // 
-            this.trimLines.Image = global::EdoliAddIn.Properties.Resources.icon_image_trim;
-            this.trimLines.Label = "TrimLines";
-            this.trimLines.Name = "trimLines";
-            this.trimLines.ShowImage = true;
-            this.trimLines.ShowLabel = false;
-            this.trimLines.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.trimLines_Click);
             // 
             // EdoliRibbon
             // 
@@ -553,7 +603,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelLeft;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton labelRight;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup animationGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox editBoxName;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox animationName;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton transpose;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton groupLabel;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton alignPrevSlide;
