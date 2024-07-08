@@ -239,7 +239,6 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
-*.pfx
 *.cer
 *.pvk
 *.publishsettings
