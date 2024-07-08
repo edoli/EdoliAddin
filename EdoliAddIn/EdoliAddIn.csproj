@@ -367,7 +367,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="EdoliAddIn_TemporaryKey.pfx" />
+    <None Include="EdoliAddin_Temporary.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -422,10 +422,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>EdoliAddIn_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>EdoliAddIn_Temporary.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7BC2230A9B28830A44C77CAC4ECDB962D9D4C928</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F69A3CC1417442CC16BCB78C90248DC4E170B64A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

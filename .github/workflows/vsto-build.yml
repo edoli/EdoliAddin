@@ -1,0 +1,60 @@
+name: VSTO Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Import certificate from the command-line
+      shell: pwsh
+      run: |
+        $Secure_String_Pwd = ConvertTo-SecureString "${{ secrets.CERT_PASSWORD }}" -AsPlainText -Force
+        Import-PfxCertificate -FilePath '${{github.workspace}}\EdoliAddIn\EdoliAddIn.pfx' -CertStoreLocation Cert:\CurrentUser\My -Password $Secure_String_Pwd
+      
+    - name: Set VS.net environment
+      run: cmd.exe /C CALL "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
+
+    - name: Build VSTO
+      run: msbuild ${{github.workspace}}\EdoliAddIn.sln -t:rebuild /p:Platform="Any CPU" /p:Configuration="Release" /nologo /nr:false /p:VisualStudioVersion="17.0"
+
+    - name: Setup VS Dev Environment
+      uses: seanmiddleditch/gha-setup-vsdevenv@v4
+
+    - name: Build installer
+      run: devenv.com ${{github.workspace}}\EdoliAddIn\EdoliAddIn.csproj /build "Release|Any CPU"
+
+    - name: Create Release ZIP
+      run: |
+        cd build
+        7z a -tzip "EdoliAddIn_${{ github.ref_name }}.zip" *
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./build/EdoliAddIn_${{ github.ref_name }}.zip
+        asset_name: EdoliAddIn_${{ github.ref_name }}.zip
+        asset_content_type: application/zip
