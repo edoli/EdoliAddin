@@ -16,6 +16,12 @@ jobs:
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v2
 
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore NuGet packages
+      run: nuget restore EdoliAddIn.sln
+
     - name: Import certificate from the command-line
       shell: pwsh
       run: |
