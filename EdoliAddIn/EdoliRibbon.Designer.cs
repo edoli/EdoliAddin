@@ -119,7 +119,6 @@
             this.beginArrowToggle.Image = global::EdoliAddIn.Properties.Resources.icon_begin_arrow_toggle;
             this.beginArrowToggle.Label = "button1";
             this.beginArrowToggle.Name = "beginArrowToggle";
-            this.beginArrowToggle.ScreenTip = "Begin arrow toggle";
             this.beginArrowToggle.ShowImage = true;
             this.beginArrowToggle.ShowLabel = false;
             this.beginArrowToggle.ScreenTip = "Begin Arrow Toggle";
@@ -186,10 +185,9 @@
             this.connectShapeByLine.Image = global::EdoliAddIn.Properties.Resources.icon_connect_shape_by_lines;
             this.connectShapeByLine.Label = "Connect Line";
             this.connectShapeByLine.Name = "connectShapeByLine";
-            this.connectShapeByLine.ScreenTip = "Connect Line";
             this.connectShapeByLine.ShowImage = true;
             this.connectShapeByLine.ShowLabel = false;
-            this.connectShapeByLine.ScreenTip = "Connect Shapes";
+            this.connectShapeByLine.ScreenTip = "Connect Shapes by Line";
             this.connectShapeByLine.SuperTip = "Connect selected shapes with lines";
             this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
             // 
@@ -240,7 +238,6 @@
             this.labelBottom.Image = global::EdoliAddIn.Properties.Resources.icon_label_bottom;
             this.labelBottom.Label = "LabelBottom";
             this.labelBottom.Name = "labelBottom";
-            this.labelBottom.ScreenTip = "Label bottom";
             this.labelBottom.ShowImage = true;
             this.labelBottom.ShowLabel = false;
             this.labelBottom.ScreenTip = "Label Bottom";
@@ -252,7 +249,6 @@
             this.labelTop.Image = global::EdoliAddIn.Properties.Resources.icon_label_top;
             this.labelTop.Label = "LabelTop";
             this.labelTop.Name = "labelTop";
-            this.labelTop.ScreenTip = "Label top";
             this.labelTop.ShowImage = true;
             this.labelTop.ShowLabel = false;
             this.labelTop.ScreenTip = "Label Top";
@@ -264,7 +260,6 @@
             this.transpose.Image = global::EdoliAddIn.Properties.Resources.icon_transpose;
             this.transpose.Label = "Transpose";
             this.transpose.Name = "transpose";
-            this.transpose.ScreenTip = "Transpose";
             this.transpose.ShowImage = true;
             this.transpose.ShowLabel = false;
             this.transpose.ScreenTip = "Transpose";
@@ -276,7 +271,6 @@
             this.labelLeft.Image = global::EdoliAddIn.Properties.Resources.icon_label_left;
             this.labelLeft.Label = "LabelLeft";
             this.labelLeft.Name = "labelLeft";
-            this.labelLeft.ScreenTip = "Label left";
             this.labelLeft.ShowImage = true;
             this.labelLeft.ShowLabel = false;
             this.labelLeft.ScreenTip = "Label Left";
@@ -288,7 +282,6 @@
             this.labelRight.Image = global::EdoliAddIn.Properties.Resources.icon_label_right;
             this.labelRight.Label = "LabelRight";
             this.labelRight.Name = "labelRight";
-            this.labelRight.ScreenTip = "Label right";
             this.labelRight.ShowImage = true;
             this.labelRight.ShowLabel = false;
             this.labelRight.ScreenTip = "Label Right";
@@ -300,7 +293,6 @@
             this.groupLabel.Image = global::EdoliAddIn.Properties.Resources.icon_label_group;
             this.groupLabel.Label = "Group Label";
             this.groupLabel.Name = "groupLabel";
-            this.groupLabel.ScreenTip = "Group Label";
             this.groupLabel.ShowImage = true;
             this.groupLabel.ShowLabel = false;
             this.groupLabel.ScreenTip = "Group Label";
@@ -312,7 +304,6 @@
             this.alignPrevSlide.Image = global::EdoliAddIn.Properties.Resources.icon_align_prev_slide;
             this.alignPrevSlide.Label = "Align";
             this.alignPrevSlide.Name = "alignPrevSlide";
-            this.alignPrevSlide.ScreenTip = "Align with previous slide";
             this.alignPrevSlide.ShowImage = true;
             this.alignPrevSlide.ShowLabel = false;
             this.alignPrevSlide.ScreenTip = "Align with Previous Slide";
@@ -324,7 +315,6 @@
             this.swapCycle.Image = global::EdoliAddIn.Properties.Resources.icon_swap_cycle;
             this.swapCycle.Label = "Swap cycle";
             this.swapCycle.Name = "swapCycle";
-            this.swapCycle.ScreenTip = "Swap cycle";
             this.swapCycle.ShowImage = true;
             this.swapCycle.ShowLabel = false;
             this.swapCycle.ScreenTip = "Swap Cycle";
@@ -336,7 +326,6 @@
             this.snapDownRight.Image = global::EdoliAddIn.Properties.Resources.icon_snap_diag_downright;
             this.snapDownRight.Label = "Snap down right";
             this.snapDownRight.Name = "snapDownRight";
-            this.snapDownRight.ScreenTip = "Snap down right";
             this.snapDownRight.ShowImage = true;
             this.snapDownRight.ShowLabel = false;
             this.snapDownRight.ScreenTip = "Snap Down Right";
@@ -348,7 +337,6 @@
             this.alignNextSlide.Image = global::EdoliAddIn.Properties.Resources.icon_align_next_slide;
             this.alignNextSlide.Label = "Align next slide";
             this.alignNextSlide.Name = "alignNextSlide";
-            this.alignNextSlide.ScreenTip = "Align with next slide";
             this.alignNextSlide.ShowImage = true;
             this.alignNextSlide.ShowLabel = false;
             this.alignNextSlide.ScreenTip = "Align with Next Slide";
@@ -360,7 +348,6 @@
             this.swapCycleReverse.Image = global::EdoliAddIn.Properties.Resources.icon_swap_cycle_reverse;
             this.swapCycleReverse.Label = "Swap cycle reverse";
             this.swapCycleReverse.Name = "swapCycleReverse";
-            this.swapCycleReverse.ScreenTip = "Swap cycle reverse";
             this.swapCycleReverse.ShowImage = true;
             this.swapCycleReverse.ShowLabel = false;
             this.swapCycleReverse.ScreenTip = "Swap Cycle Reverse";
@@ -372,7 +359,6 @@
             this.snapUpRight.Image = global::EdoliAddIn.Properties.Resources.icon_snap_diag_upright;
             this.snapUpRight.Label = "Snap up right";
             this.snapUpRight.Name = "snapUpRight";
-            this.snapUpRight.ScreenTip = "Snap up right";
             this.snapUpRight.ShowImage = true;
             this.snapUpRight.ShowLabel = false;
             this.snapUpRight.ScreenTip = "Snap Up Right";
@@ -384,7 +370,6 @@
             this.alignGrid.Image = global::EdoliAddIn.Properties.Resources.icon_align_grid;
             this.alignGrid.Label = "Align grid";
             this.alignGrid.Name = "alignGrid";
-            this.alignGrid.ScreenTip = "Align grid";
             this.alignGrid.ShowImage = true;
             this.alignGrid.ShowLabel = false;
             this.alignGrid.ScreenTip = "Align to Grid";
@@ -426,7 +411,6 @@
             this.grid.Image = global::EdoliAddIn.Properties.Resources.icon_grid;
             this.grid.Label = "Grid";
             this.grid.Name = "grid";
-            this.grid.ScreenTip = "Grid";
             this.grid.ShowImage = true;
             this.grid.ScreenTip = "Create Grid";
             this.grid.SuperTip = "Create a grid of shapes based on the selected shapes";
@@ -436,7 +420,6 @@
             // 
             this.gridPadding.Label = "Padding";
             this.gridPadding.Name = "gridPadding";
-            this.gridPadding.ScreenTip = "Padding";
             this.gridPadding.SizeString = "000";
             this.gridPadding.Text = "0";
             this.gridPadding.ScreenTip = "Grid Padding";
@@ -446,7 +429,6 @@
             // 
             this.gridNumColumn.Label = "Column";
             this.gridNumColumn.Name = "gridNumColumn";
-            this.gridNumColumn.ScreenTip = "Column";
             this.gridNumColumn.SizeString = "000";
             this.gridNumColumn.Text = "0";
             this.gridNumColumn.ScreenTip = "Grid Columns";
@@ -473,7 +455,6 @@
             this.curveOfEquation.Image = global::EdoliAddIn.Properties.Resources.icon_curve_of_equation;
             this.curveOfEquation.Label = "Curve of equation";
             this.curveOfEquation.Name = "curveOfEquation";
-            this.curveOfEquation.ScreenTip = "Curve of equation";
             this.curveOfEquation.ShowImage = true;
             this.curveOfEquation.ShowLabel = false;
             this.curveOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curveOfEquation_Click);
@@ -485,7 +466,6 @@
             this.polylineOfEquation.Image = global::EdoliAddIn.Properties.Resources.icon_polyline_of_equation;
             this.polylineOfEquation.Label = "Polyline of equation";
             this.polylineOfEquation.Name = "polylineOfEquation";
-            this.polylineOfEquation.ScreenTip = "Polyline of equation";
             this.polylineOfEquation.ShowImage = true;
             this.polylineOfEquation.ShowLabel = false;
             this.polylineOfEquation.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.polylineOfEquation_Click);
@@ -551,7 +531,6 @@
             // 
             this.animationName.Label = "Animation Name";
             this.animationName.Name = "editBoxName";
-            this.animationName.ScreenTip = "Animation Name";
             this.animationName.ShowLabel = false;
             this.animationName.SizeString = "00000000";
             this.animationName.Text = null;
