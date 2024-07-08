@@ -33,7 +33,7 @@
     <PublishUrl>D:\workspace\EdoliAddin\publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.1.0.6</ApplicationVersion>
+    <ApplicationVersion>1.1.0.7</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -425,7 +425,7 @@
     <ManifestKeyFile>EdoliAddIn_Temporary.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F69A3CC1417442CC16BCB78C90248DC4E170B64A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AB9600A4C9B1F1CF07CCC3EDDD48802D44C1C3B8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
