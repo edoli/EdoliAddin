@@ -1,67 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Core = Microsoft.Office.Core;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Microsoft.Office.Interop.PowerPoint;
+using System.Runtime.InteropServices;
 
 namespace EdoliAddIn
 {
     public static class ImageTool
     {
-        public static void InvertImage()
-        {
-            Globals.ThisAddIn.Application.StartNewUndoEntry();
-            var shapes = Util.ListSelectedShapes();
 
-            var shape = shapes[0];
-            if (shape.Type == Core.MsoShapeType.msoPicture)
-            {
-                FilterImage((imageArray, arraySize, image) =>
-                {
-                    for (int i = 0; i < arraySize; i++)
-                    {
-                        imageArray[i] = (byte) (255 - imageArray[i]);
-                    }
-                    return null;
-                });
-
-                var slide = Util.CurrentSlide();
-                slide.Shapes.Paste();
-            }
-        }
         public static void TrimImage()
         {
-            var shapes = Util.ListSelectedShapes();
-            if (shapes.Count == 0)
+            
+            ActionProcessPowerPointImages((pixelArray, arraySize, image, shape) =>
             {
-                return;
-            }
-
-            var shape = shapes[0];
-            if (shape.Type == Core.MsoShapeType.msoPicture)
-            {
-                Globals.ThisAddIn.Application.StartNewUndoEntry();
-
-                var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
-
-                selection.Copy();
-
-                var image = Clipboard.GetImage();
-
-                var mStream = new MemoryStream();
-                image.Save(mStream, ImageFormat.Bmp);
-                var pixelSize = image.Height * image.Width * 4;
-
-                var pixelArray = new byte[pixelSize];
-                mStream.Position = 54;
-                mStream.Read(pixelArray, 0, pixelSize);
-
                 int width = image.Width;
                 int height = image.Height;
                 var rect = ImageExt.Trim(pixelArray, width, height);
@@ -75,53 +30,92 @@ namespace EdoliAddIn
                 shape.PictureFormat.CropRight += ((width - rect.X - rect.Width) * shapeWidth) / width;
                 shape.PictureFormat.CropBottom += (rect.Y * shapeHeight) / height;
                 shape.PictureFormat.CropTop += ((height - rect.Y - rect.Height) * shapeHeight) / height;
-            }
+                return false;
+            });
         }
 
-
-        public static void FilterImage(Func<byte[], int, Image, byte[]> filter, 
+        public static void ActionProcessPowerPointImages(
+            Func<byte[], int, Image, Shape, bool> action = null,
             Func<ImageExt.BmpHeader, ImageExt.BmpHeader> headerFilter = null)
         {
+            Globals.ThisAddIn.Application.StartNewUndoEntry();
+            var shapes = Util.ListSelectedShapes();
+
+            foreach (var shape in shapes)
+            {
+                if (shape.Type == Core.MsoShapeType.msoPicture)
+                {
+                    ProcessPowerPointImage(shape, action, headerFilter);
+                }
+            }
+        }
+        
+
+        public static void ProcessPowerPointImage(
+            Shape shape,
+            Func<byte[], int, Image, Shape, bool> action = null,
+            Func<ImageExt.BmpHeader, ImageExt.BmpHeader> headerFilter = null)
+        {
+            // 이미지를 임시 파일로 내보내기
+            string tempPath = Path.GetTempFileName();
+            shape.Export(tempPath, PpShapeFormat.ppShapeFormatPNG);
+
+            // 이미지를 임시 파일로 내보내기
             uint headerSize = 54;
-            var selection = Globals.ThisAddIn.Application.ActiveWindow.Selection;
+            byte[] imageArray;
+            bool reloadImage = false;
 
-            selection.Copy();
-
-            var image = Clipboard.GetImage();
-
-            var mStream = new MemoryStream();
-            image.Save(mStream, ImageFormat.Bmp);
-            var pixelSize = image.Height * image.Width * 4;
-            var arraySize = (int) mStream.Length;
-            int offset = arraySize - pixelSize;
-
-            var imageArray = mStream.ToArray();
-            var pixelArray = new byte[pixelSize];
-            Array.Copy(imageArray, offset, pixelArray, 0, pixelSize);
-
-            var headerArray = new byte[headerSize];
-            Array.Copy(imageArray, 0, headerArray, 0, headerSize);
-            var headerStruct = ImageExt.ByteArrayToStructure<ImageExt.BmpHeader>(headerArray);
-
-            var newArray = filter(pixelArray, pixelSize, image);
-            if (newArray != null)
+            using (Bitmap image = new Bitmap(tempPath))
             {
-                pixelArray = newArray;
-                imageArray = new byte[pixelArray.Length + headerSize];
+                var pixelSize = image.Height * image.Width * 4;
+                var arraySize = pixelSize + headerSize;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    image.Save(ms, ImageFormat.Bmp);
+                    imageArray = ms.ToArray();
+                }
+
+                var pixelArray = new byte[pixelSize];
+                Array.Copy(imageArray, headerSize, pixelArray, 0, pixelSize);
+
+                var headerArray = new byte[headerSize];
+                Array.Copy(imageArray, 0, headerArray, 0, headerSize);
+                var headerStruct = ImageExt.ByteArrayToStructure<ImageExt.BmpHeader>(headerArray);
+
+                reloadImage = action?.Invoke(pixelArray, pixelSize, image, shape) ?? false;
+
+                if (reloadImage)
+                {
+                    Array.Copy(pixelArray, 0, imageArray, headerSize, pixelSize);
+                }
+
+                if (headerFilter != null)
+                {
+                    headerStruct = headerFilter(headerStruct);
+                    headerStruct.bfSize = headerStruct.biWidth * headerStruct.biHeight * 4 + headerSize;
+                    ImageExt.StructureToByteArray(headerStruct).CopyTo(imageArray, 0);
+                }
             }
-            if (headerFilter != null)
+
+            // tempPath 으로 불러온 Bitmap 리소스가 해제된 다음에 수행
+            if (reloadImage)
             {
-                headerStruct = headerFilter(headerStruct);
+                // 처리된 이미지를 다시 임시 파일로 저장
+                using (var processedBmp = new Bitmap(new MemoryStream(imageArray)))
+                {
+                    using (var stream = new FileStream(tempPath, FileMode.Create, FileAccess.Write))
+                    {
+                        processedBmp.Save(stream, ImageFormat.Png);
+                    }
+                }
+
+                // 처리된 이미지로 Shape 업데이트
+                shape.Fill.UserPicture(tempPath);
             }
-            headerStruct.bfSize = headerStruct.biWidth * headerStruct.biHeight * 4 + headerSize;
 
-            ImageExt.StructureToByteArray(headerStruct).CopyTo(imageArray, 0);
-            pixelArray.CopyTo(imageArray, offset);
-
-
-            var newImage = Image.FromStream(new MemoryStream(imageArray));
-
-            Clipboard.SetImage(newImage);
+            // 임시 파일 삭제
+            File.Delete(tempPath);
         }
 
 

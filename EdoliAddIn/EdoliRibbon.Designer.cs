@@ -43,7 +43,6 @@
             this.endArrowSizeUp = this.Factory.CreateRibbonButton();
             this.endArrowSizeDown = this.Factory.CreateRibbonButton();
             this.connectShapeByLine = this.Factory.CreateRibbonButton();
-            this.invertImage = this.Factory.CreateRibbonButton();
             this.trimImage = this.Factory.CreateRibbonButton();
             this.alignGroup = this.Factory.CreateRibbonGroup();
             this.labelBottom = this.Factory.CreateRibbonButton();
@@ -109,7 +108,6 @@
             this.shape.Items.Add(this.endArrowSizeUp);
             this.shape.Items.Add(this.endArrowSizeDown);
             this.shape.Items.Add(this.connectShapeByLine);
-            this.shape.Items.Add(this.invertImage);
             this.shape.Items.Add(this.trimImage);
             this.shape.Label = "Shape";
             this.shape.Name = "shape";
@@ -188,17 +186,6 @@
             this.connectShapeByLine.ShowLabel = false;
             this.connectShapeByLine.SuperTip = "Connect selected shapes with lines";
             this.connectShapeByLine.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.connectShapeByLine_Click);
-            // 
-            // invertImage
-            // 
-            this.invertImage.Image = global::EdoliAddIn.Properties.Resources.icon_image_invert;
-            this.invertImage.Label = "Invert";
-            this.invertImage.Name = "invertImage";
-            this.invertImage.ScreenTip = "Invert Image";
-            this.invertImage.ShowImage = true;
-            this.invertImage.ShowLabel = false;
-            this.invertImage.SuperTip = "Invert the colors of the selected image";
-            this.invertImage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.invertImage_Click);
             // 
             // trimImage
             // 
@@ -604,7 +591,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton curveOfEquation;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup equationGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton polylineOfEquation;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton invertImage;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton trimImage;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox curveOfEquationX;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox curveOfEquationY;

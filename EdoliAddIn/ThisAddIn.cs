@@ -24,7 +24,7 @@ namespace EdoliAddIn
                 var shape = shapes[0];
                 name = shape.Name;
             }
-            Globals.Ribbons.EdoliRibbon.editBoxName.Text = name;
+            Globals.Ribbons.EdoliRibbon.animationName.Text = name;
         }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)

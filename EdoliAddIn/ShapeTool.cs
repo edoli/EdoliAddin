@@ -447,32 +447,6 @@ namespace EdoliAddIn
             }
         }
 
-        public static void AlignLines()
-        {
-            Globals.ThisAddIn.Application.StartNewUndoEntry();
-
-            var shapes = Util.ListSelectedShapes();
-            if (shapes.Count > 1)
-            {
-                var lastShape = shapes.Last();
-
-                var lastLinePoints = Util.GetLinePoints(lastShape);
-
-                foreach (var shape in shapes)
-                {
-                    if (Util.IsLine(shape))
-                    {
-                        Util.GetLinePoints(shape);
-                    }
-                }
-            }
-        }
-
-        public static void TrimLines()
-        {
-
-        }
-
         public static void DrawAngleLines()
         {
 

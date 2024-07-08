@@ -63,7 +63,7 @@ namespace EdoliAddIn
 
         private void editBoxName_TextChanged(object sender, RibbonControlEventArgs e)
         {
-            AnimationTool.SetNameOfActive(this.editBoxName.Text);
+            AnimationTool.SetNameOfActive(this.animationName.Text);
         }
 
         private void swapCycle_Click(object sender, RibbonControlEventArgs e)
@@ -144,11 +144,6 @@ namespace EdoliAddIn
             ShapeTool.AddPolylineOfExpression(equationX, equationY, startValue, endValue);
         }
 
-        private void invertImage_Click(object sender, RibbonControlEventArgs e)
-        {
-            ImageTool.InvertImage();
-        }
-
         private void trimImage_Click(object sender, RibbonControlEventArgs e)
         {
             ImageTool.TrimImage();
@@ -167,16 +162,6 @@ namespace EdoliAddIn
         private void followAnimation_Click(object sender, RibbonControlEventArgs e)
         {
             AnimationTool.FollowAnimation();
-        }
-
-        private void alignLines_Click(object sender, RibbonControlEventArgs e)
-        {
-            ShapeTool.AlignLines();
-        }
-
-        private void trimLines_Click(object sender, RibbonControlEventArgs e)
-        {
-            ShapeTool.TrimLines();
         }
     }
 }
