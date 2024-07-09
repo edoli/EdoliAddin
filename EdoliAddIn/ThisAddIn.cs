@@ -20,7 +20,22 @@ namespace EdoliAddIn
                 name = shape.Name;
             }
             Globals.Ribbons.EdoliRibbon.animationName.Text = name;
+
+            if (shapes.Count == 1)
+            {
+                var shape = shapes[0];
+                var pathTypeTag = shape.Tags[ShapeTool.PathTypeTagName];
+
+                if (pathTypeTag == ShapeTool.PolylineTag || pathTypeTag == ShapeTool.CurveTag)
+                {
+                    Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text = shape.Tags[ShapeTool.ExpressiveXTagName];
+                    Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text = shape.Tags[ShapeTool.ExpressiveYTagName];
+                    Globals.Ribbons.EdoliRibbon.curveStart.Text = shape.Tags[ShapeTool.ExpressiveStartValueTagName];
+                    Globals.Ribbons.EdoliRibbon.curveEnd.Text = shape.Tags[ShapeTool.ExpressiveEndValueTagName];
+                }
+            }
         }
+
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {

@@ -50,7 +50,11 @@ namespace EdoliAddIn
 
         private static float shapeScale = 28.3465f;
 
-        public static string PathTagName = "EquationPath";
+        public static string PathTypeTagName = "EquationPath";
+        public static string ExpressiveXTagName = "ExpressiveX";
+        public static string ExpressiveYTagName = "ExpressiveY";
+        public static string ExpressiveStartValueTagName = "ExpressiveRangeFrom";
+        public static string ExpressiveEndValueTagName = "ExpressiveRangeTo";
         public static string CurveTag = "EquationCurve";
         public static string PolylineTag = "EquationPolyline";
 
@@ -316,16 +320,28 @@ namespace EdoliAddIn
             float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
             float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
 
+            expX = expX == "" ? "[t]" : expX;
+            expY = expY == "" ? "[t]" : expY;
+
             var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
             var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
-            AddPathOfFunction(t => {
+            var shape = AddPathOfFunction(t => {
                 var dict = new Dictionary<string, object> { ["t"] = t };
                 return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
                                    Convert.ToSingle(expressiveY.Evaluate(dict)));
             }, startValueEvaluated, endValueEvaluated, isCurve);
+
+            if (shape != null)
+            {
+                shape.Tags.Add(PathTypeTagName, isCurve ? CurveTag : PolylineTag);
+                shape.Tags.Add(ExpressiveXTagName, expX);
+                shape.Tags.Add(ExpressiveYTagName, expY);
+                shape.Tags.Add(ExpressiveStartValueTagName, startValue);
+                shape.Tags.Add(ExpressiveEndValueTagName, endValue);
+            }
         }
 
-        public static void AddPathOfFunction(Func<float, Vector2> func, float startValue, float endValue, bool isCurve)
+        public static PowerPoint.Shape AddPathOfFunction(Func<float, Vector2> func, float startValue, float endValue, bool isCurve)
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             var slide = Util.CurrentSlide();
@@ -340,7 +356,6 @@ namespace EdoliAddIn
                 var pointsShape = new PointsShape(vectors, slideWidth / 2, slideHeight / 2);
                 var points = pointsShape.points;
                 var shape = isCurve ? slide.Shapes.AddCurve(points) : slide.Shapes.AddPolyline(points);
-                shape.Tags.Add(PathTagName, isCurve ? CurveTag : PolylineTag);
                 shape.Select();
 
                 if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
@@ -349,29 +364,40 @@ namespace EdoliAddIn
                     shape.ScaleWidth(scale, MsoTriState.msoFalse, MsoScaleFrom.msoScaleFromMiddle);
                     shape.ScaleHeight(scale, MsoTriState.msoFalse, MsoScaleFrom.msoScaleFromMiddle);
                 }
+                return shape;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            return null;
         }
         public static void UpdatePathOfExpression(string expX, string expY, string startValue, string endValue)
         {
-            // Disable for now
+            float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
 
-            // float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
-            // float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            expX = expX == "" ? "[t]" : expX;
+            expY = expY == "" ? "[t]" : expY;
 
-            // var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
-            // var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
-            // UpdatePathOfFunction(t => {
-            //     var dict = new Dictionary<string, object> { ["t"] = t };
-            //     return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
-            //                        Convert.ToSingle(expressiveY.Evaluate(dict)));
-            // }, startValueEvaluated, endValueEvaluated);
+            var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
+            var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
+            var shape = UpdatePathOfFunction(t => {
+                var dict = new Dictionary<string, object> { ["t"] = t };
+                return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
+                                   Convert.ToSingle(expressiveY.Evaluate(dict)));
+            }, startValueEvaluated, endValueEvaluated);
+
+            if (shape != null)
+            {
+                shape.Tags.Add(ExpressiveXTagName, expX);
+                shape.Tags.Add(ExpressiveYTagName, expY);
+                shape.Tags.Add(ExpressiveStartValueTagName, startValue);
+                shape.Tags.Add(ExpressiveEndValueTagName, endValue);
+            }
         }
 
-        public static void UpdatePathOfFunction(Func<float, Vector2> func, float startValue, float endValue)
+        public static PowerPoint.Shape UpdatePathOfFunction(Func<float, Vector2> func, float startValue, float endValue)
         {
             // Globals.ThisAddIn.Application.StartNewUndoEntry();
             var slide = Util.CurrentSlide();
@@ -380,7 +406,7 @@ namespace EdoliAddIn
             if (selectedShapes.Count == 1)
             {
                 var shape = selectedShapes[0];
-                var tag = shape.Tags[PathTagName];
+                var tag = shape.Tags[PathTypeTagName];
                 if (tag == CurveTag || tag == PolylineTag)
                 {
                     try
@@ -390,17 +416,25 @@ namespace EdoliAddIn
                         var center = shape.Position(ShapeExt.Anchor.Center);
                         var pointsShape = new PointsShape(vectors, center.X, center.Y);
                         var points = pointsShape.points;
+
+                        // Method 1 (Not working)
+                        // int nodeCount = shape.Nodes.Count;
+                        // for (int i = 0; i < nodeCount; i++)
+                        // {
+                        //     shape.Nodes.SetPosition(i + 1, points[i, 0], points[i, 1]);
+                        //     // var p = shape.Nodes[i + 1].Points;
+                        //     // p[1, 1] = points[i, 0];
+                        //     // p[1, 2] = points[i, 1];
+                        // }
+
+                        // Method 2
+                        shape.Delete();
                         
-                        int nodeCount = shape.Nodes.Count;
-                        for (int i = 0; i < nodeCount; i++)
-                        {
-                            shape.Nodes.SetPosition(i + 1, points[i, 0], points[i, 1]);
-                        }
-                        // shape.Delete();
-                        
-                        // var newShape = isCurve ? slide.Shapes.AddCurve(points) : slide.Shapes.AddPolyline(points);
-                        // newShape.Tags.Add(PathTagName, isCurve ? CurveTag : PolylineTag);
-                        // newShape.Select();
+                        var newShape = isCurve ? slide.Shapes.AddCurve(points) : slide.Shapes.AddPolyline(points);
+                        newShape.Tags.Add(PathTypeTagName, tag);
+                        newShape.Select();
+
+                        return shape;
                     }
                     catch (Exception ex)
                     {
@@ -408,6 +442,7 @@ namespace EdoliAddIn
                     }
                 }
             }
+            return null;
         }
 
         public static Vector2[] PathOfFunction(Func<float, Vector2> func, float startValue, float endValue, bool addControlPoints = false)

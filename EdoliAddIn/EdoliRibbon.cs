@@ -56,11 +56,11 @@ namespace EdoliAddIn
 
         private void curve_TextChanged(object sender, RibbonControlEventArgs e)
         {
-            var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
-            var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
-            var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
-            var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
-            ShapeTool.UpdatePathOfExpression(equationX, equationY, startValue, endValue);
+            // var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
+            // var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
+            // var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
+            // var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
+            // ShapeTool.UpdatePathOfExpression(equationX, equationY, startValue, endValue);
         }
 
         private void animation_TextChanged(object sender, RibbonControlEventArgs e)
