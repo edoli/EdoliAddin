@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Core = Microsoft.Office.Core;
 using static EdoliAddIn.ShapeExt;

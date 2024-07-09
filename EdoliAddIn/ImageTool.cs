@@ -1,11 +1,9 @@
 using System;
 using Core = Microsoft.Office.Core;
-using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Microsoft.Office.Interop.PowerPoint;
-using System.Runtime.InteropServices;
 
 namespace EdoliAddIn
 {

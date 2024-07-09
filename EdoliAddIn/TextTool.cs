@@ -1,14 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-using Core = Microsoft.Office.Core;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
 using Expressive;
 
 namespace EdoliAddIn
