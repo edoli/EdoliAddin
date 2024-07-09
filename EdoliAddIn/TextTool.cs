@@ -23,15 +23,7 @@ namespace EdoliAddIn
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             ReplaceSelectedText(s => {
-                try
-                {
-                    return new Expression(s, ExpressiveOptions.IgnoreCaseForParsing).Evaluate().ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    return s;
-                }
+                return new Expression(s, ExpressiveOptions.IgnoreCaseForParsing).Evaluate().ToString();
             });
         }
 
