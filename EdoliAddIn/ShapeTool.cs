@@ -1,4 +1,5 @@
 ﻿using Expressive;
+using Microsoft.Office.Core;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -7,23 +8,66 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace EdoliAddIn
 {
+    public class PointsShape
+    {
+        public float[,] points;
+        public float width;
+        public float height;
+
+        public PointsShape(Vector2[] localPoints, float offsetX, float offsetY)
+        {
+            int numPoints = localPoints.Length;
+            points = new float[numPoints, 2];
+
+            var minV = new Vector2(float.MaxValue, float.MaxValue);
+            var maxV = new Vector2(float.MinValue, float.MinValue);
+            for (int i = 0; i < numPoints; i++)
+            {
+                var v = localPoints[i];
+
+                if (v.X < minV.X) { minV.X = v.X; }
+                if (v.Y < minV.Y) { minV.Y = v.Y; }
+                if (v.X > maxV.X) { maxV.X = v.X; }
+                if (v.Y > maxV.Y) { maxV.Y = v.Y; }
+            }
+            float cx = (minV.X + maxV.X) / 2;
+            float cy = (minV.Y + maxV.Y) / 2;
+
+            width = maxV.X - minV.X;
+            height = maxV.Y - minV.Y;
+
+            for (int i = 0; i < numPoints; i++)
+            {
+                var v = localPoints[i];
+                points[i, 0] = v.X + offsetX - cx;
+                points[i, 1] = -v.Y + offsetY + cy;
+            }
+        }
+    }
+
     public static class ShapeTool
     {
 
         private static float shapeScale = 28.3465f;
+
+        public static string PathTagName = "EquationPath";
+        public static string CurveTag = "EquationCurve";
+        public static string PolylineTag = "EquationPolyline";
+
+
         public static void ToggleLine()
         {
             var shapes = Util.ListSelectedShapes();
 
             shapes.ForEach(s =>
             {
-                if (s.Line.Visible == Microsoft.Office.Core.MsoTriState.msoFalse)
+                if (s.Line.Visible == MsoTriState.msoFalse)
                 {
-                    s.Line.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                    s.Line.Visible = MsoTriState.msoTrue;
                 }
                 else
                 {
-                    s.Line.Visible = Microsoft.Office.Core.MsoTriState.msoFalse;
+                    s.Line.Visible = MsoTriState.msoFalse;
                 }
             });
         }
@@ -84,7 +128,7 @@ namespace EdoliAddIn
                         {
                             newDashStyle += 2;
                         }
-                        line.DashStyle = (Microsoft.Office.Core.MsoLineDashStyle)newDashStyle;
+                        line.DashStyle = (MsoLineDashStyle)newDashStyle;
                     }
                 });
             }
@@ -99,13 +143,13 @@ namespace EdoliAddIn
             {
                 try
                 {
-                    if (shape.Line.BeginArrowheadStyle == Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone)
+                    if (shape.Line.BeginArrowheadStyle == MsoArrowheadStyle.msoArrowheadNone)
                     {
-                        shape.Line.BeginArrowheadStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadTriangle;
+                        shape.Line.BeginArrowheadStyle = MsoArrowheadStyle.msoArrowheadTriangle;
                     }
                     else
                     {
-                        shape.Line.BeginArrowheadStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone;
+                        shape.Line.BeginArrowheadStyle = MsoArrowheadStyle.msoArrowheadNone;
                     }
                 }
                 catch
@@ -123,7 +167,7 @@ namespace EdoliAddIn
             foreach (var shape in shapes)
             {
                 {
-                    if (shape.Line.BeginArrowheadStyle != Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone)
+                    if (shape.Line.BeginArrowheadStyle != MsoArrowheadStyle.msoArrowheadNone)
                     {
                         var width = (int)shape.Line.BeginArrowheadWidth;
                         var length = (int)shape.Line.BeginArrowheadLength;
@@ -133,12 +177,12 @@ namespace EdoliAddIn
 
                         if (newWidth > 0 && newWidth <= 3)
                         {
-                            shape.Line.BeginArrowheadWidth = (Microsoft.Office.Core.MsoArrowheadWidth)newWidth;
+                            shape.Line.BeginArrowheadWidth = (MsoArrowheadWidth)newWidth;
                         }
 
                         if (newLength > 0 && newLength <= 3)
                         {
-                            shape.Line.BeginArrowheadLength = (Microsoft.Office.Core.MsoArrowheadLength)newLength;
+                            shape.Line.BeginArrowheadLength = (MsoArrowheadLength)newLength;
                         }
                     }
                 }
@@ -154,13 +198,13 @@ namespace EdoliAddIn
             {
                 try
                 {
-                    if (shape.Line.EndArrowheadStyle == Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone)
+                    if (shape.Line.EndArrowheadStyle == MsoArrowheadStyle.msoArrowheadNone)
                     {
-                        shape.Line.EndArrowheadStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadTriangle;
+                        shape.Line.EndArrowheadStyle = MsoArrowheadStyle.msoArrowheadTriangle;
                     }
                     else
                     {
-                        shape.Line.EndArrowheadStyle = Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone;
+                        shape.Line.EndArrowheadStyle = MsoArrowheadStyle.msoArrowheadNone;
                     }
                 }
                 catch
@@ -178,7 +222,7 @@ namespace EdoliAddIn
             foreach (var shape in shapes)
             {
                 {
-                    if (shape.Line.EndArrowheadStyle != Microsoft.Office.Core.MsoArrowheadStyle.msoArrowheadNone)
+                    if (shape.Line.EndArrowheadStyle != MsoArrowheadStyle.msoArrowheadNone)
                     {
                         var width = (int)shape.Line.EndArrowheadWidth;
                         var length = (int)shape.Line.EndArrowheadLength;
@@ -188,12 +232,12 @@ namespace EdoliAddIn
 
                         if (newWidth > 0 && newWidth <= 3)
                         {
-                            shape.Line.EndArrowheadWidth = (Microsoft.Office.Core.MsoArrowheadWidth)newWidth;
+                            shape.Line.EndArrowheadWidth = (MsoArrowheadWidth)newWidth;
                         }
 
                         if (newLength > 0 && newLength <= 3)
                         {
-                            shape.Line.EndArrowheadLength = (Microsoft.Office.Core.MsoArrowheadLength)newLength;
+                            shape.Line.EndArrowheadLength = (MsoArrowheadLength)newLength;
                         }
                     }
                 }
@@ -267,21 +311,21 @@ namespace EdoliAddIn
             }
         }
 
-        public static void AddCurveOfExpression(string expX, string expY, string startValue, string endValue)
+        public static void AddPathOfExpression(string expX, string expY, string startValue, string endValue, bool isCurve)
         {
             float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
             float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
 
             var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
             var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
-            AddCurveOfFunction(t => {
+            AddPathOfFunction(t => {
                 var dict = new Dictionary<string, object> { ["t"] = t };
                 return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
                                    Convert.ToSingle(expressiveY.Evaluate(dict)));
-            }, startValueEvaluated, endValueEvaluated);
+            }, startValueEvaluated, endValueEvaluated, isCurve);
         }
 
-        public static void AddCurveOfFunction(Func<float, Vector2> func, float startValue, float endValue)
+        public static void AddPathOfFunction(Func<float, Vector2> func, float startValue, float endValue, bool isCurve)
         {
             Globals.ThisAddIn.Application.StartNewUndoEntry();
             var slide = Util.CurrentSlide();
@@ -290,19 +334,98 @@ namespace EdoliAddIn
             float slideHeight = currentPresentation.PageSetup.SlideHeight;
             float slideWidth = currentPresentation.PageSetup.SlideWidth;
 
-            float rangeValue = endValue - startValue;
-
             try
             {
-                var numPoints = 100;
-                var initVectors = new Vector2[numPoints];
-                for (int t = 0; t < numPoints; t++)
-                {
-                    var f = ((float)t) / (numPoints - 1);
-                    initVectors[t] = func(startValue + f * rangeValue) * shapeScale;
-                }
+                var vectors = PathOfFunction(func, startValue, endValue, isCurve);
+                var pointsShape = new PointsShape(vectors, slideWidth / 2, slideHeight / 2);
+                var points = pointsShape.points;
+                var shape = isCurve ? slide.Shapes.AddCurve(points) : slide.Shapes.AddPolyline(points);
+                shape.Tags.Add(PathTagName, isCurve ? CurveTag : PolylineTag);
+                shape.Select();
 
-                var vectors = new Vector2[numPoints];
+                if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
+                {
+                    float scale = 64 / pointsShape.width;
+                    shape.ScaleWidth(scale, MsoTriState.msoFalse, MsoScaleFrom.msoScaleFromMiddle);
+                    shape.ScaleHeight(scale, MsoTriState.msoFalse, MsoScaleFrom.msoScaleFromMiddle);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        public static void UpdatePathOfExpression(string expX, string expY, string startValue, string endValue)
+        {
+            // Disable for now
+
+            // float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+            // float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
+
+            // var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
+            // var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
+            // UpdatePathOfFunction(t => {
+            //     var dict = new Dictionary<string, object> { ["t"] = t };
+            //     return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
+            //                        Convert.ToSingle(expressiveY.Evaluate(dict)));
+            // }, startValueEvaluated, endValueEvaluated);
+        }
+
+        public static void UpdatePathOfFunction(Func<float, Vector2> func, float startValue, float endValue)
+        {
+            // Globals.ThisAddIn.Application.StartNewUndoEntry();
+            var slide = Util.CurrentSlide();
+            var currentPresentation = Globals.ThisAddIn.Application.ActivePresentation;
+            var selectedShapes = Util.ListSelectedShapes();
+            if (selectedShapes.Count == 1)
+            {
+                var shape = selectedShapes[0];
+                var tag = shape.Tags[PathTagName];
+                if (tag == CurveTag || tag == PolylineTag)
+                {
+                    try
+                    {
+                        bool isCurve = tag == CurveTag;
+                        var vectors = PathOfFunction(func, startValue, endValue, isCurve);
+                        var center = shape.Position(ShapeExt.Anchor.Center);
+                        var pointsShape = new PointsShape(vectors, center.X, center.Y);
+                        var points = pointsShape.points;
+                        
+                        int nodeCount = shape.Nodes.Count;
+                        for (int i = 0; i < nodeCount; i++)
+                        {
+                            shape.Nodes.SetPosition(i + 1, points[i, 0], points[i, 1]);
+                        }
+                        // shape.Delete();
+                        
+                        // var newShape = isCurve ? slide.Shapes.AddCurve(points) : slide.Shapes.AddPolyline(points);
+                        // newShape.Tags.Add(PathTagName, isCurve ? CurveTag : PolylineTag);
+                        // newShape.Select();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
+
+        public static Vector2[] PathOfFunction(Func<float, Vector2> func, float startValue, float endValue, bool addControlPoints = false)
+        {
+            float rangeValue = endValue - startValue;
+            var numPoints = 100;
+            var initVectors = new Vector2[numPoints];
+            for (int t = 0; t < numPoints; t++)
+            {
+                var f = ((float)t) / (numPoints - 1);
+                initVectors[t] = func(startValue + f * rangeValue) * shapeScale;
+            }
+            
+            Vector2[] vectors;
+            if (addControlPoints)
+            {
+                // Add control points
+                vectors = new Vector2[numPoints];
                 for (int t = 0; t < numPoints; t++)
                 {
                     if (t % 3 == 0 || t == 1 || t == numPoints - 2)
@@ -326,121 +449,13 @@ namespace EdoliAddIn
                     }
                     vectors[t] = v0 + (v1 - v2) / 2;
                 }
-
-                var points = new float[numPoints, 2];
-
-                var minV = new Vector2(float.MaxValue, float.MaxValue);
-                var maxV = new Vector2(float.MinValue, float.MinValue);
-                for (int i = 0; i < numPoints; i++)
-                {
-                    var v = vectors[i];
-
-                    if (v.X < minV.X) { minV.X = v.X; }
-                    if (v.Y < minV.Y) { minV.Y = v.Y; }
-                    if (v.X > maxV.X) { maxV.X = v.X; }
-                    if (v.Y > maxV.Y) { maxV.Y = v.Y; }
-                }
-                float cx = (minV.X + maxV.X) / 2;
-                float cy = (minV.Y + maxV.Y) / 2;
-
-                float width = maxV.X - minV.X;
-                float height = maxV.Y - minV.Y;
-
-                for (int i = 0; i < numPoints; i++)
-                {
-                    var v = vectors[i];
-                    points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = -v.Y + slideHeight / 2 + cy;
-                }
-
-                var shape = slide.Shapes.AddCurve(points);
-
-                if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
-                {
-                    float scale = 64 / width;
-                    shape.ScaleWidth(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
-                    shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
-                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                vectors = initVectors;
             }
-        }
 
-        public static void AddPolylineOfExpression(string expX, string expY, string startValue, string endValue)
-        {
-            float startValueEvaluated = Convert.ToSingle(new Expression(startValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
-            float endValueEvaluated = Convert.ToSingle(new Expression(endValue, ExpressiveOptions.IgnoreCaseForParsing).Evaluate());
-            var expressiveX = new Expression(expX, ExpressiveOptions.IgnoreCaseForParsing);
-            var expressiveY = new Expression(expY, ExpressiveOptions.IgnoreCaseForParsing);
-            AddPolylineOfFunction(t => {
-                var dict = new Dictionary<string, object> { ["t"] = t };
-                return new Vector2(Convert.ToSingle(expressiveX.Evaluate(dict)),
-                                   Convert.ToSingle(expressiveY.Evaluate(dict)));
-            }, startValueEvaluated, endValueEvaluated);
-        }
-
-
-        public static void AddPolylineOfFunction(Func<float, Vector2> func, float startValue, float endValue)
-        {
-            Globals.ThisAddIn.Application.StartNewUndoEntry();
-            var slide = Util.CurrentSlide();
-            var currentPresentation = Globals.ThisAddIn.Application.ActivePresentation;
-
-            float slideHeight = currentPresentation.PageSetup.SlideHeight;
-            float slideWidth = currentPresentation.PageSetup.SlideWidth;
-
-            float rangeValue = endValue - startValue;
-
-            try
-            {
-                var numPoints = 100;
-                var vectors = new Vector2[numPoints];
-                for (int t = 0; t < numPoints; t++)
-                {
-                    var f = ((float)t) / (numPoints - 1);
-                    vectors[t] = func(startValue + f * rangeValue) * shapeScale;
-                }
-
-                var points = new float[numPoints, 2];
-
-                var minV = new Vector2(float.MaxValue, float.MaxValue);
-                var maxV = new Vector2(float.MinValue, float.MinValue);
-                for (int i = 0; i < numPoints; i++)
-                {
-                    var v = vectors[i];
-
-                    if (v.X < minV.X) { minV.X = v.X; }
-                    if (v.Y < minV.Y) { minV.Y = v.Y; }
-                    if (v.X > maxV.X) { maxV.X = v.X; }
-                    if (v.Y > maxV.Y) { maxV.Y = v.Y; }
-                }
-                float cx = (minV.X + maxV.X) / 2;
-                float cy = (minV.Y + maxV.Y) / 2;
-
-                float width = maxV.X - minV.X;
-                float height = maxV.Y - minV.Y;
-
-                for (int i = 0; i < numPoints; i++)
-                {
-                    var v = vectors[i];
-                    points[i, 0] = v.X + slideWidth / 2 - cx;
-                    points[i, 1] = -v.Y + slideHeight / 2 + cy;
-                }
-
-                var shape = slide.Shapes.AddPolyline(points);
-                if (Globals.Ribbons.EdoliRibbon.checkBoxNormalizeEqShape.Checked)
-                {
-                    float scale = 64 / width;
-                    shape.ScaleWidth(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
-                    shape.ScaleHeight(scale, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoScaleFrom.msoScaleFromMiddle);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            return vectors;
         }
 
         public static void DrawAngleLines()

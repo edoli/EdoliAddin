@@ -54,7 +54,16 @@ namespace EdoliAddIn
             AlignTool.AlignWithSiblingSlide(1);
         }
 
-        private void editBoxName_TextChanged(object sender, RibbonControlEventArgs e)
+        private void curve_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+            var equationX = Globals.Ribbons.EdoliRibbon.curveOfEquationX.Text;
+            var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
+            var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
+            var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
+            ShapeTool.UpdatePathOfExpression(equationX, equationY, startValue, endValue);
+        }
+
+        private void animation_TextChanged(object sender, RibbonControlEventArgs e)
         {
             AnimationTool.SetNameOfActive(this.animationName.Text);
         }
@@ -125,7 +134,7 @@ namespace EdoliAddIn
             var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
             var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
             var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
-            ShapeTool.AddCurveOfExpression(equationX, equationY, startValue, endValue);
+            ShapeTool.AddPathOfExpression(equationX, equationY, startValue, endValue, true);
         }
 
         private void polylineOfEquation_Click(object sender, RibbonControlEventArgs e)
@@ -134,7 +143,7 @@ namespace EdoliAddIn
             var equationY = Globals.Ribbons.EdoliRibbon.curveOfEquationY.Text;
             var startValue = Globals.Ribbons.EdoliRibbon.curveStart.Text;
             var endValue = Globals.Ribbons.EdoliRibbon.curveEnd.Text;
-            ShapeTool.AddPolylineOfExpression(equationX, equationY, startValue, endValue);
+            ShapeTool.AddPathOfExpression(equationX, equationY, startValue, endValue, false);
         }
 
         private void trimImage_Click(object sender, RibbonControlEventArgs e)

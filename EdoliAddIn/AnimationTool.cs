@@ -51,6 +51,7 @@ namespace EdoliAddIn
                 {
                     for (int i = 1; i < nodes.Count; i++)
                     {
+                        // From second node
                         var node = nodes[i + 1];
                         if (i % 3 == 1)
                         {
@@ -68,6 +69,7 @@ namespace EdoliAddIn
                 {
                     for (int i = 1; i < nodes.Count; i++)
                     {
+                        // From second node
                         var node = nodes[i + 1];
                         pathVml += " L " + (node.Points[1, 1] / slideWidth - x1) + " " + (node.Points[1, 2] / slideHeight - y1);
                     }

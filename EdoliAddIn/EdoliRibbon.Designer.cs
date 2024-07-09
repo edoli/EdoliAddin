@@ -466,6 +466,7 @@
             this.curveStart.SizeString = "00000";
             this.curveStart.SuperTip = "Set the starting point for the curve";
             this.curveStart.Text = "0";
+            this.curveStart.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curve_TextChanged);
             // 
             // curveEnd
             // 
@@ -475,6 +476,7 @@
             this.curveEnd.SizeString = "00000";
             this.curveEnd.SuperTip = "Set the ending point for the curve";
             this.curveEnd.Text = "1";
+            this.curveEnd.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curve_TextChanged);
             // 
             // checkBoxNormalizeEqShape
             // 
@@ -495,7 +497,8 @@
             this.curveOfEquationX.Name = "curveOfEquationX";
             this.curveOfEquationX.ScreenTip = "X Equation";
             this.curveOfEquationX.SuperTip = "Enter the equation for the X coordinate";
-            this.curveOfEquationX.Text = null;
+            this.curveOfEquationX.Text = "[t]";
+            this.curveOfEquationX.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curve_TextChanged);
             // 
             // curveOfEquationY
             // 
@@ -503,7 +506,8 @@
             this.curveOfEquationY.Name = "curveOfEquationY";
             this.curveOfEquationY.ScreenTip = "Y Equation";
             this.curveOfEquationY.SuperTip = "Enter the equation for the Y coordinate";
-            this.curveOfEquationY.Text = null;
+            this.curveOfEquationY.Text = "[t]";
+            this.curveOfEquationY.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.curve_TextChanged);
             // 
             // animationGroup
             // 
@@ -521,7 +525,7 @@
             this.animationName.SizeString = "00000000";
             this.animationName.SuperTip = "Enter the name of the animation";
             this.animationName.Text = null;
-            this.animationName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.editBoxName_TextChanged);
+            this.animationName.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.animation_TextChanged);
             // 
             // followAnimation
             // 
