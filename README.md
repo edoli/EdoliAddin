@@ -30,11 +30,7 @@ Connect shapes by lines
 
 ![icon_connect_shape_by_lines](./EdoliAddIn/Resources/icon_connect_shape_by_lines.png)
 
-Invert image
-
-![icon_image_invert](./EdoliAddIn/Resources/icon_image_invert.png)
-
-Time image
+Trim image
 
 ![icon_image_trim](./EdoliAddIn/Resources/icon_image_trim.png)
 
