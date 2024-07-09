@@ -178,15 +178,15 @@ Y: 4 * Exp(-[t] ** 2)
 
 <kbd>CTRL</kbd>+<kbd>NUMPAD-</kbd>: Decrease number of selected text
 
-| | | |
-|-|-|-|
+| Before | | After |
+|:-:|:-:|:-:|
 | ![number_text1](./images/number_text1.png) | ↔ | ![number_text2](./images/number_text2.png) |
 
 
 <kbd>CTRL</kbd>+<kbd>NUMPAD.</kbd>: Evaludation equation of selected text
 
-| | | |
-|-|-|-|
+| Before | | After |
+|:-:|:-:|:-:|
 | ![eval1](./images/eval1.png) | → | ![eval2](./images/eval2.png) |
 
 ### Object naming for animation
