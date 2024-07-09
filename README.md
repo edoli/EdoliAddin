@@ -172,6 +172,23 @@ Y: 4 * Exp(-[t] ** 2)
 
 <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>;</kbd>, <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>'</kbd>: Change line dash style
 
+### Text
+
+<kbd>CTRL</kbd>+<kbd>NUMPAD+</kbd>: Increase number of selected text
+
+<kbd>CTRL</kbd>+<kbd>NUMPAD-</kbd>: Decrease number of selected text
+
+| | | |
+|-|-|-|
+| ![number_text1](./images/number_text1.png) | ↔ | ![number_text2](./images/number_text2.png) |
+
+
+<kbd>CTRL</kbd>+<kbd>NUMPAD.</kbd>: Evaludation equation of selected text
+
+| | | |
+|-|-|-|
+| ![eval1](./images/eval1.png) | → | ![eval2](./images/eval2.png) |
+
 ### Object naming for animation
 
 <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>1</kbd>: Set object name to `!!ID1`
