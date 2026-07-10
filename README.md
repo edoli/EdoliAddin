@@ -3,6 +3,10 @@
 
 # EdoliAddIn
 
+## ⚠️ Moved Repository
+
+The repository has been migrated to: https://github.com/edoli/Figoint
+
 ## Table of Contents
 1. [Shape](#shape)
 1. [Align](#align)
